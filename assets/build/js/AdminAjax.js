@@ -88,8 +88,6 @@ function add_districts(){
 
 
 function action_check(v){
-    var select_text =$("#select option:selected").text();
-    var select_value = $("#select").val();
     var name_to_be_add = $("#name_to_be_add").val();
     console.log('action check : '+select_value+name_to_be_add)
     if(select_value != 'not selected yet'){
@@ -97,20 +95,31 @@ function action_check(v){
             console.log('oke');
             switch (v){
                 case 'add_districts':
+                    var select_value = $("#select").val();
                     add_districts_process(name_to_be_add, select_value);
                     break;
                 case 'update_districts':
+                    var select_value = $("#select").val();
                     var id = $("#id").val();
                     console.log('id districts : '+id);
                     update_districts_process(name_to_be_add, select_value, id);
                     break;
                 case 'add_sub_districts':
+                    var select_value = $("#select").val();
                     add_sub_districts_process(name_to_be_add, select_value);
                     break;
                 case 'update_sub_districts':
+                    var select_value = $("#select").val();
                     var id = $("#id").val();
                     console.log('id sub districts : '+id);
                     update_sub_districts_process(name_to_be_add, select_value, id);
+                    break;
+                case 'add_news_categories':
+                    add_news_categories_process(name_to_be_add);
+                    break;
+                case 'update_news_categories':
+                    var id = $("#id").val();
+                    update_news_categories_process(name_to_be_add, id);
                     break;
             }
         }else{

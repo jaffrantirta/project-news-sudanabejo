@@ -187,6 +187,11 @@
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
+            <?php if($page == 'Kategori Berita'){ ?>
+              <li class="nav-item menu-is-opening menu-open">
+            <?php }else{ ?>
+              <li class="nav-item">
+            <?php } ?>
               <i class="nav-icon fas fa-newspaper"></i>
               <p>
                 Berita
@@ -200,7 +205,6 @@
               <?php }else{ ?>
                 <a href="<?php echo base_url('admin/add_news') ?>" class="nav-link">
               <?php } ?>
-                <a href="pages/charts/chartjs.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Buat Berita</p>
                 </a>
@@ -221,6 +225,16 @@
                 <a href="pages/charts/uplot.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>List Berita</p>
+                </a>
+              </li>
+              <li class="nav-item">
+              <?php if($page == 'Kategori Berita'){ ?>
+                <a href="<?php echo base_url('admin/news_categories') ?>" class="nav-link active">
+              <?php }else{ ?>
+                <a href="<?php echo base_url('admin/news_categories') ?>" class="nav-link">
+              <?php } ?>
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Kategori Berita</p>
                 </a>
               </li>
             </ul>
