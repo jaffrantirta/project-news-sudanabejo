@@ -37,6 +37,9 @@ class Admin extends CI_Controller {
 		$session = $this->session->all_userdata();
     	echo json_encode($session);
 	}
+
+	//-----------------------------------------------------------------------------DAERAH
+
 	public function regencies(){
 		if(!$this->session->userdata('authenticated_admin')){
 			$this->login();
