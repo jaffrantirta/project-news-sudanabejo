@@ -216,6 +216,66 @@ class Api extends CI_Controller {
     echo json_encode($result);
   }
 
+  // --------------------------------------------------- NEWS CATEGORIES -------------------------------
+
+  public function delete_news_categories(){
+    $id = $this->input->post('id');
+    $table = 'news_categories';
+    $data = array(
+      'is_active' => false
+    );
+    $whare_clouse = array('id' => $id);
+    if($result['data'] = $this->api_model->update_data($whare_clouse, $table, $data)){
+      $result['response'] = $this->response(array('status'=>true, 'indonesia'=>'terhapus', 'english'=>'deleted'));
+    }else{
+      $result['response'] = $this->response(array('status'=>false, 'indonesia'=>'gagal menghapus', 'english'=>"failed to delete"));
+      $this->output->set_status_header(501);
+    }
+    echo json_encode($result);
+  }
+
+  public function edit_news_categories_view($id){
+    if(count($result['data']['news_categories'] = $this->api_model->get_data_by_where("news_categories", array('id'=>$id))->result()) > 0){
+      $result['response'] = $this->response(array('status'=>true, 'indonesia'=>'mengambil data berhasil', 'english'=>'data is catched'));
+    }else{
+      $result['response'] = $this->response(array('status'=>false, 'indonesia'=>'mengambil data gagal', 'english'=>"data doesn't catch"));
+      $this->output->set_status_header(404);
+    }
+    echo json_encode($result);
+  }
+
+  public function insert_news_categories(){
+    $news_categories_name = $this->input->post('news_categories_name');
+    $table = 'news_categories';
+    $data = array(
+      'name' => $news_categories_name,
+    );
+    if($result['data'] = $this->api_model->insert_data($table, $data)){
+      $result['response'] = $this->response(array('status'=>true, 'indonesia'=>'tersimpan', 'english'=>'data is saved'));
+    }else{
+      $result['response'] = $this->response(array('status'=>false, 'indonesia'=>'gagal menyimpan', 'english'=>'failed to save'));
+      $this->output->set_status_header(501);
+    }
+    echo json_encode($result);
+  }
+
+  public function update_news_categories(){
+    $news_categories_name = $this->input->post('news_categories_name');
+    $id = $this->input->post('id');
+    $table = 'news_categories';
+    $data = array(
+      'name' => $news_categories_name,
+    );
+    $whare_clouse = array('id' => $id);
+    if($result['data'] = $this->api_model->update_data($whare_clouse, $table, $data)){
+      $result['response'] = $this->response(array('status'=>true, 'indonesia'=>'data telah diubah', 'english'=>'data has been updated'));
+    }else{
+      $result['response'] = $this->response(array('status'=>false, 'indonesia'=>'data tidak berhasi diubah', 'english'=>"data doesn't update"));
+      $this->output->set_status_header(501);
+    }
+    echo json_encode($result);
+  }
+
   // --------------------------------------------------- SESSION FUNCTION -------------------------------
     public function set_session(){
       $id = $this->input->post('id');
@@ -358,4 +418,37 @@ class Api extends CI_Controller {
         $go=SSP::simpleCustom($_GET,$this->datatable_config(),$ssptable,$sspprimary,$columns,$sspwhere,$sspjoin);
         echo json_encode($go);
     }
+
+    public function get_news_categories_data_table(){
+      $columns = array(
+        array(
+          'db' => 'name',  'dt' => 0,
+          'formatter' => function($d, $row){
+            return $d;
+          }
+        ),
+        array(
+          'db' => 'id',  'dt' => 1,
+          'formatter' => function($d, $row){
+            return '
+            <center>
+                <a href="#edit">
+                  <i title="edit" onClick="edit_news_categories('.$d.')" class="fa fa-edit"></i>
+                </a>
+                <a href="#delete">
+                  <i title="hapus" onClick="delete_news_categories('.$d.')" class="fa fa-trash"></i>
+                </a>
+            </center>
+            ';
+          }
+        ),
+      );
+      $ssptable='news_categories';
+      $sspprimary='id';
+      $sspjoin='';
+      $sspwhere='is_active = 1';
+      $go=SSP::simpleCustom($_GET,$this->datatable_config(),$ssptable,$sspprimary,$columns,$sspwhere,$sspjoin);
+      echo json_encode($go);
+    }
 }
+

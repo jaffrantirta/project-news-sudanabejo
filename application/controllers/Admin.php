@@ -25,13 +25,13 @@ class Admin extends CI_Controller {
 		}else{
 			$data['page'] = 'Dashboard';
 			$data['session'] = $this->session->all_userdata();
-			$this->load->view('admin/template/header', $data);
-			$this->load->view('admin/dashboard', $data);
-			$this->load->view('admin/template/footer', $data);
+			$this->load->view('Admin/Template/header', $data);
+			$this->load->view('Admin/dashboard', $data);
+			$this->load->view('Admin/Template/footer', $data);
 		}
 	}
 	public function login(){
-		$this->load->view('admin/login');
+		$this->load->view('Admin/login');
 	}
 	public function show_session(){
 		$session = $this->session->all_userdata();
@@ -43,9 +43,9 @@ class Admin extends CI_Controller {
 		}else{
 			$data['page'] = 'Kabupaten';
 			$data['session'] = $this->session->all_userdata();
-			$this->load->view('admin/template/header', $data);
-			$this->load->view('admin/regencies', $data);
-			$this->load->view('admin/template/footer', $data);
+			$this->load->view('Admin/Template/header', $data);
+			$this->load->view('Admin/regencies', $data);
+			$this->load->view('Admin/Template/footer', $data);
 		}
 	}
 	public function districts(){
@@ -54,9 +54,9 @@ class Admin extends CI_Controller {
 		}else{
 			$data['page'] = 'Kecamatan';
 			$data['session'] = $this->session->all_userdata();
-			$this->load->view('admin/template/header', $data);
-			$this->load->view('admin/districts', $data);
-			$this->load->view('admin/template/footer', $data);
+			$this->load->view('Admin/Template/header', $data);
+			$this->load->view('Admin/districts', $data);
+			$this->load->view('Admin/Template/footer', $data);
 		}
 	}
 	public function sub_districts(){
@@ -65,9 +65,23 @@ class Admin extends CI_Controller {
 		}else{
 			$data['page'] = 'Kelurahan';
 			$data['session'] = $this->session->all_userdata();
-			$this->load->view('admin/template/header', $data);
-			$this->load->view('admin/sub_districts', $data);
-			$this->load->view('admin/template/footer', $data);
+			$this->load->view('Admin/Template/header', $data);
+			$this->load->view('Admin/sub_districts', $data);
+			$this->load->view('Admin/Template/footer', $data);
+		}
+	}
+
+	//---------------------------------------------------------------- NEWS
+
+	public function news_categories(){
+		if(!$this->session->userdata('authenticated_admin')){
+			$this->login();
+		}else{
+			$data['page'] = 'Kategori Berita';
+			$data['session'] = $this->session->all_userdata();
+			$this->load->view('Admin/Template/header', $data);
+			$this->load->view('Admin/news_categories', $data);
+			$this->load->view('Admin/Template/footer', $data);
 		}
 	}
 }
