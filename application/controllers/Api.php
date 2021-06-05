@@ -292,7 +292,7 @@ class Api extends CI_Controller {
 
   public function delete_popular_news(){
     $id = $this->input->post('id');
-    $table = 'news_categories';
+    $table = 'populars';
     $data = array(
       'is_active' => false
     );
@@ -302,16 +302,6 @@ class Api extends CI_Controller {
     }else{
       $result['response'] = $this->response(array('status'=>false, 'indonesia'=>'gagal menghapus', 'english'=>"failed to delete"));
       $this->output->set_status_header(501);
-    }
-    echo json_encode($result);
-  }
-
-  public function edit_popular_news_view($id){
-    if(count($result['data']['news_categories'] = $this->api_model->get_data_by_where("news_categories", array('id'=>$id))->result()) > 0){
-      $result['response'] = $this->response(array('status'=>true, 'indonesia'=>'mengambil data berhasil', 'english'=>'data is catched'));
-    }else{
-      $result['response'] = $this->response(array('status'=>false, 'indonesia'=>'mengambil data gagal', 'english'=>"data doesn't catch"));
-      $this->output->set_status_header(404);
     }
     echo json_encode($result);
   }
@@ -331,21 +321,111 @@ class Api extends CI_Controller {
     echo json_encode($result);
   }
 
-  public function update_popular_news(){
-    $news_categories_name = $this->input->post('news_categories_name');
+
+
+  // --------------------------------------------------- HEADLINE NEWS -------------------------------
+
+  public function delete_headline_news(){
     $id = $this->input->post('id');
-    $table = 'news_categories';
+    $table = 'headline_news';
     $data = array(
-      'name' => $news_categories_name,
+      'is_active' => false
     );
     $whare_clouse = array('id' => $id);
     if($result['data'] = $this->api_model->update_data($whare_clouse, $table, $data)){
-      $result['response'] = $this->response(array('status'=>true, 'indonesia'=>'data telah diubah', 'english'=>'data has been updated'));
+      $result['response'] = $this->response(array('status'=>true, 'indonesia'=>'terhapus', 'english'=>'deleted'));
     }else{
-      $result['response'] = $this->response(array('status'=>false, 'indonesia'=>'data tidak berhasi diubah', 'english'=>"data doesn't update"));
+      $result['response'] = $this->response(array('status'=>false, 'indonesia'=>'gagal menghapus', 'english'=>"failed to delete"));
       $this->output->set_status_header(501);
     }
     echo json_encode($result);
+  }
+
+  public function insert_headline_news(){
+    $news_id = $this->input->post('news_id');
+    $table = 'headline_news';
+    $data = array(
+      'news_id' => $news_id,
+    );
+    if($result['data'] = $this->api_model->insert_data($table, $data)){
+      $result['response'] = $this->response(array('status'=>true, 'indonesia'=>'tersimpan', 'english'=>'data is saved'));
+    }else{
+      $result['response'] = $this->response(array('status'=>false, 'indonesia'=>'gagal menyimpan', 'english'=>'failed to save'));
+      $this->output->set_status_header(501);
+    }
+    echo json_encode($result);
+  }
+
+  // --------------------------------------------------- NEWS -------------------------------
+
+  public function delete_news(){
+    $id = $this->input->post('id');
+    $table = 'news';
+    $data = array(
+      'is_delete' => true
+    );
+    $whare_clouse = array('id' => $id);
+    if($result['data'] = $this->api_model->update_data($whare_clouse, $table, $data)){
+      $result['response'] = $this->response(array('status'=>true, 'indonesia'=>'terhapus', 'english'=>'deleted'));
+    }else{
+      $result['response'] = $this->response(array('status'=>false, 'indonesia'=>'gagal menghapus', 'english'=>"failed to delete"));
+      $this->output->set_status_header(501);
+    }
+    echo json_encode($result);
+  }
+
+  public function insert_news(){
+    $title = $this->input->post('title');
+    $content = $this->input->post('content');
+    $category = $this->input->post('category');
+    $table = 'news';
+    $data = array(
+      'title'=>$title,
+      'content'=>$content,
+      'category_id'=>$category
+    );
+    if($result['data'] = $this->api_model->insert_data($table, $data)){
+      $result['response'] = $this->response(array('status'=>true, 'indonesia'=>'tersimpan', 'english'=>'data is saved'));
+    }else{
+      $result['response'] = $this->response(array('status'=>false, 'indonesia'=>'gagal menyimpan', 'english'=>'failed to save'));
+      $this->output->set_status_header(501);
+    }
+    echo json_encode($result);
+  }
+  public function insert_news_2(){
+    $file = $_FILES['file']['name'];
+    $remove_char = preg_replace("/[^a-zA-Z]/", "", $file);
+    $filename = time().$remove_char.'.jpg';
+    $location = "assets/images/news/".$filename;
+    $title = $this->input->post('title');
+    $content = $this->input->post('content');
+    $category = $this->input->post('category');
+    $photo_name = $filename;
+    $table = 'news';
+    $data = array(
+      'title'=>$title,
+      'content'=>$content,
+      'category_id'=>$category
+    );
+    if($this->api_model->insert_data($table, $data)){
+      $table2 = 'news_photos';
+      $data2 = array(
+        'name'=>$filename,
+        'news_id'=>$this->db->insert_id()
+      );
+      if($this->api_model->insert_data($table2, $data2)){
+        if(move_uploaded_file($_FILES['file']['tmp_name'], $location)){
+          $this->session->set_flashdata('msg', 'Sukses');
+          
+        }else{
+          $this->session->set_flashdata('msg', 'Gagal Upload');
+        }
+      }else{
+        $this->session->set_flashdata('msg', 'Gagal Input Gambar');
+      }
+    }else{
+      $this->session->set_flashdata('msg', 'Gagal Input Berita');
+    }
   }
 
   // --------------------------------------------------- SESSION FUNCTION -------------------------------
@@ -549,21 +629,43 @@ class Api extends CI_Controller {
           }
         ),
         array(
-          'db' => 'created_at',  'dt' => 3,
+          'db' => 'is_pending',  'dt' => 3,
+          'formatter' => function($d, $row){
+            if($d == 1){
+              $view = 'TRUE';
+            }else{
+              $view = 'FALSE';
+            }
+            return $view;
+          }
+        ),
+        array(
+          'db' => 'created_at',  'dt' => 4,
           'formatter' => function($d, $row){
             $date = date("l, d-F-Y H:i:s", strtotime($d));  
             return $date;
           }
         ),
         array(
-          'db' => 'updated_at',  'dt' => 4,
+          'db' => 'updated_at',  'dt' => 5,
           'formatter' => function($d, $row){
             $date = date("l, d-F-Y H:i:s", strtotime($d));  
             return $date;
           }
         ),
         array(
-          'db' => 'id',  'dt' => 5,
+          'db' => 'is_post',  'dt' => 6,
+          'formatter' => function($d, $row){
+            if($row[3] == 1){
+              $view = '<h5 style="color: yellow">PENDING</h5>';
+            }else{
+              $view = '<h5 style="color: green">TAYANG</h5>';
+            }
+            return $view;
+          }
+        ),
+        array(
+          'db' => 'id',  'dt' => 7,
           'formatter' => function($d, $row){
             return '
             <center>
@@ -571,7 +673,7 @@ class Api extends CI_Controller {
                   <i title="edit" onClick="edit_news_categories('.$d.')" class="fa fa-edit"></i>
                 </a>
                 <a href="#delete">
-                  <i title="hapus" onClick="delete_news_categories('.$d.')" class="fa fa-trash"></i>
+                  <i title="hapus" onClick="delete_news('.$d.')" class="fa fa-trash"></i>
                 </a>
             </center>
             ';
@@ -581,7 +683,7 @@ class Api extends CI_Controller {
       $ssptable='news_complate_data';
       $sspprimary='id';
       $sspjoin='';
-      $sspwhere='id>=0';
+      $sspwhere='is_delete = 0';
       $go=SSP::simpleCustom($_GET,$this->datatable_config(),$ssptable,$sspprimary,$columns,$sspwhere,$sspjoin);
       echo json_encode($go);
     }
@@ -655,7 +757,7 @@ class Api extends CI_Controller {
                   <i title="edit" onClick="edit_news_categories('.$d.')" class="fa fa-edit"></i>
                 </a>
                 <a href="#delete">
-                  <i title="hapus" onClick="delete_news_categories('.$d.')" class="fa fa-trash"></i>
+                  <i title="hapus" onClick="delete_popular_news('.$d.')" class="fa fa-trash"></i>
                 </a>
             </center>
             ';
@@ -665,7 +767,91 @@ class Api extends CI_Controller {
       $ssptable='popular_news';
       $sspprimary='id';
       $sspjoin='';
-      $sspwhere='is_delete = 0';
+      $sspwhere='is_active = 1 AND is_delete = 0 AND news_category_is_active = 1';
+      $go=SSP::simpleCustom($_GET,$this->datatable_config(),$ssptable,$sspprimary,$columns,$sspwhere,$sspjoin);
+      echo json_encode($go);
+    }
+    public function get_headline_data_table(){
+      $columns = array(
+        array(
+          'db' => 'category_name',  'dt' => 0,
+          'formatter' => function($d, $row){
+            return $d;
+          }
+        ),
+        array(
+          'db' => 'title',  'dt' => 1,
+          'formatter' => function($d, $row){
+            return $d;
+          }
+        ),
+        array(
+          'db' => 'visit_sum',  'dt' => 2,
+          'formatter' => function($d, $row){
+            if($d == null){
+              $view = 'belum ada kunjungan';
+            }else{
+              $view = $d;
+            }
+            return $view;
+          }
+        ),
+        array(
+          'db' => 'is_pending',  'dt' => 3,
+          'formatter' => function($d, $row){
+            if($d == 1){
+              $view = 'TRUE';
+            }else{
+              $view = 'FALSE';
+            }
+            return $view;
+          }
+        ),
+        array(
+          'db' => 'created_at',  'dt' => 4,
+          'formatter' => function($d, $row){
+            $date = date("l, d-F-Y H:i:s", strtotime($d));  
+            return $date;
+          }
+        ),
+        array(
+          'db' => 'updated_at',  'dt' => 5,
+          'formatter' => function($d, $row){
+            $date = date("l, d-F-Y H:i:s", strtotime($d));  
+            return $date;
+          }
+        ),
+        array(
+          'db' => 'is_post',  'dt' => 6,
+          'formatter' => function($d, $row){
+            if($row[3] == 1){
+              $view = '<h5 style="color: yellow">PENDING</h5>';
+            }else{
+              $view = '<h5 style="color: green">TAYANG</h5>';
+            }
+            return $view;
+          }
+        ),
+        array(
+          'db' => 'headline_id',  'dt' => 7,
+          'formatter' => function($d, $row){
+            return '
+            <center>
+                <a href="#edit">
+                  <i title="edit" onClick="edit_news_categories('.$d.')" class="fa fa-edit"></i>
+                </a>
+                <a href="#delete">
+                  <i title="hapus" onClick="delete_headline_news('.$d.')" class="fa fa-trash"></i>
+                </a>
+            </center>
+            ';
+          }
+        ),
+      );
+      $ssptable='headline';
+      $sspprimary='id';
+      $sspjoin='';
+      $sspwhere='is_active = 1 AND is_delete = 0 AND news_category_is_active = 1';
       $go=SSP::simpleCustom($_GET,$this->datatable_config(),$ssptable,$sspprimary,$columns,$sspwhere,$sspjoin);
       echo json_encode($go);
     }
