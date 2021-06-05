@@ -33,6 +33,7 @@ function login(){
                 },
                 error: function (result, ajaxOptions, thrownError) {
                     // console.log('data : '+xhr.responseText);
+                    error_message('error', 'Oops! sepertinya ada kesalahan', 'kesalahan tidak diketahui');
                     var string = JSON.stringify(result.responseText);
                     var msg = JSON.parse(result.responseText);
                     error_message('error', 'Oops! sepertinya ada kesalahan', msg.response.message['indonesia']);
@@ -72,6 +73,7 @@ function set_session(id, role_id, user_name, nik, sub_district_id, community_uni
         },
         error: function (xhr, ajaxOptions, thrownError) {
             // console.log('data : '+xhr.responseText);
+            error_message('error', 'Oops! sepertinya ada kesalahan', 'kesalahan tidak diketahui');
             var string = JSON.stringify(xhr.responseText);
             var msg = JSON.parse(xhr.responseText);
             if(msg.response.status != false){

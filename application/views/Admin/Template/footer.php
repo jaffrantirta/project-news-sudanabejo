@@ -1,5 +1,5 @@
 <footer class="main-footer">
-    <strong>Copyright &copy; 2021 <a href="<?php echo base_url() ?>">SUIchannel</a>.</strong>
+    <strong>Copyright &copy; 2021 <a href="https://franweb.my.id">Fran Web</a>.</strong>
     All rights reserved.
     <div class="float-right d-none d-sm-inline-block">
       <b>Version</b> 1.0
@@ -15,14 +15,16 @@
 <!-- ./wrapper -->
 
 <!-- jQuery -->
-<script src="<?php echo base_url() ?>assets/build/js/Jquery3Offline.js"></script>
-<script src="<?php echo base_url() ?>assets/build/js/SweetAlertOffline.js"></script>
+<script src="<?php echo base_url() ?>assets/build/js/admin/Jquery3Offline.js"></script>
+<script src="<?php echo base_url() ?>assets/build/js/admin/SweetAlertOffline.js"></script>
 <script src="<?php echo base_url() ?>assets/plugins/jquery/jquery.min.js"></script>
-<script src="<?php echo base_url() ?>assets/build/js/DataTableOffline.js"></script>
-<script src="<?php echo base_url() ?>assets/build/js/AdminAjax.js"></script>
-<script src="<?php echo base_url() ?>assets/build/js/AdminSubDistricts.js"></script>
-<script src="<?php echo base_url() ?>assets/build/js/AdminNewsCategories.js"></script>
-<script src="<?php echo base_url() ?>assets/build/js/AdminPopularNews.js"></script>
+<script src="<?php echo base_url() ?>assets/build/js/admin/DataTableOffline.js"></script>
+<script src="<?php echo base_url() ?>assets/build/js/admin/AdminAjax.js"></script>
+<script src="<?php echo base_url() ?>assets/build/js/admin/AdminSubDistricts.js"></script>
+<script src="<?php echo base_url() ?>assets/build/js/admin/AdminNewsCategories.js"></script>
+<script src="<?php echo base_url() ?>assets/build/js/admin/AdminPopularNews.js"></script>
+<script src="<?php echo base_url() ?>assets/build/js/admin/AdminHeadline.js"></script>
+<script src="<?php echo base_url() ?>assets/build/js/admin/AdminNews.js"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="<?php echo base_url() ?>assets/plugins/jquery-ui/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->

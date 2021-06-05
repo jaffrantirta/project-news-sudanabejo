@@ -64,9 +64,9 @@
 <!-- /.login-box -->
 
 <!-- jQuery -->
-<script src="<?php echo base_url() ?>assets/build/js/SweetAlertOffline.js"></script>
-<script src="<?php echo base_url() ?>assets/build/js/Jquery3Offline.js" crossorigin="anonymous"></script>
-<script src="<?php echo base_url() ?>assets/build/js/AdminLogin.js"></script>
+<script src="<?php echo base_url() ?>assets/build/js/admin/SweetAlertOffline.js"></script>
+<script src="<?php echo base_url() ?>assets/build/js/admin/Jquery3Offline.js" crossorigin="anonymous"></script>
+<script src="<?php echo base_url() ?>assets/build/js/admin/AdminLogin.js"></script>
 <script src="<?php echo base_url() ?>assets/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="<?php echo base_url() ?>assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
