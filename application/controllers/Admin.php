@@ -99,4 +99,16 @@ class Admin extends CI_Controller {
 			$this->load->view('Admin/Template/footer', $data);
 		}
 	}
+
+	public function popular_news(){
+		if(!$this->session->userdata('authenticated_admin')){
+			$this->login();
+		}else{
+			$data['page'] = 'Berita Populer';
+			$data['session'] = $this->session->all_userdata();
+			$this->load->view('Admin/Template/header', $data);
+			$this->load->view('Admin/populars', $data);
+			$this->load->view('Admin/Template/footer', $data);
+		}
+	}
 }

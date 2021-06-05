@@ -187,7 +187,7 @@
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
-            <?php if($page == 'Kategori Berita'){ ?>
+            <?php if($page == 'Kategori Berita' || $page == 'Berita Populer' || $page == 'Berita'){ ?>
               <li class="nav-item menu-is-opening menu-open">
             <?php }else{ ?>
               <li class="nav-item">
@@ -216,7 +216,11 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/charts/inline.html" class="nav-link">
+              <?php if($page == 'Berita Populer'){ ?>
+                <a href="<?php echo base_url('admin/popular_news') ?>" class="nav-link active">
+              <?php }else{ ?>
+                <a href="<?php echo base_url('admin/popular_news') ?>" class="nav-link">
+              <?php } ?>
                   <i class="far fa-circle nav-icon"></i>
                   <p>Populer</p>
                 </a>
