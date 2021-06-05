@@ -222,7 +222,11 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/charts/uplot.html" class="nav-link">
+              <?php if($page == 'Berita'){ ?>
+                <a href="<?php echo base_url('admin/news') ?>" class="nav-link active">
+              <?php }else{ ?>
+                <a href="<?php echo base_url('admin/news') ?>" class="nav-link">
+              <?php } ?>
                   <i class="far fa-circle nav-icon"></i>
                   <p>List Berita</p>
                 </a>

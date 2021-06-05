@@ -377,7 +377,7 @@ class Api extends CI_Controller {
 		    $ssptable='districts_join_regencies';
 		    $sspprimary='id';
 		    $sspjoin='';
-		    $sspwhere='id>0';
+		    $sspwhere='id>=0';
 		    $go=SSP::simpleCustom($_GET,$this->datatable_config(),$ssptable,$sspprimary,$columns,$sspwhere,$sspjoin);
 		    echo json_encode($go);
 	  }
@@ -447,6 +447,69 @@ class Api extends CI_Controller {
       $sspprimary='id';
       $sspjoin='';
       $sspwhere='is_active = 1';
+      $go=SSP::simpleCustom($_GET,$this->datatable_config(),$ssptable,$sspprimary,$columns,$sspwhere,$sspjoin);
+      echo json_encode($go);
+    }
+
+    public function get_news_data_table(){
+      $columns = array(
+        array(
+          'db' => 'category_name',  'dt' => 0,
+          'formatter' => function($d, $row){
+            return $d;
+          }
+        ),
+        array(
+          'db' => 'title',  'dt' => 1,
+          'formatter' => function($d, $row){
+            return $d;
+          }
+        ),
+        array(
+          'db' => 'visit_sum',  'dt' => 2,
+          'formatter' => function($d, $row){
+            if($d == null){
+              $view = 'belum ada kunjungan';
+            }else{
+              $view = $d;
+            }
+            return $view;
+          }
+        ),
+        array(
+          'db' => 'created_at',  'dt' => 3,
+          'formatter' => function($d, $row){
+            $date = date("l, d-F-Y H:i:s", strtotime($d));  
+            return $date;
+          }
+        ),
+        array(
+          'db' => 'updated_at',  'dt' => 4,
+          'formatter' => function($d, $row){
+            $date = date("l, d-F-Y H:i:s", strtotime($d));  
+            return $date;
+          }
+        ),
+        array(
+          'db' => 'id',  'dt' => 5,
+          'formatter' => function($d, $row){
+            return '
+            <center>
+                <a href="#edit">
+                  <i title="edit" onClick="edit_news_categories('.$d.')" class="fa fa-edit"></i>
+                </a>
+                <a href="#delete">
+                  <i title="hapus" onClick="delete_news_categories('.$d.')" class="fa fa-trash"></i>
+                </a>
+            </center>
+            ';
+          }
+        ),
+      );
+      $ssptable='news_complate_data';
+      $sspprimary='id';
+      $sspjoin='';
+      $sspwhere='id>=0';
       $go=SSP::simpleCustom($_GET,$this->datatable_config(),$ssptable,$sspprimary,$columns,$sspwhere,$sspjoin);
       echo json_encode($go);
     }
