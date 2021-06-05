@@ -88,38 +88,47 @@ function add_districts(){
 
 
 function action_check(v){
-    var name_to_be_add = $("#name_to_be_add").val();
     console.log('action check : '+select_value+name_to_be_add)
     if(select_value != 'not selected yet'){
         if(name_to_be_add != ''){
             console.log('oke');
             switch (v){
                 case 'add_districts':
+                    var name_to_be_add = $("#name_to_be_add").val();
                     var select_value = $("#select").val();
                     add_districts_process(name_to_be_add, select_value);
                     break;
                 case 'update_districts':
+                    var name_to_be_add = $("#name_to_be_add").val();
                     var select_value = $("#select").val();
                     var id = $("#id").val();
                     console.log('id districts : '+id);
                     update_districts_process(name_to_be_add, select_value, id);
                     break;
                 case 'add_sub_districts':
+                    var name_to_be_add = $("#name_to_be_add").val();
                     var select_value = $("#select").val();
                     add_sub_districts_process(name_to_be_add, select_value);
                     break;
                 case 'update_sub_districts':
+                    var name_to_be_add = $("#name_to_be_add").val();
                     var select_value = $("#select").val();
                     var id = $("#id").val();
                     console.log('id sub districts : '+id);
                     update_sub_districts_process(name_to_be_add, select_value, id);
                     break;
                 case 'add_news_categories':
+                    var name_to_be_add = $("#name_to_be_add").val();
                     add_news_categories_process(name_to_be_add);
                     break;
                 case 'update_news_categories':
+                    var name_to_be_add = $("#name_to_be_add").val();
                     var id = $("#id").val();
                     update_news_categories_process(name_to_be_add, id);
+                    break;
+                case 'add_popular_news':
+                    var select_value = $("#select").val();
+                    add_popular_news_process(select_value);
                     break;
             }
         }else{
