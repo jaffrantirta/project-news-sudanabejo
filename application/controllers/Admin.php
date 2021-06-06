@@ -23,7 +23,7 @@ class Admin extends CI_Controller {
 	public function dashboard(){
 		if(!$this->session->userdata('authenticated_admin')){
 			$this->login();
-		}else{
+		}else{	
 			$data['page'] = 'Dashboard';
 			$data['session'] = $this->session->all_userdata();
 			$this->load->view('Admin/Template/header', $data);
@@ -141,6 +141,17 @@ class Admin extends CI_Controller {
 			$this->load->view('Admin/Template/footer', $data);
 		}
 	}
+	public function message(){
+		if(!$this->session->userdata('authenticated_admin')){
+			$this->login();
+		}else{
+			$data['page'] = 'Buat Berita';
+			$data['session'] = $this->session->all_userdata();
+			$this->load->view('Admin/Template/header', $data);
+			$this->load->view('Admin/message', $data);
+			$this->load->view('Admin/Template/footer', $data);
+		}
+	}
 	public function create_news_process(){
 		$file = $_FILES['file']['name'];
 		$remove_char = preg_replace("/[^a-zA-Z]/", "", $file);
@@ -164,19 +175,19 @@ class Admin extends CI_Controller {
 		  );
 		  if($this->api_model->insert_data($table2, $data2)){
 			if(move_uploaded_file($_FILES['file']['tmp_name'], $location)){
-			  $this->session->set_flashdata('success_msg', 'Sukses');
-			  $this->create_news();
+			  $this->session->set_flashdata('msg_upload', 'Upload Sukses');
+			  $this->message();
 			}else{
-			  $this->session->set_flashdata('failed_msg', 'Gagal Upload');
-			  $this->create_news();
+			  $this->session->set_flashdata('msg_upload', 'Gagal Upload');
+			  $this->message();
 			}
 		  }else{
-			$this->session->set_flashdata('failed_msg', 'Gagal Input Gambar');
-			$this->create_news();
+			$this->session->set_flashdata('msg_upload', 'Gagal Input Gambar');
+			$this->message();
 		  }
 		}else{
-		  $this->session->set_flashdata('failed_msg', 'Gagal Input Berita');
-		  $this->create_news();
+		  $this->session->set_flashdata('msg_upload', 'Gagal Input Berita');
+		  $this->message();
 		}
 	}
 }
