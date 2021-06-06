@@ -19,20 +19,6 @@
       </div><!-- /.container-fluid -->
     </div>
     <!-- /.content-header -->
-    <div class="row text-center">
-    <?php $msg = $this->session->flashdata('message_name');
-    if($msg == 'success_msg'){ ?>
-      <div>
-        <button class="button large round success">Success notification</button>
-      </div>
-    <?php }else if($msg == 'failed_msg'){?>
-      <div>
-        <button class="button large round alert">Error notification</button>
-      </div>
-    <?php } ?>
-    </div>
-
-
     <div class="container">
     <div class="card card-danger">
               <div class="card-header">
