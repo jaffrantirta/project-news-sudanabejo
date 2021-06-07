@@ -131,8 +131,8 @@ class Api extends CI_Controller {
         'name' => $districts_name,
         'regency_id' => $regency_id,
       );
-      $whare_clouse = array('id' => $id);
-      if($result['data'] = $this->api_model->update_data($whare_clouse, $table, $data)){
+      $where_clouse = array('id' => $id);
+      if($result['data'] = $this->api_model->update_data($where_clouse, $table, $data)){
         $result['response'] = $this->response(array('status'=>true, 'indonesia'=>'data telah diubah', 'english'=>'data has been updated'));
       }else{
         $result['response'] = $this->response(array('status'=>false, 'indonesia'=>'data tidak berhasi diubah', 'english'=>"data doesn't update"));
@@ -147,8 +147,8 @@ class Api extends CI_Controller {
       $data = array(
         'is_active' => false
       );
-      $whare_clouse = array('id' => $id);
-      if($result['data'] = $this->api_model->update_data($whare_clouse, $table, $data)){
+      $where_clouse = array('id' => $id);
+      if($result['data'] = $this->api_model->update_data($where_clouse, $table, $data)){
         $result['response'] = $this->response(array('status'=>true, 'indonesia'=>'terhapus', 'english'=>'deleted'));
       }else{
         $result['response'] = $this->response(array('status'=>false, 'indonesia'=>'gagal menghapus', 'english'=>"failed to delete"));
@@ -180,8 +180,8 @@ class Api extends CI_Controller {
     $data = array(
       'is_active' => false
     );
-    $whare_clouse = array('id' => $id);
-    if($result['data'] = $this->api_model->update_data($whare_clouse, $table, $data)){
+    $where_clouse = array('id' => $id);
+    if($result['data'] = $this->api_model->update_data($where_clouse, $table, $data)){
       $result['response'] = $this->response(array('status'=>true, 'indonesia'=>'terhapus', 'english'=>'deleted'));
     }else{
       $result['response'] = $this->response(array('status'=>false, 'indonesia'=>'gagal menghapus', 'english'=>"failed to delete"));
@@ -198,8 +198,8 @@ class Api extends CI_Controller {
       'name' => $sub_districts_name,
       'distric_id' => $distric_id,
     );
-    $whare_clouse = array('id' => $id);
-    if($result['data'] = $this->api_model->update_data($whare_clouse, $table, $data)){
+    $where_clouse = array('id' => $id);
+    if($result['data'] = $this->api_model->update_data($where_clouse, $table, $data)){
       $result['response'] = $this->response(array('status'=>true, 'indonesia'=>'data telah diubah', 'english'=>'data has been updated'));
     }else{
       $result['response'] = $this->response(array('status'=>false, 'indonesia'=>'data tidak berhasi diubah', 'english'=>"data doesn't update"));
@@ -236,8 +236,8 @@ class Api extends CI_Controller {
     $data = array(
       'is_active' => false
     );
-    $whare_clouse = array('id' => $id);
-    if($result['data'] = $this->api_model->update_data($whare_clouse, $table, $data)){
+    $where_clouse = array('id' => $id);
+    if($result['data'] = $this->api_model->update_data($where_clouse, $table, $data)){
       $result['response'] = $this->response(array('status'=>true, 'indonesia'=>'terhapus', 'english'=>'deleted'));
     }else{
       $result['response'] = $this->response(array('status'=>false, 'indonesia'=>'gagal menghapus', 'english'=>"failed to delete"));
@@ -278,8 +278,8 @@ class Api extends CI_Controller {
     $data = array(
       'name' => $news_categories_name,
     );
-    $whare_clouse = array('id' => $id);
-    if($result['data'] = $this->api_model->update_data($whare_clouse, $table, $data)){
+    $where_clouse = array('id' => $id);
+    if($result['data'] = $this->api_model->update_data($where_clouse, $table, $data)){
       $result['response'] = $this->response(array('status'=>true, 'indonesia'=>'data telah diubah', 'english'=>'data has been updated'));
     }else{
       $result['response'] = $this->response(array('status'=>false, 'indonesia'=>'data tidak berhasi diubah', 'english'=>"data doesn't update"));
@@ -296,8 +296,8 @@ class Api extends CI_Controller {
     $data = array(
       'is_active' => false
     );
-    $whare_clouse = array('id' => $id);
-    if($result['data'] = $this->api_model->update_data($whare_clouse, $table, $data)){
+    $where_clouse = array('id' => $id);
+    if($result['data'] = $this->api_model->update_data($where_clouse, $table, $data)){
       $result['response'] = $this->response(array('status'=>true, 'indonesia'=>'terhapus', 'english'=>'deleted'));
     }else{
       $result['response'] = $this->response(array('status'=>false, 'indonesia'=>'gagal menghapus', 'english'=>"failed to delete"));
@@ -331,8 +331,8 @@ class Api extends CI_Controller {
     $data = array(
       'is_active' => false
     );
-    $whare_clouse = array('id' => $id);
-    if($result['data'] = $this->api_model->update_data($whare_clouse, $table, $data)){
+    $where_clouse = array('id' => $id);
+    if($result['data'] = $this->api_model->update_data($where_clouse, $table, $data)){
       $result['response'] = $this->response(array('status'=>true, 'indonesia'=>'terhapus', 'english'=>'deleted'));
     }else{
       $result['response'] = $this->response(array('status'=>false, 'indonesia'=>'gagal menghapus', 'english'=>"failed to delete"));
@@ -364,8 +364,8 @@ class Api extends CI_Controller {
     $data = array(
       'is_delete' => true
     );
-    $whare_clouse = array('id' => $id);
-    if($result['data'] = $this->api_model->update_data($whare_clouse, $table, $data)){
+    $where_clouse = array('id' => $id);
+    if($result['data'] = $this->api_model->update_data($where_clouse, $table, $data)){
       $result['response'] = $this->response(array('status'=>true, 'indonesia'=>'terhapus', 'english'=>'deleted'));
     }else{
       $result['response'] = $this->response(array('status'=>false, 'indonesia'=>'gagal menghapus', 'english'=>"failed to delete"));
@@ -465,6 +465,162 @@ class Api extends CI_Controller {
       $result['response']['message']['english'] = 'session created';
       $result['response']['data'][] = true;
       echo json_encode($result);
+    }
+
+    // --------------------------------------------------- DASHBOARD FUNCTION -------------------------------
+
+    public function get_regencies_count($table, $data){
+      if(!$this->session->userdata('authenticated_admin')){
+        $result['response'] = $this->response(array('status'=>false, 'indonesia'=>'tidak terautentikasi', 'english'=>'unauthorized'));
+        $this->output->set_status_header(401);
+      }else{
+        $regencies = $this->api_model->get_data_by_where($table, $data)->result();
+        $sum_regencies = count($regencies);
+        if($sum_regencies > 0){
+          if($sum_regencies == 1){
+            for($i=0;$i<$sum_regencies;$i++){
+              $table_2 = 'count_regencies';
+              $data_2 = array('is_active'=>true, 'id'=>$regencies[$i]->id);
+              if(count($data = $this->api_model->get_data_by_where($table_2, $data_2)->result()) > 0){
+                $result[$i] = $data[0];
+              }else{
+                $result[$i] = array(
+                  'count_by_regency'=>'0',
+                  'id'=>$regencies[$i]->id,
+                  'name'=>$regencies[$i]->name,
+                  'is_active'=>$regencies[$i]->is_active,
+                  'created_at'=>$regencies[$i]->created_at,
+                  'updated_at'=>$regencies[$i]->updated_at
+                );
+              }
+            }
+          }else{
+            for($i=0;$i<$sum_regencies;$i++){
+              $table_2 = 'count_regencies';
+              $data_2 = array('is_active'=>true, 'id'=>$regencies[$i]->id);
+              if(count($data = $this->api_model->get_data_by_where($table_2, $data_2)->result()) > 0){
+                $result['regencies'][$i] = $data[0];
+              }else{
+                $result['regencies'][$i] = array(
+                  'count_by_regency'=>'0',
+                  'id'=>$regencies[$i]->id,
+                  'name'=>$regencies[$i]->name,
+                  'is_active'=>$regencies[$i]->is_active,
+                  'created_at'=>$regencies[$i]->created_at,
+                  'updated_at'=>$regencies[$i]->updated_at
+                );
+              }
+            }
+          }
+        }else{
+          $result = null;
+          
+        }
+      }
+      return $result;
+    }
+
+    public function get_districts_count($table, $data){
+      if(!$this->session->userdata('authenticated_admin')){
+        $result['response'] = $this->response(array('status'=>false, 'indonesia'=>'tidak terautentikasi', 'english'=>'unauthorized'));
+        $this->output->set_status_header(401);
+      }else{
+        $districts = $this->api_model->get_data_by_where($table, $data)->result();
+        $sum_districts = count($districts);
+        if($sum_districts > 0){
+          $regency_data = $this->get_regencies_count('regencies', array('is_active'=>true, 'id'=>$districts[0]->regency_id));
+          $result['regency'] = $regency_data;
+          for($i=0;$i<$sum_districts;$i++){
+            $table_2 = 'count_districts';
+            $data_2 = array('is_active'=>true, 'id'=>$districts[$i]->id);
+            if(count($data = $this->api_model->get_data_by_where($table_2, $data_2)->result()) > 0){
+              $result['districts'][$i] = $data[0];
+            }else{
+              $result['districts'][$i] = array(
+                'count_by_regency'=>'0',
+                'id'=>$districts[$i]->id,
+                'name'=>$districts[$i]->name,
+                'regency_id'=>$districts[$i]->regency_id,
+                'is_active'=>$districts[$i]->is_active,
+                'created_at'=>$districts[$i]->created_at,
+                'updated_at'=>$districts[$i]->updated_at
+              );
+            }
+          }
+        }else{
+          $result = null;
+        }
+      }
+      return $result;
+    }
+
+    public function get_sub_districts_count($table, $data){
+      if(!$this->session->userdata('authenticated_admin')){
+        $result['response'] = $this->response(array('status'=>false, 'indonesia'=>'tidak terautentikasi', 'english'=>'unauthorized'));
+        $this->output->set_status_header(401);
+      }else{
+        $sub_districts = $this->api_model->get_data_by_where($table, $data)->result();
+        $sum_sub_districts = count($sub_districts);
+        if($sum_sub_districts > 0){
+          $districts_data = $this->get_districts_count('districts', array('is_active'=>true, 'id'=>$sub_districts[0]->distric_id));
+          $result = $districts_data;
+          for($i=0;$i<$sum_sub_districts;$i++){
+            $table_2 = 'count_sub_districts';
+            $data_2 = array('is_active'=>true, 'id'=>$sub_districts[$i]->id);
+            if(count($data = $this->api_model->get_data_by_where($table_2, $data_2)->result()) > 0){
+              $result['sub_districts'][$i] = $data[0];
+            }else{
+              $result['sub_districts'][$i] = array(
+                'count_by_regency'=>'0',
+                'id'=>$sub_districts[$i]->id,
+                'name'=>$sub_districts[$i]->name,
+                'distric_id'=>$sub_districts[$i]->distric_id,
+                'is_active'=>$sub_districts[$i]->is_active,
+                'created_at'=>$sub_districts[$i]->created_at,
+                'updated_at'=>$sub_districts[$i]->updated_at
+              );
+            }
+          }
+        }else{
+          $result = null;
+        }
+      }
+      return $result;
+    }
+
+    public function get_data_sum($v){
+      $decode = explode("/", base64_decode($v));
+      $based_by = $decode[0];
+      $where_clouse = $decode[1];
+      $where_condition = $decode[2];
+      $where_value = $decode[3];
+      $data = array(
+        'is_active'=>true,
+        $where_clouse.$where_condition=>$where_value
+      );
+
+      switch($based_by){
+        case 'regencies':
+          $response['data'] = $this->get_regencies_count($based_by, $data);
+          break;
+        case 'districts':
+          $response['data'] = $this->get_districts_count($based_by, $data);
+          break;
+        case 'sub_districts':
+          $response['data'] = $this->get_sub_districts_count($based_by, $data);
+          break;
+      }
+      if($response['data'] != null){
+        $response['response'] = $this->response(array('status'=>true, 'indonesia'=>'ditemukan', 'english'=>'founded'));
+      }else{
+        $response['response'] = $this->response(array('status'=>false, 'indonesia'=>'tidak ditemukan', 'english'=>'not found'));
+        $this->output->set_status_header(404);
+      }
+      echo json_encode($response);
+    }
+    public function test(){
+      $marge = 'sub_districts/id/>=/0';
+      echo base64_encode($marge);
     }
 
     // --------------------------------------------------- DATA TABLE FUNCTION -------------------------------
