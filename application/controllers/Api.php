@@ -19,6 +19,9 @@ class Api extends CI_Controller {
 			$this->login();
 		}
 	}
+  public function cek_session(){
+    echo json_encode($this->session->all_userdata());
+  }
 	public function dashboard(){
 		$this->load->view('admin/template/header');
 		$this->load->view('admin/dashboard');
@@ -64,6 +67,24 @@ class Api extends CI_Controller {
     public function get_data($table){
       $data = array(
         'is_active' => true,
+      );
+      if(count($result['data'] = $this->api_model->get_data_by_where($table, $data)->result()) > 0){
+        $result['response'] = $this->response(array('status'=>true, 'indonesia'=>'data ditemukan', 'english'=>'data is founded'));
+      }else{
+        $result['response'] = $this->response(array('status'=>false, 'indonesia'=>'data tidak ditemukan', 'english'=>'data not found'));
+        $this->output->set_status_header(404);
+      }
+      echo json_encode($result);
+    }
+    public function get_data_where($param){
+      $decode = explode("/", base64_decode($param));
+      $table = $decode[0];
+      $where_clause = $decode[1];
+      $where_condition = $decode[2];
+      $where_value = $decode[3];
+      $data = array(
+        'is_active' => true,
+        $where_clause.$where_condition=>$where_value
       );
       if(count($result['data'] = $this->api_model->get_data_by_where($table, $data)->result()) > 0){
         $result['response'] = $this->response(array('status'=>true, 'indonesia'=>'data ditemukan', 'english'=>'data is founded'));
@@ -457,7 +478,8 @@ class Api extends CI_Controller {
           'occupation_id'=>$occupation_id,
           'profile_photo'=>$profile_photo,
           'ktp_photo'=>$ktp_photo,
-          'whatsapp_number'=>$whatsapp_number
+          'whatsapp_number'=>$whatsapp_number,
+          'account_scope'=>'regencies'
         );
       $this->session->set_userdata($session);
       $result['response']['status'] = true;
@@ -470,10 +492,6 @@ class Api extends CI_Controller {
     // --------------------------------------------------- DASHBOARD FUNCTION -------------------------------
 
     public function get_regencies_count($table, $data){
-      if(!$this->session->userdata('authenticated_admin')){
-        $result['response'] = $this->response(array('status'=>false, 'indonesia'=>'tidak terautentikasi', 'english'=>'unauthorized'));
-        $this->output->set_status_header(401);
-      }else{
         $regencies = $this->api_model->get_data_by_where($table, $data)->result();
         $sum_regencies = count($regencies);
         if($sum_regencies > 0){
@@ -514,17 +532,12 @@ class Api extends CI_Controller {
           }
         }else{
           $result = null;
-          
+          $this->output->set_status_header(404);
         }
-      }
       return $result;
     }
 
     public function get_districts_count($table, $data){
-      if(!$this->session->userdata('authenticated_admin')){
-        $result['response'] = $this->response(array('status'=>false, 'indonesia'=>'tidak terautentikasi', 'english'=>'unauthorized'));
-        $this->output->set_status_header(401);
-      }else{
         $districts = $this->api_model->get_data_by_where($table, $data)->result();
         $sum_districts = count($districts);
         if($sum_districts > 0){
@@ -549,16 +562,12 @@ class Api extends CI_Controller {
           }
         }else{
           $result = null;
+          $this->output->set_status_header(404);
         }
-      }
       return $result;
     }
 
     public function get_sub_districts_count($table, $data){
-      if(!$this->session->userdata('authenticated_admin')){
-        $result['response'] = $this->response(array('status'=>false, 'indonesia'=>'tidak terautentikasi', 'english'=>'unauthorized'));
-        $this->output->set_status_header(401);
-      }else{
         $sub_districts = $this->api_model->get_data_by_where($table, $data)->result();
         $sum_sub_districts = count($sub_districts);
         if($sum_sub_districts > 0){
@@ -583,8 +592,8 @@ class Api extends CI_Controller {
           }
         }else{
           $result = null;
+          $this->output->set_status_header(404);
         }
-      }
       return $result;
     }
 
@@ -614,7 +623,6 @@ class Api extends CI_Controller {
         $response['response'] = $this->response(array('status'=>true, 'indonesia'=>'ditemukan', 'english'=>'founded'));
       }else{
         $response['response'] = $this->response(array('status'=>false, 'indonesia'=>'tidak ditemukan', 'english'=>'not found'));
-        $this->output->set_status_header(404);
       }
       echo json_encode($response);
     }

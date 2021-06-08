@@ -1,31 +1,3 @@
-// $(document).ready(function() {
-//     $("#but_upload").click(function() {
-//         var fd = new FormData();
-//         var files = $('#file')[0].files[0];
-//         fd.append('file', files);
-//         var category = $("#select_news_category").val();
-//         var title = $('#news_title').val();
-//         var content = $('#news_content').val();
-//         var string = JSON.stringify(fd);
-//         console.log('hehe : '+fd);
-
-//         $.ajax({
-//             url: 'upload.php',
-//             type: 'post',
-//             data: fd,
-//             contentType: false,
-//             processData: false,
-//             success: function(response){
-//                 if(response != 0){
-//                    alert('file uploaded');
-//                 }
-//                 else{
-//                     alert('file not uploaded');
-//                 }
-//             },
-//         });
-//     });
-// });
 function create_news(){
     var category = $("#select_news_category").val();
     var title = $('#news_title').val();
@@ -35,23 +7,6 @@ function create_news(){
     fd.append('file', files);
     var string = JSON.stringify(fd);
     console.log('hehe : '+string);
-    // if(category != 'not select yet'){
-    //     if(title != ''){
-    //         if(content != ''){
-    //             if(fd != '{}'){
-    //                 create_news_process(title, content, category, fd);
-    //             }else{
-    //                 $('#msg_photo').attr('hidden', false);
-    //             }
-    //         }else{
-    //             $('#msg_content').attr('hidden', false);
-    //         }
-    //     }else{
-    //         $('#msg_title').attr('hidden', false);
-    //     }
-    // }else{
-    //     $('#msg_category').attr('hidden', false);
-    // }
 }
 
 function create_news_process(title, content, category, fd){

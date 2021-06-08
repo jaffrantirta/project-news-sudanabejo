@@ -25,6 +25,7 @@
 <script src="<?php echo base_url() ?>assets/build/js/admin/AdminPopularNews.js"></script>
 <script src="<?php echo base_url() ?>assets/build/js/admin/AdminHeadline.js"></script>
 <script src="<?php echo base_url() ?>assets/build/js/admin/AdminNews.js"></script>
+<script src="<?php echo base_url() ?>assets/build/js/admin/AdminDashboard.js"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="<?php echo base_url() ?>assets/plugins/jquery-ui/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
