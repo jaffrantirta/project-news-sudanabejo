@@ -36,13 +36,18 @@
             <div class="row">
 
               <div class="col-md-3 regencies_dropdown">
-                
+                <div class="form-group regencies_reload">
+                  <label>Kabupaten</label>
+                  <select id="select_regencies" class="form-control select2 select_regencies" style="width: 100%;">
+                    <option value="not selected yet">- Pilih Kebupaten -</option>
+                  </select>
+                </div>
               </div>
 
               <div class="col-md-3 districts_dropdown">
-              <div class="form-group districts_reload">
+                <div class="form-group districts_reload">
                   <label>Kecamatan</label>
-                  <select class="form-control select2" style="width: 100%;">
+                  <select id="select_districts" class="form-control select2 select_districts" style="width: 100%;">
                     <option value="not selected yet">- Pilih Kecamatan -</option>
                   </select>
                 </div>
@@ -51,7 +56,7 @@
               <div class="col-md-3 sub_districts_dropdown">
                 <div class="form-group sub_districts_reload">
                   <label>Kelurahan/Desa</label>
-                  <select class="form-control select2" style="width: 100%;">
+                  <select id="select_sub_districts" class="form-control select2 select_sub_districts" style="width: 100%;">
                     <option value="not selected yet">- Pilih Kelurahan/Desa -</option>
                   </select>
                 </div>
@@ -60,7 +65,7 @@
               <div class="col-md-3">
                 <div class="form-group">
                 <label></label>
-                <a href="#show" class="col-12 btn btn-primary">Tampilkan</a>
+                <a href="#show" onClick="show()" class="col-12 btn btn-primary">Tampilkan</a>
                 </div>
               </div>
 
