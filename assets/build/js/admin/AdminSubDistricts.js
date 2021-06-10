@@ -36,12 +36,11 @@ function add_sub_districts(){
         },
         error: function (result, ajaxOptions, thrownError) {
             // console.log('data : '+result.responseText);
+            error_message('error', 'Oops! sepertinya ada kesalahan', 'kesalahan tidak diketahui');
             if(result.response.status == false){
                 var string = JSON.stringify(result.responseText);
                 var msg = JSON.parse(result.responseText);
-                error_message('Oops! sepertinya ada kesalahan', msg.message['indonesia']);
-            }else{
-                error_message('Oops! sepertinya ada kesalahan', 'kesalahan tidak diketahui');
+                error_message('error', 'Oops! sepertinya ada kesalahan', msg.message['indonesia']);
             }
         }
     });
@@ -66,12 +65,11 @@ function add_sub_districts_process(sub_districts_name, districts_id){
         },
         error: function (result, ajaxOptions, thrownError) {
             // console.log('data : '+result.responseText);
+            error_message('error', 'Oops! sepertinya ada kesalahan', 'kesalahan tidak diketahui');
             if(result.response.status == false){
                 var string = JSON.stringify(result.responseText);
                 var msg = JSON.parse(result.responseText);
-                error_message('Oops! sepertinya ada kesalahan', msg.message['indonesia']);
-            }else{
-                error_message('Oops! sepertinya ada kesalahan', 'kesalahan tidak diketahui');
+                error_message('error', 'Oops! sepertinya ada kesalahan', msg.message['indonesia']);
             }
         }
     });
@@ -116,12 +114,11 @@ function edit_sub_districts(id){
         },
         error: function (result, ajaxOptions, thrownError) {
             // console.log('data : '+result.responseText);
+            error_message('error', 'Oops! sepertinya ada kesalahan', 'kesalahan tidak diketahui');
             if(result.response.status == false){
                 var string = JSON.stringify(result.responseText);
                 var msg = JSON.parse(result.responseText);
-                error_message('success', 'Oops! sepertinya ada kesalahan', msg.response.message['indonesia']);
-            }else{
-                error_message('error', 'Oops! sepertinya ada kesalahan', 'kesalahan tidak diketahui');
+                error_message('error', 'Oops! sepertinya ada kesalahan', msg.message['indonesia']);
             }
         }
     });
@@ -155,12 +152,11 @@ function delete_data_sub_districts(id){
         },
         error: function (result, ajaxOptions, thrownError) {
             // console.log('data : '+result.responseText);
+            error_message('error', 'Oops! sepertinya ada kesalahan', 'kesalahan tidak diketahui');
             if(result.response.status == false){
                 var string = JSON.stringify(result.responseText);
                 var msg = JSON.parse(result.responseText);
-                error_message('success', 'Oops! sepertinya ada kesalahan', msg.message['indonesia']);
-            }else{
-                error_message('error', 'Oops! sepertinya ada kesalahan', 'kesalahan tidak diketahui');
+                error_message('error', 'Oops! sepertinya ada kesalahan', msg.message['indonesia']);
             }
         }
     });
@@ -185,12 +181,11 @@ function update_sub_districts_process(sub_districts_name, districts_id, id){
         },
         error: function (result, ajaxOptions, thrownError) {
             // console.log('data : '+result.responseText);
+            error_message('error', 'Oops! sepertinya ada kesalahan', 'kesalahan tidak diketahui');
             if(result.response.status == false){
                 var string = JSON.stringify(result.responseText);
                 var msg = JSON.parse(result.responseText);
-                error_message('success', 'Oops! sepertinya ada kesalahan', msg.message['indonesia']);
-            }else{
-                error_message('error', 'Oops! sepertinya ada kesalahan', 'kesalahan tidak diketahui');
+                error_message('error', 'Oops! sepertinya ada kesalahan', msg.message['indonesia']);
             }
         }
     });

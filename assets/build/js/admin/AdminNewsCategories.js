@@ -35,12 +35,11 @@ function add_news_categories_process(news_categories_name){
         },
         error: function (result, ajaxOptions, thrownError) {
             // console.log('data : '+result.responseText);
+            error_message('error', 'Oops! sepertinya ada kesalahan', 'kesalahan tidak diketahui');
             if(result.response.status == false){
                 var string = JSON.stringify(result.responseText);
                 var msg = JSON.parse(result.responseText);
-                error_message('Oops! sepertinya ada kesalahan', msg.message['indonesia']);
-            }else{
-                error_message('Oops! sepertinya ada kesalahan', 'kesalahan tidak diketahui');
+                error_message('error', 'Oops! sepertinya ada kesalahan', msg.message['indonesia']);
             }
         }
     });
@@ -72,12 +71,11 @@ function edit_news_categories(id){
         },
         error: function (result, ajaxOptions, thrownError) {
             // console.log('data : '+result.responseText);
+            error_message('error', 'Oops! sepertinya ada kesalahan', 'kesalahan tidak diketahui');
             if(result.response.status == false){
                 var string = JSON.stringify(result.responseText);
                 var msg = JSON.parse(result.responseText);
-                error_message('success', 'Oops! sepertinya ada kesalahan', msg.response.message['indonesia']);
-            }else{
-                error_message('error', 'Oops! sepertinya ada kesalahan', 'kesalahan tidak diketahui');
+                error_message('error', 'Oops! sepertinya ada kesalahan', msg.message['indonesia']);
             }
         }
     });
@@ -111,12 +109,11 @@ function delete_data_news_categories(id){
         },
         error: function (result, ajaxOptions, thrownError) {
             // console.log('data : '+result.responseText);
+            error_message('error', 'Oops! sepertinya ada kesalahan', 'kesalahan tidak diketahui');
             if(result.response.status == false){
                 var string = JSON.stringify(result.responseText);
                 var msg = JSON.parse(result.responseText);
-                error_message('success', 'Oops! sepertinya ada kesalahan', msg.message['indonesia']);
-            }else{
-                error_message('error', 'Oops! sepertinya ada kesalahan', 'kesalahan tidak diketahui');
+                error_message('error', 'Oops! sepertinya ada kesalahan', msg.message['indonesia']);
             }
         }
     });
@@ -141,12 +138,11 @@ function update_news_categories_process(news_categories_name, id){
         },
         error: function (result, ajaxOptions, thrownError) {
             // console.log('data : '+result.responseText);
+            error_message('error', 'Oops! sepertinya ada kesalahan', 'kesalahan tidak diketahui');
             if(result.response.status == false){
                 var string = JSON.stringify(result.responseText);
                 var msg = JSON.parse(result.responseText);
-                error_message('success', 'Oops! sepertinya ada kesalahan', msg.message['indonesia']);
-            }else{
-                error_message('error', 'Oops! sepertinya ada kesalahan', 'kesalahan tidak diketahui');
+                error_message('error', 'Oops! sepertinya ada kesalahan', msg.message['indonesia']);
             }
         }
     });

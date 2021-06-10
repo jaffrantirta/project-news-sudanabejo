@@ -4,7 +4,7 @@ class Api_model extends CI_Model {
         parent::__construct();
     }
     function login($email, $password){
-        $this->db->select('*');
+        $this->db->select('*'); 
         $this->db->from('users');
         $this->db->where('email', $email);
         $this->db->where('password', md5($password));

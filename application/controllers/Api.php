@@ -19,6 +19,9 @@ class Api extends CI_Controller {
 			$this->login();
 		}
 	}
+  public function cek_session(){
+    echo json_encode($this->session->all_userdata());
+  }
 	public function dashboard(){
 		$this->load->view('admin/template/header');
 		$this->load->view('admin/dashboard');
@@ -64,6 +67,24 @@ class Api extends CI_Controller {
     public function get_data($table){
       $data = array(
         'is_active' => true,
+      );
+      if(count($result['data'] = $this->api_model->get_data_by_where($table, $data)->result()) > 0){
+        $result['response'] = $this->response(array('status'=>true, 'indonesia'=>'data ditemukan', 'english'=>'data is founded'));
+      }else{
+        $result['response'] = $this->response(array('status'=>false, 'indonesia'=>'data tidak ditemukan', 'english'=>'data not found'));
+        $this->output->set_status_header(404);
+      }
+      echo json_encode($result);
+    }
+    public function get_data_where($param){
+      $decode = explode("/", base64_decode($param));
+      $table = $decode[0];
+      $where_clause = $decode[1];
+      $where_condition = $decode[2];
+      $where_value = $decode[3];
+      $data = array(
+        'is_active' => true,
+        $where_clause.$where_condition=>$where_value
       );
       if(count($result['data'] = $this->api_model->get_data_by_where($table, $data)->result()) > 0){
         $result['response'] = $this->response(array('status'=>true, 'indonesia'=>'data ditemukan', 'english'=>'data is founded'));
@@ -131,8 +152,8 @@ class Api extends CI_Controller {
         'name' => $districts_name,
         'regency_id' => $regency_id,
       );
-      $whare_clouse = array('id' => $id);
-      if($result['data'] = $this->api_model->update_data($whare_clouse, $table, $data)){
+      $where_clause = array('id' => $id);
+      if($result['data'] = $this->api_model->update_data($where_clause, $table, $data)){
         $result['response'] = $this->response(array('status'=>true, 'indonesia'=>'data telah diubah', 'english'=>'data has been updated'));
       }else{
         $result['response'] = $this->response(array('status'=>false, 'indonesia'=>'data tidak berhasi diubah', 'english'=>"data doesn't update"));
@@ -147,8 +168,8 @@ class Api extends CI_Controller {
       $data = array(
         'is_active' => false
       );
-      $whare_clouse = array('id' => $id);
-      if($result['data'] = $this->api_model->update_data($whare_clouse, $table, $data)){
+      $where_clause = array('id' => $id);
+      if($result['data'] = $this->api_model->update_data($where_clause, $table, $data)){
         $result['response'] = $this->response(array('status'=>true, 'indonesia'=>'terhapus', 'english'=>'deleted'));
       }else{
         $result['response'] = $this->response(array('status'=>false, 'indonesia'=>'gagal menghapus', 'english'=>"failed to delete"));
@@ -180,8 +201,8 @@ class Api extends CI_Controller {
     $data = array(
       'is_active' => false
     );
-    $whare_clouse = array('id' => $id);
-    if($result['data'] = $this->api_model->update_data($whare_clouse, $table, $data)){
+    $where_clause = array('id' => $id);
+    if($result['data'] = $this->api_model->update_data($where_clause, $table, $data)){
       $result['response'] = $this->response(array('status'=>true, 'indonesia'=>'terhapus', 'english'=>'deleted'));
     }else{
       $result['response'] = $this->response(array('status'=>false, 'indonesia'=>'gagal menghapus', 'english'=>"failed to delete"));
@@ -198,8 +219,8 @@ class Api extends CI_Controller {
       'name' => $sub_districts_name,
       'distric_id' => $distric_id,
     );
-    $whare_clouse = array('id' => $id);
-    if($result['data'] = $this->api_model->update_data($whare_clouse, $table, $data)){
+    $where_clause = array('id' => $id);
+    if($result['data'] = $this->api_model->update_data($where_clause, $table, $data)){
       $result['response'] = $this->response(array('status'=>true, 'indonesia'=>'data telah diubah', 'english'=>'data has been updated'));
     }else{
       $result['response'] = $this->response(array('status'=>false, 'indonesia'=>'data tidak berhasi diubah', 'english'=>"data doesn't update"));
@@ -236,8 +257,8 @@ class Api extends CI_Controller {
     $data = array(
       'is_active' => false
     );
-    $whare_clouse = array('id' => $id);
-    if($result['data'] = $this->api_model->update_data($whare_clouse, $table, $data)){
+    $where_clause = array('id' => $id);
+    if($result['data'] = $this->api_model->update_data($where_clause, $table, $data)){
       $result['response'] = $this->response(array('status'=>true, 'indonesia'=>'terhapus', 'english'=>'deleted'));
     }else{
       $result['response'] = $this->response(array('status'=>false, 'indonesia'=>'gagal menghapus', 'english'=>"failed to delete"));
@@ -278,8 +299,8 @@ class Api extends CI_Controller {
     $data = array(
       'name' => $news_categories_name,
     );
-    $whare_clouse = array('id' => $id);
-    if($result['data'] = $this->api_model->update_data($whare_clouse, $table, $data)){
+    $where_clause = array('id' => $id);
+    if($result['data'] = $this->api_model->update_data($where_clause, $table, $data)){
       $result['response'] = $this->response(array('status'=>true, 'indonesia'=>'data telah diubah', 'english'=>'data has been updated'));
     }else{
       $result['response'] = $this->response(array('status'=>false, 'indonesia'=>'data tidak berhasi diubah', 'english'=>"data doesn't update"));
@@ -292,26 +313,16 @@ class Api extends CI_Controller {
 
   public function delete_popular_news(){
     $id = $this->input->post('id');
-    $table = 'news_categories';
+    $table = 'populars';
     $data = array(
       'is_active' => false
     );
-    $whare_clouse = array('id' => $id);
-    if($result['data'] = $this->api_model->update_data($whare_clouse, $table, $data)){
+    $where_clause = array('id' => $id);
+    if($result['data'] = $this->api_model->update_data($where_clause, $table, $data)){
       $result['response'] = $this->response(array('status'=>true, 'indonesia'=>'terhapus', 'english'=>'deleted'));
     }else{
       $result['response'] = $this->response(array('status'=>false, 'indonesia'=>'gagal menghapus', 'english'=>"failed to delete"));
       $this->output->set_status_header(501);
-    }
-    echo json_encode($result);
-  }
-
-  public function edit_popular_news_view($id){
-    if(count($result['data']['news_categories'] = $this->api_model->get_data_by_where("news_categories", array('id'=>$id))->result()) > 0){
-      $result['response'] = $this->response(array('status'=>true, 'indonesia'=>'mengambil data berhasil', 'english'=>'data is catched'));
-    }else{
-      $result['response'] = $this->response(array('status'=>false, 'indonesia'=>'mengambil data gagal', 'english'=>"data doesn't catch"));
-      $this->output->set_status_header(404);
     }
     echo json_encode($result);
   }
@@ -331,21 +342,111 @@ class Api extends CI_Controller {
     echo json_encode($result);
   }
 
-  public function update_popular_news(){
-    $news_categories_name = $this->input->post('news_categories_name');
+
+
+  // --------------------------------------------------- HEADLINE NEWS -------------------------------
+
+  public function delete_headline_news(){
     $id = $this->input->post('id');
-    $table = 'news_categories';
+    $table = 'headline_news';
     $data = array(
-      'name' => $news_categories_name,
+      'is_active' => false
     );
-    $whare_clouse = array('id' => $id);
-    if($result['data'] = $this->api_model->update_data($whare_clouse, $table, $data)){
-      $result['response'] = $this->response(array('status'=>true, 'indonesia'=>'data telah diubah', 'english'=>'data has been updated'));
+    $where_clause = array('id' => $id);
+    if($result['data'] = $this->api_model->update_data($where_clause, $table, $data)){
+      $result['response'] = $this->response(array('status'=>true, 'indonesia'=>'terhapus', 'english'=>'deleted'));
     }else{
-      $result['response'] = $this->response(array('status'=>false, 'indonesia'=>'data tidak berhasi diubah', 'english'=>"data doesn't update"));
+      $result['response'] = $this->response(array('status'=>false, 'indonesia'=>'gagal menghapus', 'english'=>"failed to delete"));
       $this->output->set_status_header(501);
     }
     echo json_encode($result);
+  }
+
+  public function insert_headline_news(){
+    $news_id = $this->input->post('news_id');
+    $table = 'headline_news';
+    $data = array(
+      'news_id' => $news_id,
+    );
+    if($result['data'] = $this->api_model->insert_data($table, $data)){
+      $result['response'] = $this->response(array('status'=>true, 'indonesia'=>'tersimpan', 'english'=>'data is saved'));
+    }else{
+      $result['response'] = $this->response(array('status'=>false, 'indonesia'=>'gagal menyimpan', 'english'=>'failed to save'));
+      $this->output->set_status_header(501);
+    }
+    echo json_encode($result);
+  }
+
+  // --------------------------------------------------- NEWS -------------------------------
+
+  public function delete_news(){
+    $id = $this->input->post('id');
+    $table = 'news';
+    $data = array(
+      'is_delete' => true
+    );
+    $where_clause = array('id' => $id);
+    if($result['data'] = $this->api_model->update_data($where_clause, $table, $data)){
+      $result['response'] = $this->response(array('status'=>true, 'indonesia'=>'terhapus', 'english'=>'deleted'));
+    }else{
+      $result['response'] = $this->response(array('status'=>false, 'indonesia'=>'gagal menghapus', 'english'=>"failed to delete"));
+      $this->output->set_status_header(501);
+    }
+    echo json_encode($result);
+  }
+
+  public function insert_news(){
+    $title = $this->input->post('title');
+    $content = $this->input->post('content');
+    $category = $this->input->post('category');
+    $table = 'news';
+    $data = array(
+      'title'=>$title,
+      'content'=>$content,
+      'category_id'=>$category
+    );
+    if($result['data'] = $this->api_model->insert_data($table, $data)){
+      $result['response'] = $this->response(array('status'=>true, 'indonesia'=>'tersimpan', 'english'=>'data is saved'));
+    }else{
+      $result['response'] = $this->response(array('status'=>false, 'indonesia'=>'gagal menyimpan', 'english'=>'failed to save'));
+      $this->output->set_status_header(501);
+    }
+    echo json_encode($result);
+  }
+  public function insert_news_2(){
+    $file = $_FILES['file']['name'];
+    $remove_char = preg_replace("/[^a-zA-Z]/", "", $file);
+    $filename = time().$remove_char.'.jpg';
+    $location = "assets/images/news/".$filename;
+    $title = $this->input->post('title');
+    $content = $this->input->post('content');
+    $category = $this->input->post('category');
+    $photo_name = $filename;
+    $table = 'news';
+    $data = array(
+      'title'=>$title,
+      'content'=>$content,
+      'category_id'=>$category
+    );
+    if($this->api_model->insert_data($table, $data)){
+      $table2 = 'news_photos';
+      $data2 = array(
+        'name'=>$filename,
+        'news_id'=>$this->db->insert_id()
+      );
+      if($this->api_model->insert_data($table2, $data2)){
+        if(move_uploaded_file($_FILES['file']['tmp_name'], $location)){
+          $this->session->set_flashdata('msg', 'Sukses');
+          
+        }else{
+          $this->session->set_flashdata('msg', 'Gagal Upload');
+        }
+      }else{
+        $this->session->set_flashdata('msg', 'Gagal Input Gambar');
+      }
+    }else{
+      $this->session->set_flashdata('msg', 'Gagal Input Berita');
+    }
   }
 
   // --------------------------------------------------- SESSION FUNCTION -------------------------------
@@ -377,7 +478,8 @@ class Api extends CI_Controller {
           'occupation_id'=>$occupation_id,
           'profile_photo'=>$profile_photo,
           'ktp_photo'=>$ktp_photo,
-          'whatsapp_number'=>$whatsapp_number
+          'whatsapp_number'=>$whatsapp_number,
+          'account_scope'=>'regencies'
         );
       $this->session->set_userdata($session);
       $result['response']['status'] = true;
@@ -385,6 +487,128 @@ class Api extends CI_Controller {
       $result['response']['message']['english'] = 'session created';
       $result['response']['data'][] = true;
       echo json_encode($result);
+    }
+
+    // --------------------------------------------------- DASHBOARD FUNCTION -------------------------------
+
+    public function get_regencies_count($table, $data){
+        $regencies = $this->api_model->get_data_by_where($table, $data)->result();
+        $sum_regencies = count($regencies);
+        if($sum_regencies > 0){
+            for($i=0;$i<$sum_regencies;$i++){
+              $table_2 = 'count_regencies';
+              $data_2 = array('is_active'=>true, 'id'=>$regencies[$i]->id);
+              if(count($data = $this->api_model->get_data_by_where($table_2, $data_2)->result()) > 0){
+                $result['regencies'][$i] = $data[0];
+              }else{
+                $result['regencies'][$i] = array(
+                  'count_by_regency'=>'0',
+                  'id'=>$regencies[$i]->id,
+                  'name'=>$regencies[$i]->name,
+                  'is_active'=>$regencies[$i]->is_active,
+                  'created_at'=>$regencies[$i]->created_at,
+                  'updated_at'=>$regencies[$i]->updated_at
+                );
+              }
+            }
+        }else{
+          $result = null;
+        }
+      return $result;
+    }
+
+    public function get_districts_count($table, $data){
+        $districts = $this->api_model->get_data_by_where($table, $data)->result();
+        $sum_districts = count($districts);
+        if($sum_districts > 0){
+          $regency_data = $this->get_regencies_count('regencies', array('is_active'=>true, 'id'=>$districts[0]->regency_id));
+          $result['regencies'] = $regency_data['regencies'];
+          for($i=0;$i<$sum_districts;$i++){
+            $table_2 = 'count_districts';
+            $data_2 = array('is_active'=>true, 'id'=>$districts[$i]->id);
+            if(count($data = $this->api_model->get_data_by_where($table_2, $data_2)->result()) > 0){
+              $result['districts'][$i] = $data[0];
+            }else{
+              $result['districts'][$i] = array(
+                'count_by_districts'=>'0',
+                'id'=>$districts[$i]->id,
+                'name'=>$districts[$i]->name,
+                'regency_id'=>$districts[$i]->regency_id,
+                'is_active'=>$districts[$i]->is_active,
+                'created_at'=>$districts[$i]->created_at,
+                'updated_at'=>$districts[$i]->updated_at
+              );
+            }
+          }
+        }else{
+          $result = null;
+
+        }
+      return $result;
+    }
+
+    public function get_sub_districts_count($table, $data){
+        $sub_districts = $this->api_model->get_data_by_where($table, $data)->result();
+        $sum_sub_districts = count($sub_districts);
+        if($sum_sub_districts > 0){
+          $districts_data = $this->get_districts_count('districts', array('is_active'=>true, 'id'=>$sub_districts[0]->distric_id));
+          $result = $districts_data;
+          for($i=0;$i<$sum_sub_districts;$i++){
+            $table_2 = 'count_sub_districts';
+            $data_2 = array('is_active'=>true, 'id'=>$sub_districts[$i]->id);
+            if(count($data = $this->api_model->get_data_by_where($table_2, $data_2)->result()) > 0){
+              $result['sub_districts'][$i] = $data[0];
+            }else{
+              $result['sub_districts'][$i] = array(
+                'count_by_sub_districts'=>'0',
+                'id'=>$sub_districts[$i]->id,
+                'name'=>$sub_districts[$i]->name,
+                'distric_id'=>$sub_districts[$i]->distric_id,
+                'is_active'=>$sub_districts[$i]->is_active,
+                'created_at'=>$sub_districts[$i]->created_at,
+                'updated_at'=>$sub_districts[$i]->updated_at
+              );
+            }
+          }
+        }else{
+          $result = null;
+
+        }
+      return $result;
+    }
+
+    public function get_data_sum($v){
+      $decode = explode("/", base64_decode($v));
+      $based_by = $decode[0];
+      $where_clause = $decode[1];
+      $where_condition = $decode[2];
+      $where_value = $decode[3];
+      $data = array(
+        'is_active'=>true,
+        $where_clause.$where_condition=>$where_value
+      );
+
+      switch($based_by){
+        case 'regencies':
+          $response['data'] = $this->get_regencies_count($based_by, $data);
+          break;
+        case 'districts':
+          $response['data'] = $this->get_districts_count($based_by, $data);
+          break;
+        case 'sub_districts':
+          $response['data'] = $this->get_sub_districts_count($based_by, $data);
+          break;
+      }
+      if($response['data'] != null){
+        $response['response'] = $this->response(array('status'=>true, 'indonesia'=>'ditemukan', 'english'=>'founded'));
+      }else{
+        $response['response'] = $this->response(array('status'=>false, 'indonesia'=>'tidak ditemukan', 'english'=>'not found'));
+      }
+      echo json_encode($response);
+    }
+    public function test(){
+      $marge = 'regencies/id/>=/0';
+      echo base64_encode($marge);
     }
 
     // --------------------------------------------------- DATA TABLE FUNCTION -------------------------------
@@ -549,21 +773,43 @@ class Api extends CI_Controller {
           }
         ),
         array(
-          'db' => 'created_at',  'dt' => 3,
+          'db' => 'is_pending',  'dt' => 3,
+          'formatter' => function($d, $row){
+            if($d == 1){
+              $view = 'TRUE';
+            }else{
+              $view = 'FALSE';
+            }
+            return $view;
+          }
+        ),
+        array(
+          'db' => 'created_at',  'dt' => 4,
           'formatter' => function($d, $row){
             $date = date("l, d-F-Y H:i:s", strtotime($d));  
             return $date;
           }
         ),
         array(
-          'db' => 'updated_at',  'dt' => 4,
+          'db' => 'updated_at',  'dt' => 5,
           'formatter' => function($d, $row){
             $date = date("l, d-F-Y H:i:s", strtotime($d));  
             return $date;
           }
         ),
         array(
-          'db' => 'id',  'dt' => 5,
+          'db' => 'is_post',  'dt' => 6,
+          'formatter' => function($d, $row){
+            if($row[3] == 1){
+              $view = '<h5 style="color: yellow">PENDING</h5>';
+            }else{
+              $view = '<h5 style="color: green">TAYANG</h5>';
+            }
+            return $view;
+          }
+        ),
+        array(
+          'db' => 'id',  'dt' => 7,
           'formatter' => function($d, $row){
             return '
             <center>
@@ -571,7 +817,7 @@ class Api extends CI_Controller {
                   <i title="edit" onClick="edit_news_categories('.$d.')" class="fa fa-edit"></i>
                 </a>
                 <a href="#delete">
-                  <i title="hapus" onClick="delete_news_categories('.$d.')" class="fa fa-trash"></i>
+                  <i title="hapus" onClick="delete_news('.$d.')" class="fa fa-trash"></i>
                 </a>
             </center>
             ';
@@ -581,7 +827,7 @@ class Api extends CI_Controller {
       $ssptable='news_complate_data';
       $sspprimary='id';
       $sspjoin='';
-      $sspwhere='id>=0';
+      $sspwhere='is_delete = 0';
       $go=SSP::simpleCustom($_GET,$this->datatable_config(),$ssptable,$sspprimary,$columns,$sspwhere,$sspjoin);
       echo json_encode($go);
     }
@@ -655,7 +901,7 @@ class Api extends CI_Controller {
                   <i title="edit" onClick="edit_news_categories('.$d.')" class="fa fa-edit"></i>
                 </a>
                 <a href="#delete">
-                  <i title="hapus" onClick="delete_news_categories('.$d.')" class="fa fa-trash"></i>
+                  <i title="hapus" onClick="delete_popular_news('.$d.')" class="fa fa-trash"></i>
                 </a>
             </center>
             ';
@@ -665,7 +911,153 @@ class Api extends CI_Controller {
       $ssptable='popular_news';
       $sspprimary='id';
       $sspjoin='';
-      $sspwhere='is_delete = 0';
+      $sspwhere='is_active = 1 AND is_delete = 0 AND news_category_is_active = 1';
+      $go=SSP::simpleCustom($_GET,$this->datatable_config(),$ssptable,$sspprimary,$columns,$sspwhere,$sspjoin);
+      echo json_encode($go);
+    }
+    public function get_headline_data_table(){
+      $columns = array(
+        array(
+          'db' => 'category_name',  'dt' => 0,
+          'formatter' => function($d, $row){
+            return $d;
+          }
+        ),
+        array(
+          'db' => 'title',  'dt' => 1,
+          'formatter' => function($d, $row){
+            return $d;
+          }
+        ),
+        array(
+          'db' => 'visit_sum',  'dt' => 2,
+          'formatter' => function($d, $row){
+            if($d == null){
+              $view = 'belum ada kunjungan';
+            }else{
+              $view = $d;
+            }
+            return $view;
+          }
+        ),
+        array(
+          'db' => 'is_pending',  'dt' => 3,
+          'formatter' => function($d, $row){
+            if($d == 1){
+              $view = 'TRUE';
+            }else{
+              $view = 'FALSE';
+            }
+            return $view;
+          }
+        ),
+        array(
+          'db' => 'created_at',  'dt' => 4,
+          'formatter' => function($d, $row){
+            $date = date("l, d-F-Y H:i:s", strtotime($d));  
+            return $date;
+          }
+        ),
+        array(
+          'db' => 'updated_at',  'dt' => 5,
+          'formatter' => function($d, $row){
+            $date = date("l, d-F-Y H:i:s", strtotime($d));  
+            return $date;
+          }
+        ),
+        array(
+          'db' => 'is_post',  'dt' => 6,
+          'formatter' => function($d, $row){
+            if($row[3] == 1){
+              $view = '<h5 style="color: yellow">PENDING</h5>';
+            }else{
+              $view = '<h5 style="color: green">TAYANG</h5>';
+            }
+            return $view;
+          }
+        ),
+        array(
+          'db' => 'headline_id',  'dt' => 7,
+          'formatter' => function($d, $row){
+            return '
+            <center>
+                <a href="#edit">
+                  <i title="edit" onClick="edit_news_categories('.$d.')" class="fa fa-edit"></i>
+                </a>
+                <a href="#delete">
+                  <i title="hapus" onClick="delete_headline_news('.$d.')" class="fa fa-trash"></i>
+                </a>
+            </center>
+            ';
+          }
+        ),
+      );
+      $ssptable='headline';
+      $sspprimary='id';
+      $sspjoin='';
+      $sspwhere='is_active = 1 AND is_delete = 0 AND news_category_is_active = 1';
+      $go=SSP::simpleCustom($_GET,$this->datatable_config(),$ssptable,$sspprimary,$columns,$sspwhere,$sspjoin);
+      echo json_encode($go);
+    }
+
+    public function get_users_data_table(){
+      $columns = array(
+        array(
+          'db' => 'name',  'dt' => 0,
+          'formatter' => function($d, $row){
+            return $d;
+          }
+        ),
+        array(
+          'db' => 'email',  'dt' => 1,
+          'formatter' => function($d, $row){
+            return $d;
+          }
+        ),
+        array(
+          'db' => 'occupation_name',  'dt' => 2,
+          'formatter' => function($d, $row){
+            return $d;
+          }
+        ),
+        array(
+          'db' => 'sub_districts_name',  'dt' => 3,
+          'formatter' => function($d, $row){
+            return $d;
+          }
+        ),
+        array(
+          'db' => 'districts_name',  'dt' => 4,
+          'formatter' => function($d, $row){
+            return $d;
+          }
+        ),
+        array(
+          'db' => 'regency_name',  'dt' => 5,
+          'formatter' => function($d, $row){ 
+            return $d;
+          }
+        ),
+        array(
+          'db' => 'id',  'dt' => 6,
+          'formatter' => function($d, $row){
+            return '
+            <center>
+                <a href="#edit">
+                  <i title="edit dalam perbaikan ..." onClick="edit_newshh_categories('.$d.')" class="fa fa-edit"></i>
+                </a>
+                <a href="#delete">
+                  <i title="hapus dalam perbaikan ..." onClick="delete_headlinehh_news('.$d.')" class="fa fa-trash"></i>
+                </a>
+            </center>
+            ';
+          }
+        ),
+      );
+      $ssptable='users_complate_data';
+      $sspprimary='id';
+      $sspjoin='';
+      $sspwhere='id>=0';
       $go=SSP::simpleCustom($_GET,$this->datatable_config(),$ssptable,$sspprimary,$columns,$sspwhere,$sspjoin);
       echo json_encode($go);
     }

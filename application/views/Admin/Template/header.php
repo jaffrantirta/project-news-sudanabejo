@@ -25,10 +25,6 @@
   <link rel="stylesheet" href="<?php echo base_url() ?>assets/plugins/daterangepicker/daterangepicker.css">
   <!-- summernote -->
   <link rel="stylesheet" href="<?php echo base_url() ?>assets/plugins/summernote/summernote-bs4.min.css">
-  <style>
-  .main-sidebar { background-color: #b00707 !important }
-  }
-  </style>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed layout-footer-fixed text-sm">
 <p hidden id="base_url"><?php echo base_url() ?></p>
@@ -49,33 +45,6 @@
     </ul>
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-      <!-- Notifications Dropdown Menu -->
-      <li class="nav-item dropdown">
-        <a class="nav-link" data-toggle="dropdown" href="#">
-          <i class="far fa-bell"></i>
-          <span class="badge badge-warning navbar-badge">15</span>
-        </a>
-        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <span class="dropdown-item dropdown-header">15 Notifications</span>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-envelope mr-2"></i> 4 new messages
-            <span class="float-right text-muted text-sm">3 mins</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-users mr-2"></i> 8 friend requests
-            <span class="float-right text-muted text-sm">12 hours</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-file mr-2"></i> 3 new reports
-            <span class="float-right text-muted text-sm">2 days</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
-        </div>
-      </li>
       <li class="nav-item">
         <a class="nav-link" data-widget="fullscreen" href="#" role="button">
           <i class="fas fa-expand-arrows-alt"></i>
@@ -187,7 +156,7 @@
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
-            <?php if($page == 'Kategori Berita' || $page == 'Berita Populer' || $page == 'Berita'){ ?>
+            <?php if($page == 'Kategori Berita' || $page == 'Berita Populer' || $page == 'Berita' || $page == 'Berita Headline' || $page == 'Buat Berita'){ ?>
               <li class="nav-item menu-is-opening menu-open">
             <?php }else{ ?>
               <li class="nav-item">
@@ -200,17 +169,21 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-              <?php if($page == 'Tambah Berita'){ ?>
-                <a href="<?php echo base_url('admin/add_news') ?>" class="nav-link active">
+              <?php if($page == 'Buat Berita'){ ?>
+                <a href="<?php echo base_url('admin/create_news') ?>" class="nav-link active">
               <?php }else{ ?>
-                <a href="<?php echo base_url('admin/add_news') ?>" class="nav-link">
+                <a href="<?php echo base_url('admin/create_news') ?>" class="nav-link">
               <?php } ?>
                   <i class="far fa-circle nav-icon"></i>
                   <p>Buat Berita</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/charts/flot.html" class="nav-link">
+              <?php if($page == 'Berita Headline'){ ?>
+                <a href="<?php echo base_url('admin/headline_news') ?>" class="nav-link active">
+              <?php }else{ ?>
+                <a href="<?php echo base_url('admin/headline_news') ?>" class="nav-link">
+              <?php } ?>
                   <i class="far fa-circle nav-icon"></i>
                   <p>Headline</p>
                 </a>
