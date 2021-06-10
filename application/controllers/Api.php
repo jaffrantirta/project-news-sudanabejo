@@ -814,7 +814,7 @@ class Api extends CI_Controller {
             return '
             <center>
                 <a href="#edit">
-                  <i title="edit" onClick="edit_news_categories('.$d.')" class="fa fa-edit"></i>
+                  <i title="edit" onClick="edit_newsss_categories('.$d.')" class="fa fa-edit"></i>
                 </a>
                 <a href="#delete">
                   <i title="hapus" onClick="delete_news('.$d.')" class="fa fa-trash"></i>
