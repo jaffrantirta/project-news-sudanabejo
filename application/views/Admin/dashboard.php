@@ -24,14 +24,14 @@
       <div class="container-fluid">
         <div class="card card-default">
           <div class="row card-header">
-            <h3 class="col-10 card-title">Pilih daerah yang ingin di tampilkan</h3>
-            <div class="row col-2 card-tools">
+            <h3 class="card-title">Pilih daerah yang ingin di tampilkan</h3>
+            <div class="card-tools">
               <button type="button" class="btn btn-tool" data-card-widget="collapse">
                 <i class="fas fa-minus"></i>
               </button>
             </div>
           </div>
-          <!-- /.card-header -->
+          
           <div class="card-body">
             <div class="row">
 
@@ -71,8 +71,22 @@
 
             </div>
           </div>
+
         </div>
-        <div class="row count_load">
+        <h3>Kabupaten</h3>
+        <div class="row count_regencies_load">
+        </div>
+        <div hidden id="label_districts">
+          <h4>---------------------------------</h4>
+          <h3>Kecamatan</h3>  
+        </div>
+        <div class="row count_districts_load">
+        </div>
+        <div hidden id="label_sub_districts">
+          <h4>---------------------------------</h4>
+          <h3>Kelurahan/Desa</h3>
+        </div>
+        <div class="row count_sub_districts_load">
         </div>
       </div>
     </section>

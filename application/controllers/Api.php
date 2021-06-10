@@ -530,7 +530,7 @@ class Api extends CI_Controller {
               $result['districts'][$i] = $data[0];
             }else{
               $result['districts'][$i] = array(
-                'count_by_regency'=>'0',
+                'count_by_districts'=>'0',
                 'id'=>$districts[$i]->id,
                 'name'=>$districts[$i]->name,
                 'regency_id'=>$districts[$i]->regency_id,
@@ -560,7 +560,7 @@ class Api extends CI_Controller {
               $result['sub_districts'][$i] = $data[0];
             }else{
               $result['sub_districts'][$i] = array(
-                'count_by_regency'=>'0',
+                'count_by_sub_districts'=>'0',
                 'id'=>$sub_districts[$i]->id,
                 'name'=>$sub_districts[$i]->name,
                 'distric_id'=>$sub_districts[$i]->distric_id,
@@ -996,6 +996,68 @@ class Api extends CI_Controller {
       $sspprimary='id';
       $sspjoin='';
       $sspwhere='is_active = 1 AND is_delete = 0 AND news_category_is_active = 1';
+      $go=SSP::simpleCustom($_GET,$this->datatable_config(),$ssptable,$sspprimary,$columns,$sspwhere,$sspjoin);
+      echo json_encode($go);
+    }
+
+    public function get_users_data_table(){
+      $columns = array(
+        array(
+          'db' => 'name',  'dt' => 0,
+          'formatter' => function($d, $row){
+            return $d;
+          }
+        ),
+        array(
+          'db' => 'email',  'dt' => 1,
+          'formatter' => function($d, $row){
+            return $d;
+          }
+        ),
+        array(
+          'db' => 'occupation_name',  'dt' => 2,
+          'formatter' => function($d, $row){
+            return $d;
+          }
+        ),
+        array(
+          'db' => 'sub_districts_name',  'dt' => 3,
+          'formatter' => function($d, $row){
+            return $d;
+          }
+        ),
+        array(
+          'db' => 'districts_name',  'dt' => 4,
+          'formatter' => function($d, $row){
+            return $d;
+          }
+        ),
+        array(
+          'db' => 'regency_name',  'dt' => 5,
+          'formatter' => function($d, $row){ 
+            return $d;
+          }
+        ),
+        array(
+          'db' => 'id',  'dt' => 6,
+          'formatter' => function($d, $row){
+            return '
+            <center>
+                <a href="#edit">
+                  <i title="edit dalam perbaikan ..." onClick="edit_newshh_categories('.$d.')" class="fa fa-edit"></i>
+                </a>
+                <a href="#delete">
+                  <i title="hapus dalam perbaikan ..." onClick="delete_headlinehh_news('.$d.')" class="fa fa-trash"></i>
+                </a>
+            </center>
+            ';
+          }
+        ),
+      );
+      $ssptable='users_complate_data';
+      $sspprimary='id';
+      $sspjoin='';
+      $sspwhere='id>=0';
       $go=SSP::simpleCustom($_GET,$this->datatable_config(),$ssptable,$sspprimary,$columns,$sspwhere,$sspjoin);
       echo json_encode($go);
     }

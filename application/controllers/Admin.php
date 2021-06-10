@@ -113,6 +113,18 @@ class Admin extends CI_Controller {
 		}
 	}
 
+	public function users(){
+		if(!$this->session->userdata('authenticated_admin')){
+			$this->login();
+		}else{
+			$data['page'] = 'Pengguna';
+			$data['session'] = $this->session->all_userdata();
+			$this->load->view('Admin/Template/header', $data);
+			$this->load->view('Admin/list_users', $data);
+			$this->load->view('Admin/Template/footer', $data);
+		}
+	}
+
 	public function headline_news(){
 		if(!$this->session->userdata('authenticated_admin')){
 			$this->login();
