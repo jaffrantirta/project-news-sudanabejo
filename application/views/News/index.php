@@ -217,7 +217,7 @@
                 <div class="card">
                   <div class="card-body">
 
-                  <?php foreach($popular as $p) ?>
+                  <?php foreach($popular as $p){ ?>
 
                     <div class="row">
                       <div class="col-sm-4 grid-margin">
@@ -244,11 +244,12 @@
                           <span class="mr-2">10 Minutes ago</span>
                         </div>
                         <p class="mb-0">
-                          Lorem Ipsum has been the industry's standard dummy
-                          text ever since the 1500s, when an
+                        <?php echo substr($p->content, 0, 200)."..."?>
                         </p>
                       </div>
                     </div>
+
+                    <?php } ?>
 
                   </div>
                 </div>
