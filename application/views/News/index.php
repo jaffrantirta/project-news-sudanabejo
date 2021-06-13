@@ -189,11 +189,7 @@
                         </div>
                       </div>
                       <div class="rotate-img">
-                        <img
-                          src="<?php echo base_url('assets/news_assets/') ?>
-                          alt="thumb"
-                          class="img-fluid img-lg"
-                        />
+                        <!-- <img src="<?php echo base_url('assets/images/news/'.$ln->photo_news) ?>" alt="thumb" class="img-fluid img-sm"/> -->
                       </div>
                     </div>
 
