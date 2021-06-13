@@ -29,7 +29,7 @@
                 <div class="form-group">
                   <label>Pilih Kategori Berita</label><br>
                   <small id="msg_category" hidden style="color: red">pilih kategori terlebih dahulu</small>
-                  <select name="category" id="select_news_category" class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger" style="width: 100%;">
+                  <select required name="category" id="select_news_category" class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger" style="width: 100%;">
                     <option value="not select yet">- pilih kategori -</option>
                     <?php if($data > 0){
                       $count = count($data);
@@ -50,7 +50,7 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="fas fa-newspaper"></i></span>
                     </div>
-                    <input name="title" id="news_title" type="text" class="form-control" placeholder="judul berita">
+                    <input Required name="title" id="news_title" type="text" class="form-control" placeholder="judul berita">
                   </div>
                   <!-- /.input group -->
                 </div>
@@ -64,7 +64,7 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="fas fa-pen"></i></span>
                     </div>
-                    <textarea name="content" id="news_content" class="form-control" rows="5" placeholder="masukan isi berita ..."></textarea>
+                    <textarea Required name="content" id="news_content" class="form-control" rows="5" placeholder="masukan isi berita ..."></textarea>
                   </div>
                   <!-- /.input group -->
                 </div>
@@ -76,7 +76,7 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="fas fa-upload"></i></span>
                     </div>
-                    <input type="file" id="file" name="file">
+                    <input Required type="file" id="file" name="file">
                   </div>
                   <!-- /.input group -->
                 </div>
