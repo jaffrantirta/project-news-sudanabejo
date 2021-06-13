@@ -1,6 +1,6 @@
 function add_headline(){
     $.ajax({
-        url: base_url+"api/get_data_news/news",
+        url: base_url+"api/get_data_news/news_complate_data",
         type: "get",
         success: function(result){
             var v = "'add_headline_news'";

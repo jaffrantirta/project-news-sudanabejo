@@ -32,7 +32,7 @@
                 <div class="d-flex justify-content-between align-items-center">
                   <ul class="navbar-top-left-menu">
                     <li class="nav-item">
-                      <a href="pages/index-inner.html" class="nav-link">Tentang Kami</a>
+                      <a href="#" class="nav-link">Tentang Kami</a>
                     </li>
                     <!-- <li class="nav-item">
                       <a href="pages/aboutus.html" class="nav-link">About</a>
@@ -92,17 +92,17 @@
                           </button>
                         </li>
                         <li class="nav-item active">
-                          <a class="nav-link" href="index.html">Home</a>
+                          <a class="nav-link" href="#">Home</a>
                         </li>
 
                         <?php foreach($header_categories as $hc){ ?>
                         <li class="nav-item">
-                          <a class="nav-link" href="pages/magazine.html"><?php echo $hc->name ?></a>
+                          <a class="nav-link" href="#"><?php echo $hc->name ?></a>
                         </li>
                         <?php } ?>
 
                         <li class="nav-item">
-                          <a class="nav-link" href="pages/contactus.html">Contact</a>
+                          <a class="nav-link" href="#">Contact</a>
                         </li>
                       </ul>
                     </div>
