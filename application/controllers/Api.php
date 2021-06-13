@@ -96,7 +96,7 @@ class Api extends CI_Controller {
     }
     public function get_data_news($table){
       $data = array(
-        'is_post' => true,
+        'is_delete' => false,
       );
       if(count($result['data'] = $this->api_model->get_data_by_where($table, $data)->result()) > 0){
         $result['response'] = $this->response(array('status'=>true, 'indonesia'=>'Data ditemukan', 'english'=>'data is founded'));
