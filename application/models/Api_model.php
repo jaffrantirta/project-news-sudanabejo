@@ -18,6 +18,9 @@ class Api_model extends CI_Model {
     function get_data_by_where($table, $data){
         return $this->db->get_where($table, $data);
     }
+    function custom_query($query){
+        return $this->db->query($query);
+    }
     function insert_data($table, $data){
         return $this->db->insert($table, $data);
     }

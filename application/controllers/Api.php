@@ -69,9 +69,9 @@ class Api extends CI_Controller {
         'is_active' => true,
       );
       if(count($result['data'] = $this->api_model->get_data_by_where($table, $data)->result()) > 0){
-        $result['response'] = $this->response(array('status'=>true, 'indonesia'=>'data ditemukan', 'english'=>'data is founded'));
+        $result['response'] = $this->response(array('status'=>true, 'indonesia'=>'Data ditemukan', 'english'=>'data is founded'));
       }else{
-        $result['response'] = $this->response(array('status'=>false, 'indonesia'=>'data tidak ditemukan', 'english'=>'data not found'));
+        $result['response'] = $this->response(array('status'=>false, 'indonesia'=>'Data tidak ditemukan', 'english'=>'data not found'));
         $this->output->set_status_header(404);
       }
       echo json_encode($result);
@@ -87,9 +87,9 @@ class Api extends CI_Controller {
         $where_clause.$where_condition=>$where_value
       );
       if(count($result['data'] = $this->api_model->get_data_by_where($table, $data)->result()) > 0){
-        $result['response'] = $this->response(array('status'=>true, 'indonesia'=>'data ditemukan', 'english'=>'data is founded'));
+        $result['response'] = $this->response(array('status'=>true, 'indonesia'=>'Data ditemukan', 'english'=>'data is founded'));
       }else{
-        $result['response'] = $this->response(array('status'=>false, 'indonesia'=>'data tidak ditemukan', 'english'=>'data not found'));
+        $result['response'] = $this->response(array('status'=>false, 'indonesia'=>'Data tidak ditemukan', 'english'=>'data not found'));
         $this->output->set_status_header(404);
       }
       echo json_encode($result);
@@ -99,9 +99,9 @@ class Api extends CI_Controller {
         'is_post' => true,
       );
       if(count($result['data'] = $this->api_model->get_data_by_where($table, $data)->result()) > 0){
-        $result['response'] = $this->response(array('status'=>true, 'indonesia'=>'data ditemukan', 'english'=>'data is founded'));
+        $result['response'] = $this->response(array('status'=>true, 'indonesia'=>'Data ditemukan', 'english'=>'data is founded'));
       }else{
-        $result['response'] = $this->response(array('status'=>false, 'indonesia'=>'data tidak ditemukan', 'english'=>'data not found'));
+        $result['response'] = $this->response(array('status'=>false, 'indonesia'=>'Data tidak ditemukan', 'english'=>'data not found'));
         $this->output->set_status_header(404);
       }
       echo json_encode($result);
@@ -136,9 +136,9 @@ class Api extends CI_Controller {
           'regency_id' => $regency_id,
         );
         if($result['data'] = $this->api_model->insert_data($table, $data)){
-          $result['response'] = $this->response(array('status'=>true, 'indonesia'=>'tersimpan', 'english'=>'data is saved'));
+          $result['response'] = $this->response(array('status'=>true, 'indonesia'=>'Tersimpan', 'english'=>'data is saved'));
         }else{
-          $result['response'] = $this->response(array('status'=>false, 'indonesia'=>'gagal menyimpan', 'english'=>'failed to save'));
+          $result['response'] = $this->response(array('status'=>false, 'indonesia'=>'Gagal menyimpan', 'english'=>'failed to save'));
           $this->output->set_status_header(501);
         }
         echo json_encode($result);
@@ -154,9 +154,9 @@ class Api extends CI_Controller {
       );
       $where_clause = array('id' => $id);
       if($result['data'] = $this->api_model->update_data($where_clause, $table, $data)){
-        $result['response'] = $this->response(array('status'=>true, 'indonesia'=>'data telah diubah', 'english'=>'data has been updated'));
+        $result['response'] = $this->response(array('status'=>true, 'indonesia'=>'Data telah diubah', 'english'=>'data has been updated'));
       }else{
-        $result['response'] = $this->response(array('status'=>false, 'indonesia'=>'data tidak berhasi diubah', 'english'=>"data doesn't update"));
+        $result['response'] = $this->response(array('status'=>false, 'indonesia'=>'Data tidak berhasi diubah', 'english'=>"data doesn't update"));
         $this->output->set_status_header(501);
       }
       echo json_encode($result);
@@ -170,9 +170,9 @@ class Api extends CI_Controller {
       );
       $where_clause = array('id' => $id);
       if($result['data'] = $this->api_model->update_data($where_clause, $table, $data)){
-        $result['response'] = $this->response(array('status'=>true, 'indonesia'=>'terhapus', 'english'=>'deleted'));
+        $result['response'] = $this->response(array('status'=>true, 'indonesia'=>'Terhapus', 'english'=>'deleted'));
       }else{
-        $result['response'] = $this->response(array('status'=>false, 'indonesia'=>'gagal menghapus', 'english'=>"failed to delete"));
+        $result['response'] = $this->response(array('status'=>false, 'indonesia'=>'Gagal menghapus', 'english'=>"failed to delete"));
         $this->output->set_status_header(501);
       }
       echo json_encode($result);
@@ -187,9 +187,9 @@ class Api extends CI_Controller {
       'distric_id' => $districts_id,
     );
     if($result['data'] = $this->api_model->insert_data($table, $data)){
-      $result['response'] = $this->response(array('status'=>true, 'indonesia'=>'tersimpan', 'english'=>'data is saved'));
+      $result['response'] = $this->response(array('status'=>true, 'indonesia'=>'Tersimpan', 'english'=>'data is saved'));
     }else{
-      $result['response'] = $this->response(array('status'=>false, 'indonesia'=>'gagal menyimpan', 'english'=>'failed to save'));
+      $result['response'] = $this->response(array('status'=>false, 'indonesia'=>'Gagal menyimpan', 'english'=>'failed to save'));
       $this->output->set_status_header(501);
     }
     echo json_encode($result);
@@ -203,9 +203,9 @@ class Api extends CI_Controller {
     );
     $where_clause = array('id' => $id);
     if($result['data'] = $this->api_model->update_data($where_clause, $table, $data)){
-      $result['response'] = $this->response(array('status'=>true, 'indonesia'=>'terhapus', 'english'=>'deleted'));
+      $result['response'] = $this->response(array('status'=>true, 'indonesia'=>'Terhapus', 'english'=>'deleted'));
     }else{
-      $result['response'] = $this->response(array('status'=>false, 'indonesia'=>'gagal menghapus', 'english'=>"failed to delete"));
+      $result['response'] = $this->response(array('status'=>false, 'indonesia'=>'Gagal menghapus', 'english'=>"failed to delete"));
       $this->output->set_status_header(501);
     }
     echo json_encode($result);
@@ -221,9 +221,9 @@ class Api extends CI_Controller {
     );
     $where_clause = array('id' => $id);
     if($result['data'] = $this->api_model->update_data($where_clause, $table, $data)){
-      $result['response'] = $this->response(array('status'=>true, 'indonesia'=>'data telah diubah', 'english'=>'data has been updated'));
+      $result['response'] = $this->response(array('status'=>true, 'indonesia'=>'Data telah diubah', 'english'=>'data has been updated'));
     }else{
-      $result['response'] = $this->response(array('status'=>false, 'indonesia'=>'data tidak berhasi diubah', 'english'=>"data doesn't update"));
+      $result['response'] = $this->response(array('status'=>false, 'indonesia'=>'Data tidak berhasi diubah', 'english'=>"data doesn't update"));
       $this->output->set_status_header(501);
     }
     echo json_encode($result);
@@ -259,9 +259,9 @@ class Api extends CI_Controller {
     );
     $where_clause = array('id' => $id);
     if($result['data'] = $this->api_model->update_data($where_clause, $table, $data)){
-      $result['response'] = $this->response(array('status'=>true, 'indonesia'=>'terhapus', 'english'=>'deleted'));
+      $result['response'] = $this->response(array('status'=>true, 'indonesia'=>'Terhapus', 'english'=>'deleted'));
     }else{
-      $result['response'] = $this->response(array('status'=>false, 'indonesia'=>'gagal menghapus', 'english'=>"failed to delete"));
+      $result['response'] = $this->response(array('status'=>false, 'indonesia'=>'Gagal menghapus', 'english'=>"failed to delete"));
       $this->output->set_status_header(501);
     }
     echo json_encode($result);
@@ -284,9 +284,9 @@ class Api extends CI_Controller {
       'name' => $news_categories_name,
     );
     if($result['data'] = $this->api_model->insert_data($table, $data)){
-      $result['response'] = $this->response(array('status'=>true, 'indonesia'=>'tersimpan', 'english'=>'data is saved'));
+      $result['response'] = $this->response(array('status'=>true, 'indonesia'=>'Tersimpan', 'english'=>'data is saved'));
     }else{
-      $result['response'] = $this->response(array('status'=>false, 'indonesia'=>'gagal menyimpan', 'english'=>'failed to save'));
+      $result['response'] = $this->response(array('status'=>false, 'indonesia'=>'Gagal menyimpan', 'english'=>'failed to save'));
       $this->output->set_status_header(501);
     }
     echo json_encode($result);
@@ -301,9 +301,9 @@ class Api extends CI_Controller {
     );
     $where_clause = array('id' => $id);
     if($result['data'] = $this->api_model->update_data($where_clause, $table, $data)){
-      $result['response'] = $this->response(array('status'=>true, 'indonesia'=>'data telah diubah', 'english'=>'data has been updated'));
+      $result['response'] = $this->response(array('status'=>true, 'indonesia'=>'Data telah diubah', 'english'=>'data has been updated'));
     }else{
-      $result['response'] = $this->response(array('status'=>false, 'indonesia'=>'data tidak berhasi diubah', 'english'=>"data doesn't update"));
+      $result['response'] = $this->response(array('status'=>false, 'indonesia'=>'Data tidak berhasi diubah', 'english'=>"data doesn't update"));
       $this->output->set_status_header(501);
     }
     echo json_encode($result);
@@ -319,9 +319,9 @@ class Api extends CI_Controller {
     );
     $where_clause = array('id' => $id);
     if($result['data'] = $this->api_model->update_data($where_clause, $table, $data)){
-      $result['response'] = $this->response(array('status'=>true, 'indonesia'=>'terhapus', 'english'=>'deleted'));
+      $result['response'] = $this->response(array('status'=>true, 'indonesia'=>'Terhapus', 'english'=>'deleted'));
     }else{
-      $result['response'] = $this->response(array('status'=>false, 'indonesia'=>'gagal menghapus', 'english'=>"failed to delete"));
+      $result['response'] = $this->response(array('status'=>false, 'indonesia'=>'Gagal menghapus', 'english'=>"failed to delete"));
       $this->output->set_status_header(501);
     }
     echo json_encode($result);
@@ -334,9 +334,9 @@ class Api extends CI_Controller {
       'news_id' => $news_id,
     );
     if($result['data'] = $this->api_model->insert_data($table, $data)){
-      $result['response'] = $this->response(array('status'=>true, 'indonesia'=>'tersimpan', 'english'=>'data is saved'));
+      $result['response'] = $this->response(array('status'=>true, 'indonesia'=>'Tersimpan', 'english'=>'data is saved'));
     }else{
-      $result['response'] = $this->response(array('status'=>false, 'indonesia'=>'gagal menyimpan', 'english'=>'failed to save'));
+      $result['response'] = $this->response(array('status'=>false, 'indonesia'=>'Gagal menyimpan', 'english'=>'failed to save'));
       $this->output->set_status_header(501);
     }
     echo json_encode($result);
@@ -354,9 +354,9 @@ class Api extends CI_Controller {
     );
     $where_clause = array('id' => $id);
     if($result['data'] = $this->api_model->update_data($where_clause, $table, $data)){
-      $result['response'] = $this->response(array('status'=>true, 'indonesia'=>'terhapus', 'english'=>'deleted'));
+      $result['response'] = $this->response(array('status'=>true, 'indonesia'=>'Terhapus', 'english'=>'deleted'));
     }else{
-      $result['response'] = $this->response(array('status'=>false, 'indonesia'=>'gagal menghapus', 'english'=>"failed to delete"));
+      $result['response'] = $this->response(array('status'=>false, 'indonesia'=>'Gagal menghapus', 'english'=>"failed to delete"));
       $this->output->set_status_header(501);
     }
     echo json_encode($result);
@@ -369,9 +369,9 @@ class Api extends CI_Controller {
       'news_id' => $news_id,
     );
     if($result['data'] = $this->api_model->insert_data($table, $data)){
-      $result['response'] = $this->response(array('status'=>true, 'indonesia'=>'tersimpan', 'english'=>'data is saved'));
+      $result['response'] = $this->response(array('status'=>true, 'indonesia'=>'Tersimpan', 'english'=>'data is saved'));
     }else{
-      $result['response'] = $this->response(array('status'=>false, 'indonesia'=>'gagal menyimpan', 'english'=>'failed to save'));
+      $result['response'] = $this->response(array('status'=>false, 'indonesia'=>'Gagal menyimpan', 'english'=>'failed to save'));
       $this->output->set_status_header(501);
     }
     echo json_encode($result);
@@ -387,9 +387,9 @@ class Api extends CI_Controller {
     );
     $where_clause = array('id' => $id);
     if($result['data'] = $this->api_model->update_data($where_clause, $table, $data)){
-      $result['response'] = $this->response(array('status'=>true, 'indonesia'=>'terhapus', 'english'=>'deleted'));
+      $result['response'] = $this->response(array('status'=>true, 'indonesia'=>'Terhapus', 'english'=>'deleted'));
     }else{
-      $result['response'] = $this->response(array('status'=>false, 'indonesia'=>'gagal menghapus', 'english'=>"failed to delete"));
+      $result['response'] = $this->response(array('status'=>false, 'indonesia'=>'Gagal menghapus', 'english'=>"failed to delete"));
       $this->output->set_status_header(501);
     }
     echo json_encode($result);
@@ -406,9 +406,9 @@ class Api extends CI_Controller {
       'category_id'=>$category
     );
     if($result['data'] = $this->api_model->insert_data($table, $data)){
-      $result['response'] = $this->response(array('status'=>true, 'indonesia'=>'tersimpan', 'english'=>'data is saved'));
+      $result['response'] = $this->response(array('status'=>true, 'indonesia'=>'Tersimpan', 'english'=>'data is saved'));
     }else{
-      $result['response'] = $this->response(array('status'=>false, 'indonesia'=>'gagal menyimpan', 'english'=>'failed to save'));
+      $result['response'] = $this->response(array('status'=>false, 'indonesia'=>'Gagal menyimpan', 'english'=>'failed to save'));
       $this->output->set_status_header(501);
     }
     echo json_encode($result);
@@ -1044,10 +1044,7 @@ class Api extends CI_Controller {
             return '
             <center>
                 <a href="#edit">
-                  <i title="edit dalam perbaikan ..." onClick="edit_newshh_categories('.$d.')" class="fa fa-edit"></i>
-                </a>
-                <a href="#delete">
-                  <i title="hapus dalam perbaikan ..." onClick="delete_headlinehh_news('.$d.')" class="fa fa-trash"></i>
+                  <i title="edit" onClick="edit_user('.$d.')" class="fa fa-edit"></i>
                 </a>
             </center>
             ';
