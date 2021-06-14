@@ -160,12 +160,13 @@
                     alt="banner"
                     class="img-fluid"
                   />
-                  <div style="margin-bottom: 5em;" class="banner-content">
+                  <div class="banner-content">
                     <div class="badge badge-danger fs-12 font-weight-bold mb-3">
                     <?php echo $headline[0]->category_name ?>
                     </div>
-                    <h1 class="mb-0"><?php echo $headline[0]->title ?></h1>
+                    <h1 class="mb-0"><?php echo substr($headline[0]->title, 0, 65)."..." ?></h1>
                     <!-- <h1 class="mb-2">
+                    
                     </h1> -->
                     <div class="fs-12">
                       <span class="mr-2">10 Minutes ago</span>
