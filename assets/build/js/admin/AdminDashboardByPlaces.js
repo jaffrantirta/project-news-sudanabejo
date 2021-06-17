@@ -21,7 +21,7 @@ function get_data(based_by, where_clause, where_condition, where_value){
                                     '<p>'+value.name+'</p>'+
                                 '</div>'+
                                 '<div class="icon">'+
-                                    '<i class="ion ion-pie-graph"></i>'+
+                                    '<i class="ion ion-person"></i>'+
                                 '</div>'+
                                 '</div>'+
                             '</div>';
@@ -279,7 +279,7 @@ function view_count_regencies(r){
                             '<p>'+value.name+'</p>'+
                         '</div>'+
                         '<div class="icon">'+
-                            '<i class="ion ion-pie-graph"></i>'+
+                            '<i class="ion ion-person"></i>'+
                         '</div>'+
                         '</div>'+
                     '</div>';
@@ -297,7 +297,7 @@ function view_count_districts(r){
                             '<p>'+value.name+'</p>'+
                         '</div>'+
                         '<div class="icon">'+
-                            '<i class="ion ion-pie-graph"></i>'+
+                            '<i class="ion ion-person"></i>'+
                         '</div>'+
                         '</div>'+
                     '</div>';
@@ -315,7 +315,7 @@ function view_count_sub_districts(r){
                             '<p>'+value.name+'</p>'+
                         '</div>'+
                         '<div class="icon">'+
-                            '<i class="ion ion-pie-graph"></i>'+
+                            '<i class="ion ion-person"></i>'+
                         '</div>'+
                         '</div>'+
                     '</div>';

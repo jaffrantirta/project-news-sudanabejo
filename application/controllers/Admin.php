@@ -24,13 +24,19 @@ class Admin extends CI_Controller {
 		if(!$this->session->userdata('authenticated_admin')){
 			$this->login();
 		}else{	
+			$male = $this->api_model->custom_query("select count(users.id) as male from users where users.sex = 'male' and users.role_id = 3")->result();
+			$female = $this->api_model->custom_query("select count(users.id) as female from users where users.sex = 'female' and users.role_id = 3")->result();
+			$data['gender']['male'] = $male[0]->male;
+			$data['gender']['female'] = $female[0]->female;
 			$data['page'] = 'Dashboard';
 			$data['session'] = $this->session->all_userdata();
 			$this->load->view('Admin/Template/header', $data);
 			$this->load->view('Admin/dashboard', $data);
 			$this->load->view('Admin/Template/footer', $data);
+			// echo json_encode($data);
 		}
 	}
+	
 	public function login(){
 		$this->load->view('Admin/login');
 	}
