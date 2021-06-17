@@ -74,12 +74,12 @@ function add_sub_districts_process(sub_districts_name, districts_id){
         }
     });
 }
-function edit_sub_districts(id){
+function edit_user(id){
     $.ajax({
-        url: base_url+"api/edit_sub_districts_view/"+id,
+        url: base_url+"api/edit_user_view/"+id,
         type: "get",
         success: function(result){
-            var v = "'update_sub_districts'";
+            var v = "'update_user'";
             // console.log('data : '+result);
             var data = JSON.parse(result);
             var size = data.data.districts.length;
@@ -93,7 +93,18 @@ function edit_sub_districts(id){
             Swal.fire({
                 html:
                 '<div class="form-group">'+
-                    '<label>Edit Kelurahan/Desa</label><br>'+
+                '<label>Nama Pengguna</label><br>'+
+                '<input title="Nama pengguna" id="user_name" class="form-control" type="text" placeholder="Nama pengguna" value="'+data.user['name']+'">'+
+                '<label>NIK</label><br>'+
+                '<input title="NIK" id="nik" class="form-control" type="text" placeholder="NIK" value="'+data.user['name']+'">'+
+                '<label>Banjar</label><br>'+
+                '<input title="Banjar" id="community_unit" class="form-control" type="text" placeholder="Banjar" value="'+data.user['name']+'">'+
+                '<label>Email</label><br>'+
+                '<input title="Email" id="email" class="form-control" type="text" placeholder="Email" value="'+data.user['name']+'">'+
+                '<label>Tanggal lahir</label><br>'+
+                '<input title="Tanggal lahir" id="date_of_birth" class="form-control" type="text" placeholder="Tanggal lahir" value="'+data.user['name']+'">'+
+                 
+                '<label>Edit Pengguna</label><br>'+
                     '<small id="msg_select" hidden style="color: red">pilih kecamatan terlebih dahulu</small>'+
                     '<input id="id" type="hidden" value="'+data.data.sub_districts[0]['id']+'">'+
                     '<select title="pilih kecamatan" id="select" class="form-control select2" style="width: 100%;">'+
