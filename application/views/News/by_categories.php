@@ -7,14 +7,17 @@
                   <div class="row">
                     <div class="col-sm-12">
                       <h1 class="font-weight-600 mb-4">
-                        <?php echo $news->title ?>
+                        <?php echo strtoupper($category) ?>
                       </h1>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-lg-8">
 
-                        <div class="col-sm-12 grid-margin">
+                    <?php foreach($news_by_categories as $news){ ?>
+
+                      <div class="row">
+                        <div class="col-sm-4 grid-margin">
                           <div class="rotate-img">
                             <img
                               src="<?php echo base_url('assets/images/news/'.$news->photo_name) ?>"
@@ -24,14 +27,19 @@
                           </div>
                         </div>
                         <div class="col-sm-8 grid-margin">
+                          <h2 class="font-weight-600 mb-2">
+                            <?php echo $news->title ?>
+                          </h2>
                           <p class="fs-13 text-muted mb-0">
                             <span class="mr-2"><?php echo $news->created_at?></span>
                           </p>
                           <p class="fs-15">
-                            <?php echo $news->content?>
+                            <?php echo substr($news->content, 0, 50)."..." ?>
                           </p>
                         </div>
+                      </div>
 
+                      <?php } ?>
 
                     </div>
                     <div class="col-lg-4">
@@ -86,7 +94,7 @@
                             <?php echo $news->title ?>
                           </h3>
                           <p class="fs-13 text-muted mb-0">
-                            <span class="mr-2">10 Minutes ago</span>
+                            <span class="mr-2"><?php echo $news->created_at?></span>
                           </p>
                         </div>
                         <?php } ?>

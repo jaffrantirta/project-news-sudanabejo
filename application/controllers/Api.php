@@ -343,6 +343,34 @@ class Api extends CI_Controller {
   }
 
 
+  // --------------------------------------------------- USERS -------------------------------------
+
+  public function update_user(){
+    $id = $this->input->post('id');
+    $table = 'users';
+    $data = array(
+      'name' => $users_name,
+    );
+    $where_clause = array('id' => $id);
+    if($result['data'] = $this->api_model->update_data($where_clause, $table, $data)){
+      $result['response'] = $this->response(array('status'=>true, 'indonesia'=>'Data telah diubah', 'english'=>'data has been updated'));
+    }else{
+      $result['response'] = $this->response(array('status'=>false, 'indonesia'=>'Data tidak berhasi diubah', 'english'=>"data doesn't update"));
+      $this->output->set_status_header(501);
+    }
+    echo json_encode($result);
+  }
+  public function edit_user_view($id){
+    $data = $this->api_model->get_data_by_where("users_complate_data", array('id'=>$id))->result();
+    if(count($data) > 0){
+      $result['user'] = $data[0];
+      $result['response'] = $this->response(array('status'=>true, 'indonesia'=>'mengambil data berhasil', 'english'=>'data is catched'));
+    }else{
+      $result['response'] = $this->response(array('status'=>false, 'indonesia'=>'mengambil data gagal', 'english'=>"data doesn't catch"));
+      $this->output->set_status_header(404);
+    }
+    echo json_encode($result);
+  }
 
   // --------------------------------------------------- HEADLINE NEWS -------------------------------
 
@@ -381,6 +409,8 @@ class Api extends CI_Controller {
 
   public function delete_news(){
     $id = $this->input->post('id');
+    $news = $this->api_model->get_data_by_where('news_photos', array('news_id'=>$id))->result();
+    unlink("assets/images/news/".$news[0]->name);
     $table = 'news';
     $data = array(
       'is_delete' => true
@@ -607,7 +637,7 @@ class Api extends CI_Controller {
       echo json_encode($response);
     }
     public function test(){
-      $marge = 'regencies/id/>=/0';
+      $marge = 'users/2';
       echo base64_encode($marge);
     }
 
@@ -811,10 +841,12 @@ class Api extends CI_Controller {
         array(
           'db' => 'id',  'dt' => 7,
           'formatter' => function($d, $row){
+            $encode = base64_encode($d);
+            $final = base64_encode($encode);
             return '
             <center>
-                <a href="#edit">
-                  <i title="edit" onClick="edit_newsss_categories('.$d.')" class="fa fa-edit"></i>
+                <a href="'.base_url("admin/update_news/".$final).'">
+                  <i title="edit" class="fa fa-edit"></i>
                 </a>
                 <a href="#delete">
                   <i title="hapus" onClick="delete_news('.$d.')" class="fa fa-trash"></i>
@@ -1041,13 +1073,16 @@ class Api extends CI_Controller {
         array(
           'db' => 'id',  'dt' => 6,
           'formatter' => function($d, $row){
-            return '
+            $encode = base64_encode('users/'.$d);
+            $url = base_url('admin/details/'.$encode);
+            $v = '
             <center>
-                <a href="#edit">
-                  <i title="edit" onClick="edit_user('.$d.')" class="fa fa-edit"></i>
+                <a href="'.$url.'">
+                  <i title="edit" class="fa fa-edit"></i>
                 </a>
             </center>
             ';
+            return $v;
           }
         ),
       );
