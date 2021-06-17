@@ -46,7 +46,9 @@
                             <div class="row">
                               <div class="col-sm-8">
                                 <h5 class="font-weight-600 mb-1">
+                                  <a style="color: black" href="<?php echo base_url('news/consumer/'.str_replace(" ", "-", substr($news->title, 0, 30)).'/'.base64_encode($news->id)) ?>">
                                     <?php echo substr($news->title, 0, 20)."..." ?>
+                                  </a>
                                 </h5>
                                 <p class="fs-13 text-muted mb-0">
                                   <span class="mr-2"><?php echo $news->created_at?></span>
@@ -54,11 +56,13 @@
                               </div>
                               <div class="col-sm-4">
                                 <div class="rotate-img">
+                                <a style="color: black" href="<?php echo base_url('news/consumer/'.str_replace(" ", "-", substr($news->title, 0, 30)).'/'.base64_encode($news->id)) ?>">
                                   <img
                                     src="<?php echo base_url('assets/images/news/'.$news->photo_name) ?>"
                                     alt="banner"
                                     class="img-fluid"
                                   />
+                                </a>
                                 </div>
                               </div>
                             </div>
@@ -76,17 +80,21 @@
                         <?php foreach($popular as $news){ ?>
                         <div class="mb-4">
                           <div class="rotate-img">
+                          <a style="color: black" href="<?php echo base_url('news/consumer/'.str_replace(" ", "-", substr($news->title, 0, 30)).'/'.base64_encode($news->id)) ?>">
                             <img
                               src="<?php echo base_url('assets/images/news/'.$news->photo_name) ?>"
                               alt="banner"
                               class="img-fluid"
                             />
+                          </a>
                           </div>
                           <h3 class="mt-3 font-weight-600">
+                          <a style="color: black" href="<?php echo base_url('news/consumer/'.str_replace(" ", "-", substr($news->title, 0, 30)).'/'.base64_encode($news->id)) ?>">
                             <?php echo $news->title ?>
+                          </a>
                           </h3>
                           <p class="fs-13 text-muted mb-0">
-                            <span class="mr-2">10 Minutes ago</span>
+                            <span class="mr-2"><?php echo $news->created_at?></span>
                           </p>
                         </div>
                         <?php } ?>

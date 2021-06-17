@@ -55,7 +55,7 @@ class News extends CI_Controller {
 	}
 	public function consumer($x, $y){
 		$title = str_replace("-", " ", $this->uri->segment(3));
-		$id = str_replace("-", " ", $this->uri->segment(4));
+		$id = base64_decode($this->uri->segment(4));
 		$data['header'] = 'Sudana Bejo | Berita - '.$title;
 		$data['latest_news'] = $this->latest_news('LIMIT 3');
         $data['popular'] = $this->popular('LIMIT 3');
