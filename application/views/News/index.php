@@ -25,16 +25,18 @@
 
               <div class="col-xl-8 stretch-card grid-margin">
                 <div class="position-relative">
+                <a style="color: white" href="<?php echo base_url('news/consumer/'.str_replace(" ", "-", substr($headline[0]->title, 0, 30)).'/'.base64_encode($headline[0]->id)) ?>">
                   <img
                     src="<?php echo base_url('assets/images/news/'.$headline[0]->photo_name) ?>"
                     alt="banner"
                     class="img-fluid"
                   />
+                </a>
                   <div class="banner-content">
                     <div class="badge badge-danger fs-12 font-weight-bold mb-3">
                     <?php echo $headline[0]->category_name ?>
                     </div>
-                    <h1 class="mb-0"><a style="color: white" href="<?php echo base_url('news/consumer/'.str_replace(" ", "-", $headline[0]->title).'/'.$headline[0]->id) ?>"><?php echo substr($headline[0]->title, 0, 65)."..." ?></a></h1>
+                    <h1 class="mb-0"><a style="color: white" href="<?php echo base_url('news/consumer/'.str_replace(" ", "-", substr($headline[0]->title, 0, 30)).'/'.base64_encode($headline[0]->id)) ?>"><?php echo substr($headline[0]->title, 0, 65)."..." ?></a></h1>
                     <!-- <h1 class="mb-2">
                     
                     </h1> -->
@@ -54,7 +56,7 @@
 
                     <div class="d-flex border-bottom-blue pt-3 pb-4 align-items-center justify-content-between">
                       <div class="pr-3">
-                        <h5><a style="color: white" href="<?php echo base_url('news/consumer/'.str_replace(" ", "-", $ln->title).'/'.$ln->id) ?>"><?php echo $ln->title ?></a></h5>
+                        <h5><a style="color: white" href="<?php echo base_url('news/consumer/'.str_replace(" ", "-", substr($ln->title, 0, 30)).'/'.base64_encode($ln->id)) ?>"><?php echo $ln->title ?></a></h5>
                         <div class="fs-12">
                           <span class="mr-2"><?php echo $ln->created_at?></span>
                         </div>
@@ -94,11 +96,13 @@
                       <div class="col-sm-4 grid-margin">
                         <div class="position-relative">
                           <div class="rotate-img">
+                          <a style="color: black" href="<?php echo base_url('news/consumer/'.str_replace(" ", "-", substr($p->title, 0, 30)).'/'.base64_encode($p->id)) ?>">
                             <img
                               src="<?php echo base_url('assets/images/news/'.$p->photo_name) ?>"
                               alt="thumb"
                               class="img-fluid"
                             />
+                          </a>
                           </div>
                           <div class="badge-positioned">
                             <span class="badge badge-danger font-weight-bold"
@@ -109,7 +113,7 @@
                       </div>
                       <div class="col-sm-8  grid-margin">
                         <h2 class="mb-2 font-weight-600">
-                          <a style="color: black" href="<?php echo base_url('news/consumer/'.str_replace(" ", "-", $p->title).'/'.$p->id) ?>">
+                          <a style="color: black" href="<?php echo base_url('news/consumer/'.str_replace(" ", "-", substr($p->title, 0, 30)).'/'.base64_encode($p->id)) ?>">
                             <?php echo $p->title ?>
                           </a>
                         </h2>
@@ -143,7 +147,7 @@
                           <div class="col-sm-6 grid-margin">
                             <div class="position-relative">
                               <div class="rotate-img">
-                              <a style="color: white" href="<?php echo base_url('news/consumer/'.str_replace(" ", "-", $recommendation[0]->title).'/'.$recommendation[0]->id) ?>">
+                              <a style="color: black" href="<?php echo base_url('news/consumer/'.str_replace(" ", "-", substr($recommendation[0]->title, 0, 30)).'/'.base64_encode($recommendation[0]->id)) ?>">
                                 <img
                                   src="<?php echo base_url('assets/images/news/'.$recommendation[0]->photo_name) ?>"
                                   alt="thumb"
@@ -167,7 +171,7 @@
                           <div class="col-sm-6 grid-margin">
                             <div class="position-relative">
                               <div class="rotate-img">
-                              <a style="color: white" href="<?php echo base_url('news/consumer/'.str_replace(" ", "-", $recommendation[1]->title).'/'.$recommendation[1]->id) ?>">
+                              <a style="color: black" href="<?php echo base_url('news/consumer/'.str_replace(" ", "-", substr($recommendation[1]->title, 0, 30)).'/'.base64_encode($recommendation[1]->id)) ?>">
                                 <img
                                   src="<?php echo base_url('assets/images/news/'.$recommendation[1]->photo_name) ?>"
                                   alt="thumb"
@@ -192,7 +196,7 @@
                           <div class="col-sm-6 grid-margin">
                             <div class="position-relative">
                               <div class="rotate-img">
-                              <a style="color: white" href="<?php echo base_url('news/consumer/'.str_replace(" ", "-", $recommendation[2]->title).'/'.$recommendation[3]->id) ?>">
+                              <a style="color: black" href="<?php echo base_url('news/consumer/'.str_replace(" ", "-", substr($recommendation[2]->title, 0, 30)).'/'.base64_encode($recommendation[3]->id)) ?>">
                                 <img
                                   src="<?php echo base_url('assets/images/news/'.$recommendation[2]->photo_name) ?>"
                                   alt="thumb"
@@ -216,7 +220,7 @@
                           <div class="col-sm-6 grid-margin">
                             <div class="position-relative">
                               <div class="rotate-img">
-                              <a style="color: white" href="<?php echo base_url('news/consumer/'.str_replace(" ", "-", $recommendation[3]->title).'/'.$recommendation[3]->id) ?>">
+                              <a style="color: black" href="<?php echo base_url('news/consumer/'.str_replace(" ", "-", substr($recommendation[3]->title, 0, 30)).'/'.base64_encode($recommendation[3]->id)) ?>">
                                 <img
                                   src="<?php echo base_url('assets/images/news/'.$recommendation[3]->photo_name) ?>"
                                   alt="thumb"
@@ -251,7 +255,7 @@
                         <div class="d-flex justify-content-between align-items-center border-bottom pb-2">
                           <div class="div-w-80 mr-3">
                             <div class="rotate-img">
-                            <a style="color: white" href="<?php echo base_url('news/consumer/'.str_replace(" ", "-", $recommendation[4]->title).'/'.$recommendation[4]->id) ?>">
+                            <a style="color: black" href="<?php echo base_url('news/consumer/'.str_replace(" ", "-", substr($recommendation[4]->title, 0, 30)).'/'.base64_encode($recommendation[4]->id)) ?>">
                               <img
                                 src="<?php echo base_url('assets/images/news/'.$recommendation[4]->photo_name) ?>"
                                 alt="thumb"
@@ -260,7 +264,9 @@
                             </div>
                           </div>
                           <h3 class="font-weight-600 mb-0">
+                          <a style="color: black" href="<?php echo base_url('news/consumer/'.str_replace(" ", "-", substr($recommendation[4]->title, 0, 30)).'/'.base64_encode($recommendation[4]->id)) ?>">
                           <?php echo $recommendation[4]->title ?>
+                          </a>
                           </h3>
                         </div>
                         
@@ -269,7 +275,7 @@
                         >
                           <div class="div-w-80 mr-3">
                             <div class="rotate-img">
-                            <a style="color: white" href="<?php echo base_url('news/consumer/'.str_replace(" ", "-", $recommendation[5]->title).'/'.$recommendation[5]->id) ?>">  
+                            <a style="color: black" href="<?php echo base_url('news/consumer/'.str_replace(" ", "-", substr($recommendation[5]->title, 0, 30)).'/'.base64_encode($recommendation[5]->id)) ?>">  
                             <img
                                 src="<?php echo base_url('assets/images/news/'.$recommendation[5]->photo_name) ?>"
                                 alt="thumb"
@@ -279,7 +285,9 @@
                             </div>
                           </div>
                           <h3 class="font-weight-600 mb-0">
+                          <a style="color: black" href="<?php echo base_url('news/consumer/'.str_replace(" ", "-", substr($recommendation[5]->title, 0, 30)).'/'.base64_encode($recommendation[5]->id)) ?>">
                           <?php echo $recommendation[5]->title ?>
+                          </a>
                           </h3>
                         </div>
                         <div
@@ -287,7 +295,7 @@
                         >
                           <div class="div-w-80 mr-3">
                             <div class="rotate-img">
-                            <a style="color: white" href="<?php echo base_url('news/consumer/'.str_replace(" ", "-", $recommendation[6]->title).'/'.$recommendation[6]->id) ?>">  
+                            <a style="color: black" href="<?php echo base_url('news/consumer/'.str_replace(" ", "-", substr($recommendation[6]->title, 0, 30)).'/'.base64_encode($recommendation[6]->id)) ?>">  
                             <img
                                 src="<?php echo base_url('assets/images/news/'.$recommendation[6]->photo_name) ?>"
                                 alt="thumb"
@@ -297,7 +305,9 @@
                             </div>
                           </div>
                           <h3 class="font-weight-600 mb-0">
+                          <a style="color: black" href="<?php echo base_url('news/consumer/'.str_replace(" ", "-", substr($recommendation[6]->title, 0, 30)).'/'.base64_encode($recommendation[6]->id)) ?>">
                           <?php echo $recommendation[6]->title ?>
+                          </a>
                           </h3>
                         </div>
                         <div
@@ -305,7 +315,7 @@
                         >
                           <div class="div-w-80 mr-3">
                             <div class="rotate-img">
-                            <a style="color: white" href="<?php echo base_url('news/consumer/'.str_replace(" ", "-", $recommendation[7]->title).'/'.$recommendation[7]->id) ?>">  
+                            <a style="color: black" href="<?php echo base_url('news/consumer/'.str_replace(" ", "-", substr($recommendation[7]->title, 0, 30)).'/'.base64_encode($recommendation[7]->id)) ?>">  
                             <img
                                 src="<?php echo base_url('assets/images/news/'.$recommendation[7]->photo_name) ?>"
                                 alt="thumb"
@@ -315,7 +325,9 @@
                             </div>
                           </div>
                           <h3 class="font-weight-600">
+                          <a style="color: black" href="<?php echo base_url('news/consumer/'.str_replace(" ", "-", substr($recommendation[7]->title, 0, 30)).'/'.base64_encode($recommendation[7]->id)) ?>">
                           <?php echo $recommendation[7]->title ?>
+                          </a>
                           </h3>
                         </div>
                         <div
@@ -323,7 +335,7 @@
                         >
                           <div class="div-w-80 mr-3">
                             <div class="rotate-img">
-                            <a style="color: white" href="<?php echo base_url('news/consumer/'.str_replace(" ", "-", $recommendation[8]->title).'/'.$recommendation[8]->id) ?>">  
+                            <a style="color: black" href="<?php echo base_url('news/consumer/'.str_replace(" ", "-", substr($recommendation[8]->title, 0, 30)).'/'.base64_encode($recommendation[8]->id)) ?>">  
                             <img
                                 src="<?php echo base_url('assets/images/news/'.$recommendation[8]->photo_name) ?>"
                                 alt="thumb"
@@ -333,7 +345,9 @@
                             </div>
                           </div>
                           <h3 class="font-weight-600 mb-0">
+                          <a style="color: black" href="<?php echo base_url('news/consumer/'.str_replace(" ", "-", substr($recommendation[8]->title, 0, 30)).'/'.base64_encode($recommendation[8]->id)) ?>">
                           <?php echo $recommendation[8]->title ?>
+                          </a>
                           </h3>
                         </div>
 
@@ -362,7 +376,7 @@
                               />
                             </div>
                             <h2 class="mt-3 text-primary mb-2">
-                            <a style="color: white" href="<?php echo base_url('news/consumer/'.str_replace(" ", "-", $our_choice[0]->title).'/'.$our_choice[0]->id) ?>">
+                            <a style="color: black" href="<?php echo base_url('news/consumer/'.str_replace(" ", "-", substr($our_choice[0]->title, 0, 30)).'/'.base64_encode($our_choice[0]->id)) ?>">
                             <?php echo substr($our_choice[0]->title, 0, 20)."..."?>
                             </h2>
                             <p class="fs-13 mb-1 text-muted">
@@ -378,7 +392,7 @@
                           <div class="col-xl-6 col-lg-4 col-sm-6">
                             <div class="border-bottom pb-3 mb-3">
                               <h3 class="font-weight-600 mb-0">
-                              <a style="color: black" href="<?php echo base_url('news/consumer/'.str_replace(" ", "-", $our_choice[1]->title).'/'.$our_choice[1]->id) ?>">
+                              <a style="color: black" href="<?php echo base_url('news/consumer/'.str_replace(" ", "-", substr($our_choice[1]->title, 0, 30)).'/'.base64_encode($our_choice[1]->id)) ?>">
                               <?php echo substr($our_choice[1]->title, 0, 20)."..."?>
                               </h3>
                               <p class="fs-13 text-muted mb-0">
@@ -390,7 +404,7 @@
                             </div>
                             <div class="border-bottom pb-3 mb-3">
                               <h3 class="font-weight-600 mb-0">
-                              <a style="color: white" href="<?php echo base_url('news/consumer/'.str_replace(" ", "-", $our_choice[2]->title).'/'.$our_choice[2]->id) ?>">
+                              <a style="color: black" href="<?php echo base_url('news/consumer/'.str_replace(" ", "-", substr($our_choice[2]->title, 0, 30)).'/'.base64_encode($our_choice[2]->id)) ?>">
                               <?php echo substr($our_choice[2]->title, 0, 20)."..."?>
                               </a>
                               </h3>
@@ -403,7 +417,7 @@
                             </div>
                             <div class="border-bottom pb-3 mb-3">
                               <h3 class="font-weight-600 mb-0">
-                              <a style="color: white" href="<?php echo base_url('news/consumer/'.str_replace(" ", "-", $our_choice[3]->title).'/'.$our_choice[3]->id) ?>">
+                              <a style="color: black" href="<?php echo base_url('news/consumer/'.str_replace(" ", "-", substr($our_choice[3]->title, 0, 30)).'/'.base64_encode($our_choice[3]->id)) ?>">
                               <?php echo substr($our_choice[3]->title, 0, 20)."..."?>
                               </a>
                               </h3>
@@ -416,7 +430,7 @@
                             </div>
                             <div>
                               <h3 class="font-weight-600 mb-0">
-                              <a style="color: white" href="<?php echo base_url('news/consumer/'.str_replace(" ", "-", $our_choice[4]->title).'/'.$our_choice[4]->id) ?>">
+                              <a style="color: black" href="<?php echo base_url('news/consumer/'.str_replace(" ", "-", substr($our_choice[4]->title, 0, 30)).'/'.base64_encode($our_choice[4]->id)) ?>">
                               <?php echo substr($our_choice[4]->title, 0, 20)."..."?>
                               </a>
                               </h3>
@@ -444,7 +458,7 @@
                                   class="img-fluid"
                                 />
                               </div>
-                              <a href="<?php echo base_url('news/consumer/'.str_replace(" ", "-", $our_choice[5]->title).'/'.$our_choice[5]->id) ?>" class="fs-16 font-weight-600 mb-0 mt-3">
+                              <a href="<?php echo base_url('news/consumer/'.str_replace(" ", "-", substr($our_choice[5]->title, 0, 30)).'/'.base64_encode($our_choice[5]->id)) ?>" class="fs-16 font-weight-600 mb-0 mt-3">
                               <?php echo substr($our_choice[5]->title, 0, 20)."..."?>
                               </a>
                               <p class="fs-13 text-muted mb-0">
@@ -459,7 +473,7 @@
                                   class="img-fluid"
                                 />
                               </div>
-                              <a href="<?php echo base_url('news/consumer/'.str_replace(" ", "-", $our_choice[6]->title).'/'.$our_choice[6]->id) ?>" class="fs-16 font-weight-600 mb-0 mt-3">
+                              <a href="<?php echo base_url('news/consumer/'.str_replace(" ", "-", substr($our_choice[6]->title, 0, 30)).'/'.base64_encode($our_choice[6]->id)) ?>" class="fs-16 font-weight-600 mb-0 mt-3">
                               <?php echo substr($our_choice[6]->title, 0, 20)."..."?>
                               </a>
                               <p class="fs-13 text-muted mb-0">
@@ -485,7 +499,7 @@
                                       </div>
                                     </div>
                                     <div class="col-sm-7 pl-2">
-                                      <a href="<?php echo base_url('news/consumer/'.str_replace(" ", "-", $our_choice[7]->title).'/'.$our_choice[7]->id) ?>" class="fs-16 font-weight-600 mb-0">
+                                      <a href="<?php echo base_url('news/consumer/'.str_replace(" ", "-", substr($our_choice[7]->title, 0, 30)).'/'.base64_encode($our_choice[7]->id)) ?>" class="fs-16 font-weight-600 mb-0">
                                       <?php echo substr($our_choice[7]->title, 0, 20)."..."?>
                                       </a>
                                       <p class="fs-13 text-muted mb-0">
@@ -513,7 +527,7 @@
                                       </div>
                                     </div>
                                     <div class="col-sm-7 pl-2">
-                                      <a href="<?php echo base_url('news/consumer/'.str_replace(" ", "-", $our_choice[8]->title).'/'.$our_choice[8]->id) ?>" class="fs-16 font-weight-600 mb-0">
+                                      <a href="<?php echo base_url('news/consumer/'.str_replace(" ", "-", substr($our_choice[8]->title, 0, 30)).'/'.base64_encode($our_choice[8]->id)) ?>" class="fs-16 font-weight-600 mb-0">
                                         <?php echo substr($our_choice[8]->title, 0, 20)."..."?>
                                       </a>
                                       <p class="fs-13 text-muted mb-0">
@@ -541,7 +555,7 @@
                                       </div>
                                     </div>
                                     <div class="col-sm-7 pl-2">
-                                      <a href="<?php echo base_url('news/consumer/'.str_replace(" ", "-", $our_choice[9]->title).'/'.$our_choice[9]->id) ?>" class="fs-16 font-weight-600 mb-0">
+                                      <a href="<?php echo base_url('news/consumer/'.str_replace(" ", "-", substr($our_choice[9]->title, 0, 30)).'/'.base64_encode($our_choice[9]->id)) ?>" class="fs-16 font-weight-600 mb-0">
                                         <?php echo substr($our_choice[9]->title, 0, 20)."..."?>
                                       </a>
                                       <p class="fs-13 text-muted mb-0">
@@ -569,7 +583,7 @@
                                       </div>
                                     </div>
                                     <div class="col-sm-7 pl-2">
-                                      <a href="<?php echo base_url('news/consumer/'.str_replace(" ", "-", $our_choice[10]->title).'/'.$our_choice[10]->id) ?>" class="fs-16 font-weight-600 mb-0">
+                                      <a href="<?php echo base_url('news/consumer/'.str_replace(" ", "-", substr($our_choice[10]->title, 0, 30)).'/'.base64_encode($our_choice[10]->id)) ?>" class="fs-16 font-weight-600 mb-0">
                                         <?php echo substr($our_choice[10]->title, 0, 20)."..."?>
                                       </a>
                                       <p class="fs-13 text-muted mb-0">
