@@ -521,6 +521,30 @@ class Api extends CI_Controller {
 
     // --------------------------------------------------- DASHBOARD FUNCTION -------------------------------
 
+    public function get_occupation_count($table, $data){
+      $occupation = $this->api_model->get_data_by_where($table, $data)->result();
+          $sum_occ = count($occupation);
+          if($sum_occ > 0){
+              for($i=0;$i<$sum_occ;$i++){
+                if(count($data = $this->api_model->custom_query('select count(users.id) as count_by_occupations, occupations.* from occupations inner join users on users.occupation_id = occupations.id where occupations.id = '.$occupation[$i]->id)->result()) > 0){
+                  $result[$i] = $data[0];
+                }else{
+                  $result[$i] = array(
+                    'count_by_occupations'=>'0',
+                    'id'=>$occupation[$i]->id,
+                    'name'=>$occupation[$i]->name,
+                    'is_active'=>$occupation[$i]->is_active,
+                    'created_at'=>$occupation[$i]->created_at,
+                    'updated_at'=>$occupation[$i]->updated_at
+                  );
+                }
+              }
+          }else{
+            $result = null;
+          }
+        return $result;
+    }
+
     public function get_regencies_count($table, $data){
         $regencies = $this->api_model->get_data_by_where($table, $data)->result();
         $sum_regencies = count($regencies);
@@ -627,6 +651,9 @@ class Api extends CI_Controller {
           break;
         case 'sub_districts':
           $response['data'] = $this->get_sub_districts_count($based_by, $data);
+          break;
+        case 'occupations':
+          $response['data'] = $this->get_occupation_count($based_by, $data);
           break;
       }
       if($response['data'] != null){

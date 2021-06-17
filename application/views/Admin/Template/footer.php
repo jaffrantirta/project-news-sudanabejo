@@ -25,7 +25,9 @@
 <script src="<?php echo base_url() ?>assets/build/js/admin/AdminPopularNews.js"></script>
 <script src="<?php echo base_url() ?>assets/build/js/admin/AdminHeadline.js"></script>
 <script src="<?php echo base_url() ?>assets/build/js/admin/AdminNews.js"></script>
-<script src="<?php echo base_url() ?>assets/build/js/admin/AdminDashboard.js"></script>
+<script src="<?php echo base_url() ?>assets/build/js/admin/AdminDashboardByPlaces.js"></script>
+
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.3.2/chart.min.js"></script> -->
 <!-- jQuery UI 1.11.4 -->
 <script src="<?php echo base_url() ?>assets/plugins/jquery-ui/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
@@ -58,5 +60,7 @@
 <script src="<?php echo base_url() ?>assets/dist/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="<?php echo base_url() ?>assets/dist/js/pages/dashboard.js"></script>
+
+<script src="<?php echo base_url() ?>assets/build/js/admin/AdminDashboardChart.js"></script>
 </body>
 </html>
