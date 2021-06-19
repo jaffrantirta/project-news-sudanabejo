@@ -25,6 +25,9 @@ class News extends CI_Controller {
 	public function news_by_categories($cat, $limit){
 		return $this->api_model->custom_query("SELECT news_complate_data.* , news_photos.name as photo_name, news_categories.name as category_name FROM `news_complate_data` INNER JOIN `news_photos` ON `news_photos`.`news_id` = `news_complate_data`.`id` INNER JOIN `news_categories` ON `news_categories`.`id` = `news_complate_data`.`category_id` WHERE is_delete = 0 AND news_categories.name = '".$cat."' ORDER BY news_complate_data.created_at DESC ".$limit)->result();
 	}
+	public function news_by_search($kayword, $limit){
+		return $this->api_model->custom_query("SELECT news_complate_data.* , news_photos.name as photo_name, news_categories.name as category_name FROM `news_complate_data` INNER JOIN `news_photos` ON `news_photos`.`news_id` = `news_complate_data`.`id` INNER JOIN `news_categories` ON `news_categories`.`id` = `news_complate_data`.`category_id` WHERE is_delete = 0 AND news_complate_data.content LIKE '%".$kayword."%' OR news_complate_data.title LIKE '%".$kayword."%' OR news_complate_data.category_name LIKE '%".$kayword."%' ORDER BY news_complate_data.created_at DESC ".$limit)->result();
+	}
 	public function read_news($id){
 		return $this->api_model->custom_query("SELECT news_complate_data.* , news_photos.name as photo_name, news_categories.name as category_name FROM `news_complate_data` INNER JOIN `news_photos` ON `news_photos`.`news_id` = `news_complate_data`.`id` INNER JOIN `news_categories` ON `news_categories`.`id` = `news_complate_data`.`category_id` WHERE is_delete = 0 AND news_complate_data.id = '".$id."'")->result();
 	}
@@ -60,6 +63,23 @@ class News extends CI_Controller {
         $data['popular'] = $this->popular('LIMIT 3');
 		$data['header_categories'] = $this->header_categories('LIMIT 6');
 		$data['news_by_categories'] = $this->news_by_categories($cat, '');
+		$this->load->view('News/Template/header', $data);
+		$this->load->view('News/by_categories', $data);
+		$this->load->view('News/Template/footer', $data);
+	}
+	public function search($keyword){
+		if(!$this->session->userdata('authenticated_user')){
+			$data['login']['status'] = false;
+		}else{
+			$data['login']['status'] = true;
+			$data['login']['data'] = $this->session->all_userdata();
+		}
+		$data['header'] = 'Sudana Bejo | Pencarian berdasarkan "'.$keyword.'"';
+		$data['category'] = 'Hasil pencarian berdasarkan "'.$keyword.'"';
+		$data['latest_news'] = $this->latest_news('LIMIT 3');
+        $data['popular'] = $this->popular('LIMIT 3');
+		$data['header_categories'] = $this->header_categories('LIMIT 6');
+		$data['news_by_categories'] = $this->news_by_search($keyword, '');
 		$this->load->view('News/Template/header', $data);
 		$this->load->view('News/by_categories', $data);
 		$this->load->view('News/Template/footer', $data);

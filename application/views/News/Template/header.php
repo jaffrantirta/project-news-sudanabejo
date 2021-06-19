@@ -71,13 +71,21 @@
                         </li>
                         <?php } ?>
                         <li class="nav-item">
-                          <h3 style="color: white"> ⠀| ⠀ ⠀</h3>
+                          <h3 style="color: white"> ⠀| ⠀</h3>
+                        </li>
+
+                        <li class="nav-item">
+                          <a href="#search" onclick="search_page()" class="nav-link">Pencarian</a>
+                        </li>
+
+                        <li class="nav-item">
+                          <h3 style="color: white"> ⠀| ⠀</h3>
                         </li>
 
                         <?php if(!$login['status']){ ?>
 
                         <li class="nav-item">
-                          <a href="#" onclick="login_page()" class="nav-link">Masuk</a>
+                          <a href="#login" onclick="login_page()" class="nav-link">Masuk</a>
                         </li>
                         <li class="nav-item">
                           <a href="<?php echo base_url('news/register') ?>" class="nav-link">Daftar</a>
@@ -87,7 +95,7 @@
 
                           
                             <li class="nav-item">
-                              <a href="#" onclick="profile()"><strong style="color: white">halo, <?php echo $login['data']['name'] ?></strong></a>
+                              <a href="#profile" onclick="profile()"><strong style="color: white">halo, <?php echo $login['data']['name'] ?></strong></a>
                             </li>
                           
 

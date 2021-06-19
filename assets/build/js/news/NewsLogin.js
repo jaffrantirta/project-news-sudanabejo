@@ -70,6 +70,20 @@ function profile(){
         showConfirmButton: false
     })
 }
+function search_page(){
+    Swal.fire({
+        html: 
+        '<input placeholder="Ketik kata kunci yang ingin dicari ..." type="search" id="keyword" class="form-control col-12">'+
+        '<button style="margin-top: 0.5em" onclick="search_process()" class="btn btn-primary col-12">Cari</button>',
+        showCloseButton: false,
+        showCancelButton: false,
+        showConfirmButton: false
+    })
+}
+function search_process(){
+    var keyword = $('#keyword').val()
+    window.location.replace(base_url+'news/search/'+keyword);
+}
 function logout(){
     Swal.fire({
         title: 'Yakin logout ?',
