@@ -64,12 +64,15 @@ function set_session(id, role_id, user_name, nik, sub_district_id, community_uni
             'occupation_id':occupation_id,
             'profile_photo':profile_photo,
             'ktp_photo':ktp_photo,
-            'whatsapp_number':whatsapp_number
+            'whatsapp_number':whatsapp_number,
+            'user_auth':'authenticated_admin'
         },
         success: function(result){
-            var url = window.location.href
+            // var url = window.location.href
             // console.log('url : '+url);
-            window.location.replace(url);
+            // window.location.replace(url);
+            error_message('success', 'Login berhasil', '');
+            location.reload();
         },
         error: function (xhr, ajaxOptions, thrownError) {
             // console.log('data : '+xhr.responseText);

@@ -1,5 +1,6 @@
 var account_scope = document.getElementById('account_scope').innerHTML;
-get_data(account_scope, 'id', '>=', '0');
+// console.log('start');
+get_data_sum(account_scope, 'id', '>=', '0');
 get_data_dropdown_regencies('regencies', 'id', '>=', '0');
 
 function get_data(based_by, where_clause, where_condition, where_value){
@@ -171,7 +172,7 @@ function get_data_dropdown_sub_districts(table, where_clause, where_condition, w
             });
             root_view =  '<div class="form-group sub_districts_reload">'+
                                 '<label>Kelurahan/Desa</label>'+
-                                '<select id="select_sub_districts" class="form-control select2 select_sub_districts" style="width: 100%;">'+
+                                '<select name="sub_district_id" id="select_sub_districts" class="form-control select2 select_sub_districts" style="width: 100%;">'+
                                 '<option value="not selected yet">- Pilih Kelurahan/Desa -</option>'+
                                 v+
                                 '</select>'+
@@ -200,20 +201,25 @@ function show(){
     if(select_sub_districts == 'not selected yet'){
         if(select_districts == 'not selected yet'){
             if(select_regencies == 'not selected yet'){
+                // console.log('regencies');
                 $('#label_districts').attr('hidden', true);
                 $('#label_sub_districts').attr('hidden', true);
                 get_data_sum(account_scope, 'id', '>=', '0');
             }else{
+                // console.log('district');
                 $('#label_districts').attr('hidden', false);
                 $('#label_sub_districts').attr('hidden', true);
                 get_data_sum('districts', 'regency_id', '=', select_regencies);
+                // console.log('district 2');
             }
         }else{
+            // console.log('sub_districts');
             $('#label_districts').attr('hidden', false);
             $('#label_sub_districts').attr('hidden', false);
             get_data_sum('sub_districts', 'distric_id', '=', select_districts);
         }
     }else{
+        // console.log('sub_districts');
         $('#label_districts').attr('hidden', false);
         $('#label_sub_districts').attr('hidden', false);
         get_data_sum('sub_districts', 'id', '=', select_sub_districts);
@@ -221,23 +227,23 @@ function show(){
 }
 
 function get_data_sum(table, where_clause, where_condition, where_value){
-    console.log(table+"/"+where_clause+"/"+where_condition+"/"+where_value);
+    // console.log(table+"/"+where_clause+"/"+where_condition+"/"+where_value);
     var param = btoa(table+"/"+where_clause+"/"+where_condition+"/"+where_value);
     $.ajax({
         url: base_url+"api/get_data_sum/"+param,
         type: "get",
         success: function(result){
-            console.log('data : '+result);
+            // console.log('data 123 : '+result);
             var data = JSON.parse(result);
             var d = data['data'];
             var regencies = d.regencies;
             var districts = d.districts;
             var sub_districts = d.sub_districts;
-            console.log('haha : '+regencies+districts+sub_districts);
+            // console.log('haha : '+regencies+districts+sub_districts);
             if(sub_districts == 'undefined'){
                 if(districts == 'undefined'){
                     if(regencies == 'undefined'){
-                        console.log('anda tidak memilih apapun');
+                        // console.log('anda tidak memilih apapun');
                     }else{
                         var r = data['data']['regencies'];
                         view_count_regencies(r);
@@ -270,6 +276,7 @@ function get_data_sum(table, where_clause, where_condition, where_value){
 }
 
 function view_count_regencies(r){
+    // console.log('view_regencies');
     $('.r_reload').remove();
     $.each(r, function( index, value ) {
         root_view =  '<div class="col-lg-3 col-6 r_reload">'+
@@ -287,6 +294,7 @@ function view_count_regencies(r){
     });
 }
 function view_count_districts(r){
+    // console.log('view_districts');
     // $('#label_districts').attr('hidden', false);
     $('.d_reload').remove();
     $.each(r, function( index, value ) {
@@ -305,6 +313,7 @@ function view_count_districts(r){
     });
 }
 function view_count_sub_districts(r){
+    // console.log('view_sub_districts');
     // $('#label_sub_districts').attr('hidden', false);
     $('.s_reload').remove();
     $.each(r, function( index, value ) {

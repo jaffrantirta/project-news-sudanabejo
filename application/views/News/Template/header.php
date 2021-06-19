@@ -22,6 +22,7 @@
   </head>
 
   <body>
+  <p hidden id="base_url" ><?php echo base_url() ?></p>
     <div class="container-scroller">
       <div class="main-panel">
         <!-- partial:partials/_navbar.html -->
@@ -30,34 +31,8 @@
             <nav class="navbar navbar-expand-lg navbar-light">
               <div class="navbar-top">
                 <div class="d-flex justify-content-between align-items-center">
-                  <ul class="navbar-top-left-menu">
-                    <li class="nav-item">
-                      <a href="#" class="nav-link">Tentang Kami</a>
-                    </li>
-                    <!-- <li class="nav-item">
-                      <a href="pages/aboutus.html" class="nav-link">About</a>
-                    </li>
-                    <li class="nav-item">
-                      <a href="#" class="nav-link">Events</a>
-                    </li>
-                    <li class="nav-item">
-                      <a href="#" class="nav-link">Write for Us</a>
-                    </li>
-                    <li class="nav-item">
-                      <a href="#" class="nav-link">In the Press</a>
-                    </li> -->
-                  </ul>
-                  <ul class="navbar-top-right-menu">
-                    <li class="nav-item">
-                      <a href="#" class="nav-link"><i class="mdi mdi-magnify"></i></a>
-                    </li>
-                    <li class="nav-item">
-                      <a href="#" class="nav-link">Masuk</a>
-                    </li>
-                    <li class="nav-item">
-                      <a href="#" class="nav-link">Daftar</a>
-                    </li>
-                  </ul>
+                  
+                  
                 </div>
               </div>
               <div class="navbar-bottom">
@@ -79,13 +54,8 @@
                     >
                       <span class="navbar-toggler-icon"></span>
                     </button>
-                    <div
-                      class="navbar-collapse justify-content-center collapse"
-                      id="navbarSupportedContent"
-                    >
-                      <ul
-                        class="navbar-nav d-lg-flex justify-content-between align-items-center"
-                      >
+                    <div class="navbar-collapse justify-content-center collapse" id="navbarSupportedContent">
+                      <ul class="navbar-nav d-lg-flex justify-content-between align-items-center">
                         <li>
                           <button class="navbar-close">
                             <i class="mdi mdi-close"></i>
@@ -100,10 +70,30 @@
                           <a class="nav-link" href="<?php echo base_url('news/categories/'.$hc->name) ?>"><?php echo $hc->name ?></a>
                         </li>
                         <?php } ?>
+                        <li class="nav-item">
+                          <h3 style="color: white"> ⠀| ⠀ ⠀</h3>
+                        </li>
+
+                        <?php if(!$login['status']){ ?>
 
                         <li class="nav-item">
-                          <a class="nav-link" href="#">Kontak</a>
+                          <a href="#" onclick="login_page()" class="nav-link">Masuk</a>
                         </li>
+                        <li class="nav-item">
+                          <a href="<?php echo base_url('news/register') ?>" class="nav-link">Daftar</a>
+                        </li>
+
+                        <?php }else{ ?>
+
+                          
+                            <li class="nav-item">
+                              <a href="#" onclick="profile()"><strong style="color: white">halo, <?php echo $login['data']['name'] ?></strong></a>
+                            </li>
+                          
+
+                          <?php } ?>
+
+
                       </ul>
                     </div>
                   </div>
