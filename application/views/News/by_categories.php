@@ -14,6 +14,10 @@
                   <div class="row">
                     <div class="col-lg-8">
 
+                    <?php $count = count($news_by_categories);
+                    
+                    if($count > 0){?>
+
                     <?php foreach($news_by_categories as $news){ ?>
 
                       <div class="row">
@@ -44,6 +48,14 @@
                       </div>
 
                       <?php } ?>
+
+                      <?php }else{ ?>
+                        <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+                        <lottie-player class="col-12 d-flex align-self-center" src="https://assets6.lottiefiles.com/packages/lf20_RM8ONY.json"  background="transparent"  speed="1"  style="width: 300px; height: 300px;"  loop  autoplay></lottie-player>
+                        <h3 class="text-center col-12">Pencarian dengan kata kunci tidak ditemukan</h3>
+                      <?php } ?>
+
+                      <h3 style="margin-top: 1em" class="text-center col-12">==============================</h3>
 
                     </div>
                     <div class="col-lg-4">

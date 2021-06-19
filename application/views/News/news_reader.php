@@ -31,9 +31,9 @@
                             <?php echo $news->content?>
                           </p>
                         </div>
-
-
+                        <h3 style="margin-top: 1em" class="text-center col-12">==============================</h3>
                     </div>
+                    
                     <div class="col-lg-4">
                       <h2 class="mb-4 text-primary font-weight-600">
                         Berita terbaru
