@@ -1,5 +1,6 @@
 get_data_gender();
-get_data_sum('occupations', 'id', '>=', '0');
+get_data_sum_occ('occupations', 'id', '>=', '0');
+
 function pie_chart(ctx, label, data, backgroundColor, borderColor){
     var myChart = new Chart(ctx, {
         type: 'pie',
@@ -34,14 +35,14 @@ function get_data_gender(){
     pie_chart(ctx, label, data, backgroundColor, borderColor);
 }
 
-function get_data_sum(table, where_clause, where_condition, where_value){
-    console.log(table+"/"+where_clause+"/"+where_condition+"/"+where_value);
+function get_data_sum_occ(table, where_clause, where_condition, where_value){
+    // console.log(table+"/"+where_clause+"/"+where_condition+"/"+where_value);
     var param = btoa(table+"/"+where_clause+"/"+where_condition+"/"+where_value);
     $.ajax({
         url: base_url+"api/get_data_sum/"+param,
         type: "get",
         success: function(result){
-            console.log('data : '+result);
+            // console.log('data : '+result);
             var data = JSON.parse(result);
             var d = data['data'];
             var label = new Array();

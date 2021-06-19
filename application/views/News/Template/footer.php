@@ -153,6 +153,10 @@
       </div>
     </div>
     <!-- inject:js -->
+    <script src="<?php echo base_url() ?>assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="<?php echo base_url() ?>assets/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+    <script src="<?php echo base_url() ?>assets/build/js/admin/Jquery3Offline.js"></script>
+    <script src="<?php echo base_url() ?>assets/build/js/admin/SweetAlertOffline.js"></script>
     <script src="<?php echo base_url('assets/news_assets/') ?>assets/vendors/js/vendor.bundle.base.js"></script>
     <!-- endinject -->
     <!-- plugin js for this page -->
@@ -161,6 +165,7 @@
     <!-- Custom js for this page-->
     <script src="<?php echo base_url('assets/news_assets/') ?>assets/js/demo.js"></script>
     <script src="<?php echo base_url('assets/news_assets/') ?>assets/js/jquery.easeScroll.js"></script>
+    <script src="<?php echo base_url() ?>assets/build/js/news/NewsLogin.js"></script>
     <!-- End custom js for this page-->
   </body>
 </html>

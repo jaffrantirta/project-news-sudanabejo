@@ -20,7 +20,7 @@
   <!-- /.login-logo -->
   <div class="card card-outline card-primary">
     <div class="card-header text-center">
-      <a href="<?php echo base_url() ?>assets/index2.html" class="h1"><b>Sudana Bejo</b> Admin</a>
+      <a href="<?php echo base_url() ?>" class="h1"><b>Sudana Bejo</b> Admin</a>
     </div>
     <div class="card-body">
       <p class="login-box-msg">masuk dengan email dan password</p>

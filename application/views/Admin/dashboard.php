@@ -73,6 +73,8 @@
           </div>
 
         </div>
+
+        
         <h3>Kabupaten</h3>
         <div class="row count_regencies_load">
         </div>
@@ -91,41 +93,41 @@
 
         <div class="row">
 
-        <div class="col-md-6 card card-danger">
-          <div class="card-header">
-            <h3 class="card-title">Pengguna terdaftar berdasarkan gender</h3>
-            <div class="card-tools">
-              <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                <i class="fas fa-minus"></i>
-              </button>
-              <button type="button" class="btn btn-tool" data-card-widget="remove">
-                <i class="fas fa-times"></i>
-              </button>
+          <div class="col-md-6 card card-danger">
+            <div class="card-header">
+              <h3 class="card-title">Pengguna terdaftar berdasarkan gender</h3>
+              <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                  <i class="fas fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-tool" data-card-widget="remove">
+                  <i class="fas fa-times"></i>
+                </button>
+              </div>
+            </div>
+            <div class="card-body">
+              <p hidden id="male"><?php echo $gender['male'] ?></p>
+              <p hidden id="female"><?php echo $gender['female'] ?></p>
+            <canvas id="chart_gender" width="100" height="100"></canvas>
             </div>
           </div>
-          <div class="card-body">
-            <p hidden id="male"><?php echo $gender['male'] ?></p>
-            <p hidden id="female"><?php echo $gender['female'] ?></p>
-          <canvas id="chart_gender" width="100" height="100"></canvas>
-          </div>
-        </div>
 
-        <div class="col-md-6 card card-danger">
-          <div class="card-header">
-            <h3 class="card-title">Pengguna terdaftar berdasarkan pekerjaan</h3>
-            <div class="card-tools">
-              <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                <i class="fas fa-minus"></i>
-              </button>
-              <button type="button" class="btn btn-tool" data-card-widget="remove">
-                <i class="fas fa-times"></i>
-              </button>
+          <div class="col-md-6 card card-danger">
+            <div class="card-header">
+              <h3 class="card-title">Pengguna terdaftar berdasarkan pekerjaan</h3>
+              <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                  <i class="fas fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-tool" data-card-widget="remove">
+                  <i class="fas fa-times"></i>
+                </button>
+              </div>
+            </div>
+            <div class="card-body">
+              <canvas id="chart_occupasion" width="100" height="100"></canvas>
             </div>
           </div>
-          <div class="card-body">
-          <canvas id="chart_occupasion" width="100" height="100"></canvas>
-          </div>
-        </div>
 
         </div>
 

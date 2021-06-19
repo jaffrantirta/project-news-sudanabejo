@@ -42,6 +42,18 @@ class Api extends CI_Controller {
         }
         echo json_encode($result);
     }
+    public function login_user(){
+          $email = $this->input->post('email');
+          $password = $this->input->post('password');
+          $result['data'] = $this->api_model->login($email, $password)->result();
+          if(count($result['data']) > 0){
+            $result['response'] = $this->response(array('status'=>true, 'indonesia'=>'login berhasil', 'english'=>"you're logged"));
+          }else{
+            $result['response'] = $this->response(array('status'=>false, 'indonesia'=>'login gagal', 'english'=>"logging failed"));
+            $this->output->set_status_header(401);
+          }
+          echo json_encode($result);
+    }
 
     // --------------------------------------------------- DYNAMIC FUNCTION -------------------------------
     public function insert_data($table, $data){
@@ -479,6 +491,11 @@ class Api extends CI_Controller {
     }
   }
 
+  public function logout(){
+		$this->session->sess_destroy();
+		$result['response'] = $this->response(array('status'=>true, 'indonesia'=>'Logout berhasil', 'english'=>'Logged out'));
+	}
+
   // --------------------------------------------------- SESSION FUNCTION -------------------------------
     public function set_session(){
       $id = $this->input->post('id');
@@ -494,8 +511,9 @@ class Api extends CI_Controller {
       $profile_photo = $this->input->post('profile_photo');
       $ktp_photo = $this->input->post('ktp_photo');
       $whatsapp_number = $this->input->post('whatsapp_number');
+      $user_auth = $this->input->post('user_auth');
       $session = array(
-          'authenticated_admin'=>true,
+          $user_auth=>true,
           'id'=>$id, 
           'role_id'=>$role_id, 
           'name'=>$name,
