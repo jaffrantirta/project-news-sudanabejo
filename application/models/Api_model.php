@@ -18,6 +18,10 @@ class Api_model extends CI_Model {
     function get_data_by_where($table, $data){
         return $this->db->get_where($table, $data);
     }
+    function get_data_by_where_and_order($table, $where, $order){
+        $this->db->order_by($order['content'], $order['control']);
+        return $this->db->get_where($table, $where);
+    }
     function custom_query($query){
         return $this->db->query($query);
     }

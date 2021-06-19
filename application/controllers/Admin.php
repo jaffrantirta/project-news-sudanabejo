@@ -162,12 +162,12 @@ class Admin extends CI_Controller {
 		if(!$this->session->userdata('authenticated_admin')){
 			$this->login();
 		}else{
-			$r = $this->api_model->get_data_by_where($table, array('id'=>$id))->result();
+			$r = $this->api_model->get_data_by_where_and_order($table, array('id'=>$id), array('content'=>'name', 'control'=>'asc'))->result();
 			// if(count($r) > 0){
-				$data['regencies'] = $this->api_model->get_data_by_where('regencies', array('id>='=>'0', 'is_active'=>true))->result();
-				$data['districts'] = $this->api_model->get_data_by_where('districts', array('regency_id'=>$r[0]->regency_id, 'is_active'=>true))->result();
-				$data['sub_districts'] = $this->api_model->get_data_by_where('sub_districts', array('id>='=>'0', 'is_active'=>true))->result();
-				$data['occupations'] = $this->api_model->get_data_by_where('occupations', array('id>='=>'0'))->result();
+				$data['regencies'] = $this->api_model->get_data_by_where_and_order('regencies', array('id>='=>'0', 'is_active'=>true), array('content'=>'name', 'control'=>'asc'))->result();
+				$data['districts'] = $this->api_model->get_data_by_where_and_order('districts', array('regency_id'=>$r[0]->regency_id, 'is_active'=>true), array('content'=>'name', 'control'=>'asc'))->result();
+				$data['sub_districts'] = $this->api_model->get_data_by_where_and_order('sub_districts', array('id>='=>'0', 'is_active'=>true), array('content'=>'name', 'control'=>'asc'))->result();
+				$data['occupations'] = $this->api_model->get_data_by_where_and_order('occupations', array('id>='=>'0') , array('content'=>'name', 'control'=>'asc'))->result();
 				$data['user'] = $r[0];
 			// }
 			$data['page'] = 'Pengguna';
