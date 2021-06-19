@@ -41,7 +41,7 @@
                     
                     </h1> -->
                     <div class="fs-12">
-                      <span class="mr-2"><?php echo $headline[0]->created_at?></span>
+                      <span class="mr-2"><?php echo date_format(date_create($headline[0]->created_at), "d-M-Y H:i:s")?></span>
                     </div>
                   </div>
                 </div>
@@ -58,7 +58,7 @@
                       <div class="pr-3">
                         <h5><a style="color: white" href="<?php echo base_url('news/consumer/'.str_replace(" ", "-", substr($ln->title, 0, 100)).'/'.base64_encode($ln->id)) ?>"><?php echo $ln->title ?></a></h5>
                         <div class="fs-12">
-                          <span class="mr-2"><?php echo $ln->created_at?></span>
+                          <span class="mr-2"><?php echo date_format(date_create($ln->created_at), "d-M-Y H:i:s")?></span>
                         </div>
                       </div>
                       <div class="rotate-img">
@@ -118,7 +118,7 @@
                           </a>
                         </h2>
                         <div class="fs-13 mb-2">
-                          <span class="mr-2"><?php echo $p->created_at?></span>
+                          <span class="mr-2"><?php echo date_format(date_create($p->created_at), "d-M-Y H:i:s")?></span>
                         </div>
                         <p class="mb-0">
                         <?php echo substr($p->content, 0, 200)."..."?>
@@ -380,7 +380,7 @@
                             <?php echo substr($our_choice[0]->title, 0, 20)."..."?>
                             </h2>
                             <p class="fs-13 mb-1 text-muted">
-                              <span class="mr-2"><?php echo $our_choice[0]->created_at?></span>
+                              <span class="mr-2"><?php echo date_format(date_create($our_choice[0]->created_at), "d-M-Y H:i:s")?></span>
                             </p>
                             <p class="my-3 fs-15">
                             <?php echo substr($our_choice[0]->content, 0, 40)."..."?>
@@ -396,7 +396,7 @@
                               <?php echo substr($our_choice[1]->title, 0, 20)."..."?>
                               </h3>
                               <p class="fs-13 text-muted mb-0">
-                                <span class="mr-2"><?php echo $our_choice[1]->created_at?></span>
+                                <span class="mr-2"><?php echo date_format(date_create($our_choice[1]->created_at), "d-M-Y H:i:s")?></span>
                               </p>
                               <p class="mb-0">
                                 <?php echo substr($our_choice[1]->content, 0, 30)."..."?>
@@ -409,7 +409,7 @@
                               </a>
                               </h3>
                               <p class="fs-13 text-muted mb-0">
-                                <span class="mr-2"><?php echo $our_choice[2]->created_at?></span>
+                                <span class="mr-2"><?php echo date_format(date_create($our_choice[2]->created_at), "d-M-Y H:i:s")?></span>
                               </p>
                               <p class="mb-0">
                                 <?php echo substr($our_choice[2]->content, 0, 30)."..."?>
@@ -422,7 +422,7 @@
                               </a>
                               </h3>
                               <p class="fs-13 text-muted mb-0">
-                                <span class="mr-2"><?php echo $our_choice[3]->created_at?></span>
+                                <span class="mr-2"><?php echo date_format(date_create($our_choice[3]->created_at), "d-M-Y H:i:s")?></span>
                               </p>
                               <p class="mb-0">
                                 <?php echo substr($our_choice[3]->content, 0, 30)."..."?>
@@ -435,7 +435,7 @@
                               </a>
                               </h3>
                               <p class="fs-13 text-muted mb-0">
-                                <span class="mr-2"><?php echo $our_choice[4]->created_at?></span>
+                                <span class="mr-2"><?php echo date_format(date_create($our_choice[4]->created_at), "d-M-Y H:i:s")?></span>
                               </p>
                               <p class="mb-0">
                                 <?php echo substr($our_choice[4]->content, 0, 30)."..."?>
@@ -462,7 +462,7 @@
                               <?php echo substr($our_choice[5]->title, 0, 20)."..."?>
                               </a>
                               <p class="fs-13 text-muted mb-0">
-                                <span class="mr-2"><?php echo $our_choice[5]->created_at?></span>
+                                <span class="mr-2"><?php echo date_format(date_create($our_choice[5]->created_at), "d-M-Y H:i:s")?></span>
                               </p>
                             </div>
                             <div class="pt-3 pb-3">
@@ -477,7 +477,7 @@
                               <?php echo substr($our_choice[6]->title, 0, 20)."..."?>
                               </a>
                               <p class="fs-13 text-muted mb-0">
-                                <span class="mr-2"><?php echo $our_choice[6]->created_at?></span>
+                                <span class="mr-2"><?php echo date_format(date_create($our_choice[6]->created_at), "d-M-Y H:i:s")?></span>
                               </p>
                             </div>
                           </div>
@@ -503,7 +503,7 @@
                                       <?php echo substr($our_choice[7]->title, 0, 20)."..."?>
                                       </a>
                                       <p class="fs-13 text-muted mb-0">
-                                        <span class="mr-2"><?php echo $our_choice[7]->created_at?></span>
+                                        <span class="mr-2"><?php echo date_format(date_create($our_choice[7]->created_at), "d-M-Y H:i:s")?></span>
                                       </p>
                                       <p class="mb-0 fs-13">
                                       <?php echo substr($our_choice[7]->content, 0, 20)."..."?>
@@ -531,7 +531,7 @@
                                         <?php echo substr($our_choice[8]->title, 0, 20)."..."?>
                                       </a>
                                       <p class="fs-13 text-muted mb-0">
-                                        <span class="mr-2"><?php echo $our_choice[8]->created_at?></span>
+                                        <span class="mr-2"><?php echo date_format(date_create($our_choice[8]->created_at), "d-M-Y H:i:s")?></span>
                                       </p>
                                       <p class="mb-0 fs-13">
                                       <?php echo substr($our_choice[8]->content, 0, 20)."..."?>
@@ -559,7 +559,7 @@
                                         <?php echo substr($our_choice[9]->title, 0, 20)."..."?>
                                       </a>
                                       <p class="fs-13 text-muted mb-0">
-                                        <span class="mr-2"><?php echo $our_choice[9]->created_at?></span>
+                                        <span class="mr-2"><?php echo date_format(date_create($our_choice[9]->created_at), "d-M-Y H:i:s")?></span>
                                       </p>
                                       <p class="mb-0 fs-13">
                                       <?php echo substr($our_choice[9]->content, 0, 20)."..."?>
@@ -587,7 +587,7 @@
                                         <?php echo substr($our_choice[10]->title, 0, 20)."..."?>
                                       </a>
                                       <p class="fs-13 text-muted mb-0">
-                                        <span class="mr-2"><?php echo $our_choice[10]->created_at?></span>
+                                        <span class="mr-2"><?php echo date_format(date_create($our_choice[10]->created_at), "d-M-Y H:i:s")?></span>
                                       </p>
                                       <p class="mb-0 fs-13">
                                       <?php echo substr($our_choice[10]->content, 0, 20)."..."?>
