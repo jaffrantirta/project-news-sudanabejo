@@ -192,11 +192,23 @@ class Admin extends CI_Controller {
 		$where_clause = array('id'=>$this->input->post('id'));
 		$table = 'users';
 		if($this->api_model->update_data($where_clause, $table, $data)){
-			$this->session->set_flashdata('msg_upload', 'Ubah data pengguna sukses');
-			$this->message('Pengguna');
+			$data = array(
+				'status'=>true,
+				'title'=>'Update pengguna berhasil',
+				'message'=>'',
+				'button_text'=>'Kembali ke halaman pengguna',
+				'link_redirect'=>base_url('admin/users')
+			);
+			$this->load->view('Message/index', $data);
 		}else{
-			$this->session->set_flashdata('msg_upload', 'Ubah data pengguna gagal');
-			$this->message('Pengguna');
+			$data = array(
+				'status'=>false,
+				'title'=>'Update pengguna gagal',
+				'message'=>'',
+				'button_text'=>'Kembali ke halaman pengguna',
+				'link_redirect'=>base_url('admin/users')
+			);
+			$this->load->view('Message/index', $data);
 		}
 	}
 
@@ -261,23 +273,53 @@ class Admin extends CI_Controller {
 				if($this->api_model->insert_data($table2, $data2)){
 					if(move_uploaded_file($_FILES['file']['tmp_name'], $location)){
 						unlink("assets/images/news/".$last_photo);
-						$this->session->set_flashdata('msg_upload', 'Upload Sukses');
-						$this->message('Berita', base_url('admin/news'), 'Kembali ke berita');
+						$data = array(
+							'status'=>true,
+							'title'=>'Update berita berhasil',
+							'message'=>'',
+							'button_text'=>'Kembali ke halaman berita',
+							'link_redirect'=>base_url('admin/news')
+						);
+						$this->load->view('Message/index', $data);
 					}else{
-						$this->session->set_flashdata('msg_upload', 'Gagal Upload');
-						$this->message('Berita', base_url('admin/news'), 'Kembali ke berita');
+						$data = array(
+							'status'=>false,
+							'title'=>'Update berita gagal',
+							'message'=>'gambar gagal di-upload',
+							'button_text'=>'Kembali ke halaman berita',
+							'link_redirect'=>base_url('admin/news')
+						);
+						$this->load->view('Message/index', $data);
 					}
 				}else{
-					$this->session->set_flashdata('msg_upload', 'Gagal Input Gambar');
-					$this->message('Berita', base_url('admin/news'), 'Kembali ke berita');
+					$data = array(
+						'status'=>false,
+						'title'=>'Update berita gagal',
+						'message'=>'gambar gagal di-input',
+						'button_text'=>'Kembali ke halaman berita',
+						'link_redirect'=>base_url('admin/news')
+					);
+					$this->load->view('Message/index', $data);
 				}
 			}else{
-				$this->session->set_flashdata('msg_upload', 'Update berhasil');
-		  		$this->message('Berita', base_url('admin/news'), 'Kembali ke berita');
+				$data = array(
+					'status'=>true,
+					'title'=>'Update berita berhasil',
+					'message'=>'',
+					'button_text'=>'Kembali ke halaman berita',
+					'link_redirect'=>base_url('admin/news')
+				);
+				$this->load->view('Message/index', $data);
 			}
 		}else{
-		  $this->session->set_flashdata('msg_upload', 'Gagal update');
-		  $this->message('Berita', base_url('admin/news'), 'Kembali ke berita');
+			$data = array(
+				'status'=>false,
+				'title'=>'Update berita gagal',
+				'message'=>'berita gagal di-update',
+				'button_text'=>'Kembali ke halaman berita',
+				'link_redirect'=>base_url('admin/news')
+			);
+			$this->load->view('Message/index', $data);
 		}
 	}
 	public function message($page_header, $url, $back_to){

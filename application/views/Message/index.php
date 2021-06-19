@@ -24,8 +24,8 @@
   <?php }else{ ?>
     <lottie-player class="col-12" src="https://assets9.lottiefiles.com/packages/lf20_73BqNg.json"  background="transparent"  speed="1"  style="width: 300px; height: 300px;"  loop  autoplay></lottie-player>
   <?php } ?>
-  <h3 class="text-center"><?php echo $title ?></h3>
-  <h5 class="font-weight-bold"><?php echo $message ?></h5>
+  <h3 class="text-center col-12"><?php echo $title ?></h3>
+  <h5 class="text-center font-weight-bold col-12"><?php echo $message ?></h5>
   <a class="btn btn-primary col-12" href="<?php echo $link_redirect ?>"><?php echo $button_text ?></a>
   
 </div>
