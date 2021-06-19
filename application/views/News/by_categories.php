@@ -23,7 +23,7 @@
                       <div class="row">
                         <div class="col-sm-4 grid-margin">
                           <div class="rotate-img">
-                          <a style="color: black" href="<?php echo base_url('news/consumer/'.str_replace(" ", "-", substr($news->title, 0, 30)).'/'.base64_encode($news->id)) ?>">
+                          <a style="color: black" href="<?php echo base_url('news/consumer/'.str_replace(" ", "-", substr($news->title, 0, 100)).'/'.base64_encode($news->id)) ?>">
                             <img
                               src="<?php echo base_url('assets/images/news/'.$news->photo_name) ?>"
                               alt="banner"
@@ -34,7 +34,7 @@
                         </div>
                         <div class="col-sm-8 grid-margin">
                           <h2 class="font-weight-600 mb-2">
-                          <a style="color: black" href="<?php echo base_url('news/consumer/'.str_replace(" ", "-", substr($news->title, 0, 30)).'/'.base64_encode($news->id)) ?>">
+                          <a style="color: black" href="<?php echo base_url('news/consumer/'.str_replace(" ", "-", substr($news->title, 0, 100)).'/'.base64_encode($news->id)) ?>">
                             <?php echo $news->title ?>
                           </a>
                           </h2>
@@ -70,7 +70,7 @@
                             <div class="row">
                               <div class="col-sm-8">
                                 <h5 class="font-weight-600 mb-1">
-                                  <a style="color: black" href="<?php echo base_url('news/consumer/'.str_replace(" ", "-", substr($news->title, 0, 30)).'/'.base64_encode($news->id)) ?>">
+                                  <a style="color: black" href="<?php echo base_url('news/consumer/'.str_replace(" ", "-", substr($news->title, 0, 100)).'/'.base64_encode($news->id)) ?>">
                                     <?php echo substr($news->title, 0, 20)."..." ?>
                                   </a>
                                 </h5>
@@ -80,7 +80,7 @@
                               </div>
                               <div class="col-sm-4">
                                 <div class="rotate-img">
-                                <a style="color: black" href="<?php echo base_url('news/consumer/'.str_replace(" ", "-", substr($news->title, 0, 30)).'/'.base64_encode($news->id)) ?>">
+                                <a style="color: black" href="<?php echo base_url('news/consumer/'.str_replace(" ", "-", substr($news->title, 0, 100)).'/'.base64_encode($news->id)) ?>">
                                   <img
                                     src="<?php echo base_url('assets/images/news/'.$news->photo_name) ?>"
                                     alt="banner"
@@ -104,7 +104,7 @@
                         <?php foreach($popular as $news){ ?>
                         <div class="mb-4">
                           <div class="rotate-img">
-                          <a style="color: black" href="<?php echo base_url('news/consumer/'.str_replace(" ", "-", substr($news->title, 0, 30)).'/'.base64_encode($news->id)) ?>">
+                          <a style="color: black" href="<?php echo base_url('news/consumer/'.str_replace(" ", "-", substr($news->title, 0, 100)).'/'.base64_encode($news->id)) ?>">
                             <img
                               src="<?php echo base_url('assets/images/news/'.$news->photo_name) ?>"
                               alt="banner"
@@ -113,7 +113,7 @@
                           </a>
                           </div>
                           <h3 class="mt-3 font-weight-600">
-                          <a style="color: black" href="<?php echo base_url('news/consumer/'.str_replace(" ", "-", substr($news->title, 0, 30)).'/'.base64_encode($news->id)) ?>">
+                          <a style="color: black" href="<?php echo base_url('news/consumer/'.str_replace(" ", "-", substr($news->title, 0, 100)).'/'.base64_encode($news->id)) ?>">
                             <?php echo $news->title ?>
                           </a>
                           </h3>

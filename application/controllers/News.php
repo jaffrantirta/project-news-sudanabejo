@@ -44,7 +44,7 @@ class News extends CI_Controller {
         $data['popular'] = $this->popular('LIMIT 3');
         $data['recommendation'] = $this->api_model->custom_query("SELECT news_complate_data.* , news_photos.name as photo_name, news_categories.name as category_name FROM `news_complate_data` INNER JOIN `news_photos` ON `news_photos`.`news_id` = `news_complate_data`.`id` INNER JOIN `news_categories` ON `news_categories`.`id` = `news_complate_data`.`category_id` WHERE is_delete = 0  LIMIT 9")->result();  
         $data['our_choice'] = $this->api_model->custom_query("SELECT news_complate_data.* , news_photos.name as photo_name, news_categories.name as category_name FROM `news_complate_data` INNER JOIN `news_photos` ON `news_photos`.`news_id` = `news_complate_data`.`id` INNER JOIN `news_categories` ON `news_categories`.`id` = `news_complate_data`.`category_id` WHERE is_delete = 0 LIMIT 11")->result();
-        $data['header_categories'] = $this->header_categories('LIMIT 6');
+        $data['header_categories'] = $this->header_categories('LIMIT 5');
         $data['all_categories'] = $this->api_model->custom_query("SELECT * FROM `news_categories` WHERE is_active = true")->result();
         $this->load->view('News/Template/header', $data);
 		$this->load->view('News/index', $data);
@@ -61,7 +61,7 @@ class News extends CI_Controller {
 		$data['category'] = $cat;
 		$data['latest_news'] = $this->latest_news('LIMIT 3');
         $data['popular'] = $this->popular('LIMIT 3');
-		$data['header_categories'] = $this->header_categories('LIMIT 6');
+		$data['header_categories'] = $this->header_categories('LIMIT 5');
 		$data['news_by_categories'] = $this->news_by_categories($cat, '');
 		$this->load->view('News/Template/header', $data);
 		$this->load->view('News/by_categories', $data);
@@ -78,7 +78,7 @@ class News extends CI_Controller {
 		$data['category'] = 'Hasil pencarian berdasarkan "'.$keyword.'"';
 		$data['latest_news'] = $this->latest_news('LIMIT 3');
         $data['popular'] = $this->popular('LIMIT 3');
-		$data['header_categories'] = $this->header_categories('LIMIT 6');
+		$data['header_categories'] = $this->header_categories('LIMIT 5');
 		$data['news_by_categories'] = $this->news_by_search($keyword, '');
 		$this->load->view('News/Template/header', $data);
 		$this->load->view('News/by_categories', $data);
@@ -180,7 +180,7 @@ class News extends CI_Controller {
 		$data['header'] = 'Sudana Bejo | Berita - '.$title;
 		$data['latest_news'] = $this->latest_news('LIMIT 3');
         $data['popular'] = $this->popular('LIMIT 3');
-		$data['header_categories'] = $this->header_categories('LIMIT 6');
+		$data['header_categories'] = $this->header_categories('LIMIT 5');
 		$news = $this->read_news($id);
 		$data['news'] = $news[0];
 		$this->load->view('News/Template/header', $data);
