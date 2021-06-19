@@ -25,7 +25,7 @@
                         </div>
                         <div class="col-sm-8 grid-margin">
                           <p class="fs-13 text-muted mb-0">
-                            <span class="mr-2"><?php echo $news->created_at?></span>
+                            <span class="mr-2"><?php echo date_format(date_create($news->created_at), "d-M-Y H:i:s")?></span>
                           </p>
                           <p class="fs-15">
                             <?php echo $news->content?>
@@ -51,7 +51,7 @@
                                   </a>
                                 </h5>
                                 <p class="fs-13 text-muted mb-0">
-                                  <span class="mr-2"><?php echo $news->created_at?></span>
+                                  <span class="mr-2"><?php echo date_format(date_create($news->created_at), "d-M-Y H:i:s")?></span>
                                 </p>
                               </div>
                               <div class="col-sm-4">
@@ -94,7 +94,7 @@
                           </a>
                           </h3>
                           <p class="fs-13 text-muted mb-0">
-                            <span class="mr-2"><?php echo $news->created_at?></span>
+                            <span class="mr-2"><?php echo date_format(date_create($news->created_at), "d-M-Y H:i:s")?></span>
                           </p>
                         </div>
                         <?php } ?>
