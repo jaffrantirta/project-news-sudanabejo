@@ -6,7 +6,7 @@ function login_page(){
         '<div class="justify-content-center">'+
             '<div class="col-12">'+
                 '<div class="form-group">'+
-                    '<input id="phone_user" type="number" class="form-control" placeholder="Masukan nomor telepon">'+
+                    '<input id="phone_user" type="number" pattern="[0-9]*" inputmode="numeric" class="form-control" placeholder="Masukan nomor telepon">'+
                 '</div>'+
                 '<div class="form-group">'+
                     '<input id="password_user" type="password" class="form-control" placeholder="Masukan password">'+
