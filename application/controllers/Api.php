@@ -569,8 +569,8 @@ class Api extends CI_Controller {
         if($sum_regencies > 0){
             for($i=0;$i<$sum_regencies;$i++){
               $table_2 = 'count_regencies';
-              $data_2 = array('is_active'=>true, 'id'=>$regencies[$i]->id);
-              if(count($data = $this->api_model->get_data_by_where($table_2, $data_2)->result()) > 0){
+              $data_2 = array('is_active'=>true, 'count_regencies.id'=>$regencies[$i]->id);
+              if(count($data = $this->api_model->custom_query("select count(`suiasa`.`users`.`id`) AS `count_by_regency`,`suiasa`.`regencies`.`id` AS `id`,`suiasa`.`regencies`.`name` AS `name`,`suiasa`.`regencies`.`is_active` AS `is_active`,`suiasa`.`regencies`.`created_at` AS `created_at`,`suiasa`.`regencies`.`updated_at` AS `updated_at` from (((`suiasa`.`regencies` join `suiasa`.`districts` on(`suiasa`.`districts`.`regency_id` = `suiasa`.`regencies`.`id`)) join `suiasa`.`sub_districts` on(`suiasa`.`sub_districts`.`distric_id` = `suiasa`.`districts`.`id`)) join `suiasa`.`users` on(`suiasa`.`users`.`sub_district_id` = `suiasa`.`sub_districts`.`id`)) where regencies.is_active = true and users.role_id = 3 and regencies.id =".$regencies[$i]->id)->result()) > 0 ){//($table_2, $data_2)->result()) > 0){
                 $result['regencies'][$i] = $data[0];
               }else{
                 $result['regencies'][$i] = array(
@@ -597,8 +597,8 @@ class Api extends CI_Controller {
           $result['regencies'] = $regency_data['regencies'];
           for($i=0;$i<$sum_districts;$i++){
             $table_2 = 'count_districts';
-            $data_2 = array('is_active'=>true, 'id'=>$districts[$i]->id);
-            if(count($data = $this->api_model->get_data_by_where($table_2, $data_2)->result()) > 0){
+            $data_2 = array('is_active'=>true, 'count_districts.id'=>$districts[$i]->id);
+            if(count($data = $this->api_model->custom_query("select count(`suiasa`.`users`.`id`) AS `count_by_districts`,`suiasa`.`districts`.`id` AS `id`,`suiasa`.`districts`.`name` AS `name`,`suiasa`.`districts`.`regency_id` AS `regency_id`,`suiasa`.`districts`.`is_active` AS `is_active`,`suiasa`.`districts`.`created_at` AS `created_at`,`suiasa`.`districts`.`updated_at` AS `updated_at` from (`suiasa`.`users` join (`suiasa`.`districts` join `suiasa`.`sub_districts` on(`suiasa`.`sub_districts`.`distric_id` = `suiasa`.`districts`.`id`)) on(`suiasa`.`users`.`sub_district_id` = `suiasa`.`sub_districts`.`id`)) where districts.is_active = true and users.role_id = 3 and districts.id =".$districts[$i]->id)->result()) > 0){//($table_2, $data_2)->result()) > 0){
               $result['districts'][$i] = $data[0];
             }else{
               $result['districts'][$i] = array(
@@ -627,8 +627,8 @@ class Api extends CI_Controller {
           $result = $districts_data;
           for($i=0;$i<$sum_sub_districts;$i++){
             $table_2 = 'count_sub_districts';
-            $data_2 = array('is_active'=>true, 'id'=>$sub_districts[$i]->id);
-            if(count($data = $this->api_model->get_data_by_where($table_2, $data_2)->result()) > 0){
+            $data_2 = array('is_active'=>true, 'count_sub_districts.id'=>$sub_districts[$i]->id);
+            if(count($data = $this->api_model->custom_query("select count(`suiasa`.`users`.`id`) AS `count_by_sub_districts`,`suiasa`.`sub_districts`.`id` AS `id`,`suiasa`.`sub_districts`.`name` AS `name`,`suiasa`.`sub_districts`.`distric_id` AS `distric_id`,`suiasa`.`sub_districts`.`is_active` AS `is_active`,`suiasa`.`sub_districts`.`created_at` AS `created_at`,`suiasa`.`sub_districts`.`updated_at` AS `updated_at` from (`suiasa`.`sub_districts` join `suiasa`.`users` on(`suiasa`.`users`.`sub_district_id` = `suiasa`.`sub_districts`.`id`)) where sub_districts.is_active = true and users.role_id = 3 and sub_districts.id =".$sub_districts[$i]->id)->result()) > 0){//($table_2, $data_2)->result()) > 0){
               $result['sub_districts'][$i] = $data[0];
             }else{
               $result['sub_districts'][$i] = array(
