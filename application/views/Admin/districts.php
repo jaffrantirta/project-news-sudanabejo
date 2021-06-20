@@ -18,7 +18,7 @@
                 <h3 class="card-title">Data Kecamatan di Bali</h3>
               </div>
               <!-- /.card-header -->
-              <div class="card-body">
+              <div class="card-body table-responsive">
                 <table id="table" class="table table-bordered table-striped">
                   <thead>
                   <tr>
