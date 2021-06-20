@@ -38,10 +38,12 @@ function get_data_gender(){
 function get_data_sum_occ(table, where_clause, where_condition, where_value){
     // console.log(table+"/"+where_clause+"/"+where_condition+"/"+where_value);
     var param = btoa(table+"/"+where_clause+"/"+where_condition+"/"+where_value);
+    $('.loader').attr('hidden', false);
     $.ajax({
         url: base_url+"api/get_data_sum/"+param,
         type: "get",
         success: function(result){
+            $('.loader').attr('hidden', true);
             // console.log('data : '+result);
             var data = JSON.parse(result);
             var d = data['data'];
@@ -63,6 +65,7 @@ function get_data_sum_occ(table, where_clause, where_condition, where_value){
             
         },
         error: function (result, ajaxOptions, thrownError) {
+            $('.loader').attr('hidden', true);
             // console.log('data : '+result.responseText);
             error_message('error', 'Oops! sepertinya ada kesalahan', 'kesalahan tidak diketahui');
             if(result.response.status == false){

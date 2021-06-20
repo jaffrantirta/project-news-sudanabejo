@@ -38,10 +38,12 @@ function error_message($icon, $title, $message){
 }
 
 function add_districts(){
+    $('.loader').attr('hidden', false);
     $.ajax({
         url: base_url+"api/get_data/regencies",
         type: "get",
         success: function(result){
+            $('.loader').attr('hidden', true);
             var v = "'add_districts'";
             // console.log('data 222 : '+result);
             var data = JSON.parse(result);
@@ -74,6 +76,7 @@ function add_districts(){
             });
         },
         error: function (result, ajaxOptions, thrownError) {
+            $('.loader').attr('hidden', true);
             // console.log('data : '+result.responseText);
             error_message('error', 'Oops! sepertinya ada kesalahan', 'kesalahan tidak diketahui');
             if(result.response.status == false){
@@ -143,11 +146,13 @@ function action_check(v){
 }
 
 function add_districts_process(districts_name, regency_id){
+    $('.loader').attr('hidden', false);
     $.ajax({
         url: base_url+"api/insert_districts",
         type: "post",
         data: {'districts_name':districts_name, 'regency_id':regency_id},
         success: function(result){
+            $('.loader').attr('hidden', true);
             // console.log('data : '+result);
             var data = JSON.parse(result);
             Swal.fire({
@@ -160,6 +165,7 @@ function add_districts_process(districts_name, regency_id){
               });
         },
         error: function (result, ajaxOptions, thrownError) {
+            $('.loader').attr('hidden', true);
             // console.log('data : '+result.responseText);
             error_message('error', 'Oops! sepertinya ada kesalahan', 'kesalahan tidak diketahui');
             if(result.response.status == false){
@@ -171,11 +177,13 @@ function add_districts_process(districts_name, regency_id){
     });
 }
 function update_districts_process(districts_name, regency_id, id){
+    $('.loader').attr('hidden', false);
     $.ajax({
         url: base_url+"api/update_districts",
         type: "post",
         data: {'districts_name':districts_name, 'regency_id':regency_id, 'id':id},
         success: function(result){
+            $('.loader').attr('hidden', true);
             console.log('data : '+result);
             var data = JSON.parse(result);
             Swal.fire({
@@ -188,6 +196,7 @@ function update_districts_process(districts_name, regency_id, id){
             });
         },
         error: function (result, ajaxOptions, thrownError) {
+            $('.loader').attr('hidden', true);
             // console.log('data : '+result.responseText);
             error_message('error', 'Oops! sepertinya ada kesalahan', 'kesalahan tidak diketahui');
             if(result.response.status == false){
@@ -200,10 +209,12 @@ function update_districts_process(districts_name, regency_id, id){
 }
 
 function edit_districts(id){
+    $('.loader').attr('hidden', false);
     $.ajax({
         url: base_url+"api/edit_districts_view/"+id,
         type: "get",
         success: function(result){
+            $('.loader').attr('hidden', true);
             var v = "'update_districts'";
             // console.log('data : '+result);
             var data = JSON.parse(result);
@@ -238,6 +249,7 @@ function edit_districts(id){
             
         },
         error: function (result, ajaxOptions, thrownError) {
+            $('.loader').attr('hidden', true);
             // console.log('data : '+result.responseText);
             error_message('error', 'Oops! sepertinya ada kesalahan', 'kesalahan tidak diketahui');
             if(result.response.status == false){
@@ -249,12 +261,14 @@ function edit_districts(id){
     });
 }
 function delete_data_districts(id){
+    $('.loader').attr('hidden', false);
     // console.log(id);
     $.ajax({
         url: base_url+"api/delete_districts",
         type: "post",
         data: {"id":id},
         success: function(result){
+            $('.loader').attr('hidden', true);
             // console.log('data : '+result);
             var data = JSON.parse(result);
             Swal.fire({
@@ -267,6 +281,7 @@ function delete_data_districts(id){
               });
         },
         error: function (result, ajaxOptions, thrownError) {
+            $('.loader').attr('hidden', true);
             // console.log('data : '+result.responseText);
             error_message('error', 'Oops! sepertinya ada kesalahan', 'kesalahan tidak diketahui');
             if(result.response.status == false){

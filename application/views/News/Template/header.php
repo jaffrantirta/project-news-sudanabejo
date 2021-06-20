@@ -13,6 +13,12 @@
     />
     <link rel="stylesheet" href="<?php echo base_url('assets/news_assets/') ?>assets/vendors/aos/dist/aos.css/aos.css" />
 
+    <!-- lottie player -->
+    <script src="<?php echo base_url('assets/build/js/lottie/LottiePlayer.js') ?>"></script>
+
+    <!-- loader -->
+    <link rel="stylesheet" href="<?php echo base_url('assets/dist/css/loader/loader.css') ?>" />
+
     <!-- End plugin css for this page -->
     <link rel="shortcut icon" href="<?php echo base_url('assets/news_assets/') ?>assets/images/favicon.png" />
 
@@ -22,6 +28,7 @@
   </head>
 
   <body>
+  <div hidden class="loader"></div>
   <p hidden id="base_url" ><?php echo base_url() ?></p>
     <div class="container-scroller">
       <div class="main-panel">

@@ -25,14 +25,20 @@
   <link rel="stylesheet" href="<?php echo base_url() ?>assets/plugins/daterangepicker/daterangepicker.css">
   <!-- summernote -->
   <link rel="stylesheet" href="<?php echo base_url() ?>assets/plugins/summernote/summernote-bs4.min.css">
+  <!-- loader -->
+  <link rel="stylesheet" href="<?php echo base_url('assets/dist/css/loader/loader.css') ?>" />
+  <!-- lottie player -->
+  <script src="<?php echo base_url('assets/build/js/lottie/LottiePlayer.js') ?>"></script>
 </head>
-<body class="hold-transition sidebar-mini layout-fixed layout-footer-fixed text-sm">
+<body class="hold-transition sidebar-mini layout-fixed layout-footer-fixed text-sm"></body>
+<div hidden class="loader"></div>
 <p hidden id="base_url"><?php echo base_url() ?></p>
 <div class="wrapper">
 
   <!-- Preloader -->
   <div class="preloader flex-column justify-content-center align-items-center">
-    <img class="animation__shake" src="<?php echo base_url() ?>assets/dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
+    <lottie-player class="animation__shake" src="https://assets9.lottiefiles.com/packages/lf20_x62chJ.json"  background="transparent"  speed="1"  style="width: 300px; height: 300px;"  loop  autoplay></lottie-player>
+    <h3 class="text-center">Memuat ...</h3> 
   </div>
 
   <!-- Navbar -->

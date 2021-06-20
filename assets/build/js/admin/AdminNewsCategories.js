@@ -17,11 +17,13 @@ function add_news_categories(){
 }
 
 function add_news_categories_process(news_categories_name){
+    $('.loader').attr('hidden', false);
     $.ajax({
         url: base_url+"api/insert_news_categories",
         type: "post",
         data: {'news_categories_name':news_categories_name},
         success: function(result){
+            $('.loader').attr('hidden', true);
             // console.log('data : '+result);
             var data = JSON.parse(result);
             Swal.fire({
@@ -34,6 +36,7 @@ function add_news_categories_process(news_categories_name){
             });
         },
         error: function (result, ajaxOptions, thrownError) {
+            $('.loader').attr('hidden', true);
             // console.log('data : '+result.responseText);
             error_message('error', 'Oops! sepertinya ada kesalahan', 'kesalahan tidak diketahui');
             if(result.response.status == false){
@@ -45,10 +48,12 @@ function add_news_categories_process(news_categories_name){
     });
 }
 function edit_news_categories(id){
+    $('.loader').attr('hidden', false);
     $.ajax({
         url: base_url+"api/edit_news_categories_view/"+id,
         type: "get",
         success: function(result){
+            $('.loader').attr('hidden', true);
             var v = "'update_news_categories'";
             // console.log('data : '+result);
             var data = JSON.parse(result);
@@ -70,6 +75,7 @@ function edit_news_categories(id){
             
         },
         error: function (result, ajaxOptions, thrownError) {
+            $('.loader').attr('hidden', true);
             // console.log('data : '+result.responseText);
             error_message('error', 'Oops! sepertinya ada kesalahan', 'kesalahan tidak diketahui');
             if(result.response.status == false){
@@ -91,11 +97,13 @@ function delete_news_categories(id){
 }
 function delete_data_news_categories(id){
     // console.log(id);
+    $('.loader').attr('hidden', false);
     $.ajax({
         url: base_url+"api/delete_news_categories",
         type: "post",
         data: {"id":id},
         success: function(result){
+            $('.loader').attr('hidden', true);
             // console.log('data : '+result);
             var data = JSON.parse(result);
             Swal.fire({
@@ -108,6 +116,7 @@ function delete_data_news_categories(id){
               });
         },
         error: function (result, ajaxOptions, thrownError) {
+            $('.loader').attr('hidden', true);
             // console.log('data : '+result.responseText);
             error_message('error', 'Oops! sepertinya ada kesalahan', 'kesalahan tidak diketahui');
             if(result.response.status == false){
@@ -120,11 +129,13 @@ function delete_data_news_categories(id){
 }
 function update_news_categories_process(news_categories_name, id){
     // console.log('update_news_categories_process : '+districts_id);
+    $('.loader').attr('hidden', false);
     $.ajax({
         url: base_url+"api/update_news_categories",
         type: "post",
         data: {'news_categories_name':news_categories_name, 'id':id},
         success: function(result){
+            $('.loader').attr('hidden', true);
             // console.log('data : '+result);
             var data = JSON.parse(result);
             Swal.fire({
@@ -137,6 +148,7 @@ function update_news_categories_process(news_categories_name, id){
             });
         },
         error: function (result, ajaxOptions, thrownError) {
+            $('.loader').attr('hidden', true);
             // console.log('data : '+result.responseText);
             error_message('error', 'Oops! sepertinya ada kesalahan', 'kesalahan tidak diketahui');
             if(result.response.status == false){
