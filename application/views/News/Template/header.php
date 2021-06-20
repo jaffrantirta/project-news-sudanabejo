@@ -45,7 +45,7 @@
               <div class="navbar-bottom">
                 <div class="d-flex justify-content-between align-items-center">
                   <div>
-                    <a class="navbar-brand" href="#">
+                    <a class="navbar-brand" href="<?php echo base_url() ?>">
                       <strong style="color: white">SUDANA BEJO</strong>
                       <!-- <img src="<?php echo base_url('assets/news_assets/') ?>assets/images/logo.svg" alt="" />-->
                   </a>
