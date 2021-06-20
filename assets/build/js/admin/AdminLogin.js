@@ -15,16 +15,16 @@ function error_message($icon, $title, $message){
     });
 }
 function login(){
-    var email = document.getElementById('email').value;
+    var phone = document.getElementById('phone').value;
     var password = document.getElementById('password').value;
     // console.log('route : '+base_url);
-    if(email != ''){
+    if(phone != ''){
         if(password != ''){
             $('.loader').attr('hidden', false);
             $.ajax({
                 url: base_url+"api/login_process",
                 type: "post",
-                data: {'email':email, 'password':password},
+                data: {'phone':phone, 'password':password},
                 success: function(result){
                     $('.loader').attr('hidden', true);
                     // console.log('data : '+result);
@@ -46,7 +46,7 @@ function login(){
             error_message('warning', 'Oops! sepertinya ada kesalahan', 'password kosong');
         }
     }else{
-        error_message('warning', 'Oops! sepertinya ada kesalahan', 'email kosong');
+        error_message('warning', 'Oops! sepertinya ada kesalahan', 'phone kosong');
     }
 }
 function set_session(id, role_id, user_name, nik, sub_district_id, community_unit, email, date_of_birth, sex, occupation_id, profile_photo, ktp_photo, whatsapp_number){

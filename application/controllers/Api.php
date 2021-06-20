@@ -31,9 +31,9 @@ class Api extends CI_Controller {
 		$this->load->view('admin/login');
 	}
     public function login_process(){
-        $email = $this->input->post('email');
+        $phone = $this->input->post('phone');
         $password = $this->input->post('password');
-        $result['data'] = $this->api_model->login($email, $password)->result();
+        $result['data'] = $this->api_model->login($phone, $password)->result();
         if(count($result['data']) > 0){
           $result['response'] = $this->response(array('status'=>true, 'indonesia'=>'login berhasil', 'english'=>"you're logged"));
         }else{
@@ -43,9 +43,9 @@ class Api extends CI_Controller {
         echo json_encode($result);
     }
     public function login_user(){
-          $email = $this->input->post('email');
+          $phone = $this->input->post('phone');
           $password = $this->input->post('password');
-          $result['data'] = $this->api_model->login($email, $password)->result();
+          $result['data'] = $this->api_model->login($phone, $password)->result();
           if(count($result['data']) > 0){
             $result['response'] = $this->response(array('status'=>true, 'indonesia'=>'login berhasil', 'english'=>"you're logged"));
           }else{

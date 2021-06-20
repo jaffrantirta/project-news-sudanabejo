@@ -6,7 +6,7 @@ function login_page(){
         '<div class="justify-content-center">'+
             '<div class="col-12">'+
                 '<div class="form-group">'+
-                    '<input id="email_user" type="email" class="form-control" placeholder="Masukan email">'+
+                    '<input id="phone_user" type="phone" class="form-control" placeholder="Masukan nomor telepon">'+
                 '</div>'+
                 '<div class="form-group">'+
                     '<input id="password_user" type="password" class="form-control" placeholder="Masukan password">'+
@@ -39,13 +39,13 @@ function message($icon, $title, $message){
 }
 
 function login_process(){
-    var email = $('#email_user').val();
+    var phone = $('#phone_user').val();
     var password = $('#password_user').val();
     $('.loader').attr('hidden', false);
     $.ajax({
         url: base_url+"api/login_user",
         type: 'post',
-        data: {'email':email, 'password':password},
+        data: {'phone':phone, 'password':password},
         success: function(result){
             $('.loader').attr('hidden', true);
             console.log('login : '+result);
@@ -55,11 +55,11 @@ function login_process(){
         },
         error: function(error, x, y){
             $('.loader').attr('hidden', true);
-            console.log('error : '+error);
+            // console.log('error : '+error);
             message('error', 'Oops! sepertinya ada kesalahan', 'kesalahan tidak diketahui');
             var msg = JSON.parse(error.responseText);
-            if(msg.response.status != false){
-                message('error', 'Oops! sepertinya ada kesalahan', 'kesalahan tidak diketahui');
+            if(msg.response.status == false){
+                message('error', 'Oops! sepertinya ada kesalahan', msg.response.message.indonesia);
             }
         }
     })

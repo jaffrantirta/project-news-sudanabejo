@@ -3,10 +3,10 @@ class Api_model extends CI_Model {
     function __construct(){
         parent::__construct();
     }
-    function login($email, $password){
+    function login($phone, $password){
         $this->db->select('*'); 
         $this->db->from('users');
-        $this->db->where('email', $email);
+        $this->db->where('whatsapp_number', $phone);
         $this->db->where('password', md5($password));
         return $this->db->get();
     }
