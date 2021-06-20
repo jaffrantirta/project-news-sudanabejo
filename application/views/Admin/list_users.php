@@ -24,8 +24,8 @@
                 <h3 class="card-title">Data List Pengguna</h3>
               </div>
               <!-- /.card-header -->
-              <div class="card-body">
-                <table id="table" class="table table-bordered table-striped">
+              <div class="card-body table-responsive">
+                <table id="table" class="table table-bordered table-striped ">
                   <thead>
                   <tr>
                     <th>Nama</th>

@@ -41,17 +41,20 @@ function message($icon, $title, $message){
 function login_process(){
     var email = $('#email_user').val();
     var password = $('#password_user').val();
+    $('.loader').attr('hidden', false);
     $.ajax({
         url: base_url+"api/login_user",
         type: 'post',
         data: {'email':email, 'password':password},
         success: function(result){
+            $('.loader').attr('hidden', true);
             console.log('login : '+result);
             var data = JSON.parse(result);
             var d = data.data[0];
             set_session(d.id, d.role_id, d.name, d.nik, d.sub_district_id, d.community_unit, d.email, d.date_of_birth, d.sex, d.occupation_id, d.profile_photo, d.ktp_photo, d.whatsapp_number);
         },
         error: function(error, x, y){
+            $('.loader').attr('hidden', true);
             console.log('error : '+error);
             message('error', 'Oops! sepertinya ada kesalahan', 'kesalahan tidak diketahui');
             var msg = JSON.parse(error.responseText);
@@ -90,14 +93,17 @@ function logout(){
         confirmButtonText:'Ya, logout'
     }).then((result) => {
         if (result.isConfirmed) {
+            $('.loader').attr('hidden', false);
             $.ajax({
                 url: base_url+'api/logout',
                 type: 'get',
                 success: function(result){
+                    $('.loader').attr('hidden', true);
                     message('success', 'Logout berhasil', '');
                     location.reload();
                 },
                 error: function(error, x, y){
+                    $('.loader').attr('hidden', true);
                     message('error', 'Logout gagal', '');
                 }
             })
@@ -105,6 +111,7 @@ function logout(){
       });
 }
 function set_session(id, role_id, user_name, nik, sub_district_id, community_unit, email, date_of_birth, sex, occupation_id, profile_photo, ktp_photo, whatsapp_number){
+    $('.loader').attr('hidden', false);
     $.ajax({
         url: base_url+"api/set_session",
         type: "post",
@@ -126,6 +133,7 @@ function set_session(id, role_id, user_name, nik, sub_district_id, community_uni
             'user_auth':'authenticated_user'
         },
         success: function(result){
+            $('.loader').attr('hidden', true);
             message('success', 'Login berhasil', '');
             location.reload();
         },

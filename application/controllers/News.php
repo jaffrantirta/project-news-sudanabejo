@@ -177,15 +177,26 @@ class News extends CI_Controller {
 		}
 		$title = str_replace("-", " ", $this->uri->segment(3));
 		$id = base64_decode($this->uri->segment(4));
-		$data['header'] = 'Sudana Bejo | Berita - '.$title;
-		$data['latest_news'] = $this->latest_news('LIMIT 3');
-        $data['popular'] = $this->popular('LIMIT 3');
-		$data['header_categories'] = $this->header_categories('LIMIT 5');
-		$news = $this->read_news($id);
-		$data['news'] = $news[0];
-		$this->load->view('News/Template/header', $data);
-		$this->load->view('News/news_reader', $data);
-		$this->load->view('News/Template/footer', $data);
+		if($this->api_model->custom_query("UPDATE `news` SET `visit_sum` = news.visit_sum+1 WHERE `news`.`id` =".$id)){
+			$data['header'] = 'Sudana Bejo | Berita - '.$title;
+			$data['latest_news'] = $this->latest_news('LIMIT 3');
+			$data['popular'] = $this->popular('LIMIT 3');
+			$data['header_categories'] = $this->header_categories('LIMIT 5');
+			$news = $this->read_news($id);
+			$data['news'] = $news[0];
+			$this->load->view('News/Template/header', $data);
+			$this->load->view('News/news_reader', $data);
+			$this->load->view('News/Template/footer', $data);
+		}else{
+			$data = array(
+				'status'=>false,
+				'title'=>'Oops! sepertinya ada kesalahan sistem',
+				'message'=>'Mohon coba lagi!',
+				'button_text'=>'Kembali ke beranda',
+				'link_redirect'=>base_url()
+			);
+			$this->load->view('Message/index', $data);
+		}
 	}
 	
 }

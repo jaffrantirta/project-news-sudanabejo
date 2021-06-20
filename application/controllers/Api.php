@@ -839,7 +839,7 @@ class Api extends CI_Controller {
         array(
           'db' => 'visit_sum',  'dt' => 2,
           'formatter' => function($d, $row){
-            if($d == null){
+            if($d == 0){
               $view = 'belum ada kunjungan';
             }else{
               $view = $d;
@@ -925,7 +925,7 @@ class Api extends CI_Controller {
         array(
           'db' => 'visit_sum',  'dt' => 2,
           'formatter' => function($d, $row){
-            if($d == null){
+            if($d == 0){
               $view = 'belum ada kunjungan';
             }else{
               $view = $d;
@@ -1009,7 +1009,7 @@ class Api extends CI_Controller {
         array(
           'db' => 'visit_sum',  'dt' => 2,
           'formatter' => function($d, $row){
-            if($d == null){
+            if($d == 0){
               $view = 'belum ada kunjungan';
             }else{
               $view = $d;

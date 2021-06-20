@@ -10,11 +10,13 @@ function create_news(){
 }
 
 function create_news_process(title, content, category, fd){
+    $('.loader').attr('hidden', false);
     $.ajax({
         url: base_url+"api/insert_news",
         type: "post",
         data: {'title':title, 'content':content, 'category':category},
         success: function(result){
+            $('.loader').attr('hidden', true);
             // console.log('data : '+result);
             var data = JSON.parse(result);
             Swal.fire({
@@ -27,6 +29,7 @@ function create_news_process(title, content, category, fd){
               });
         },
         error: function (result, ajaxOptions, thrownError) {
+            $('.loader').attr('hidden', true);
             // console.log('data : '+result.responseText);
             error_message('error', 'Oops! sepertinya ada kesalahan', 'kesalahan tidak diketahui');
             if(result.response.status == false){
@@ -48,11 +51,13 @@ function delete_news(id){
 }
 function delete_data_news(id){
     // console.log(id);
+    $('.loader').attr('hidden', false);
     $.ajax({
         url: base_url+"api/delete_news",
         type: "post",
         data: {"id":id},
         success: function(result){
+            $('.loader').attr('hidden', true);
             // console.log('data : '+result);
             var data = JSON.parse(result);
             Swal.fire({
@@ -65,6 +70,7 @@ function delete_data_news(id){
               });
         },
         error: function (result, ajaxOptions, thrownError) {
+            $('.loader').attr('hidden', true);
             // console.log('data : '+result.responseText);
             error_message('error', 'Oops! sepertinya ada kesalahan', 'kesalahan tidak diketahui');
             if(result.response.status == false){

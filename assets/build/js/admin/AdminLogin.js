@@ -20,11 +20,13 @@ function login(){
     // console.log('route : '+base_url);
     if(email != ''){
         if(password != ''){
+            $('.loader').attr('hidden', false);
             $.ajax({
                 url: base_url+"api/login_process",
                 type: "post",
                 data: {'email':email, 'password':password},
                 success: function(result){
+                    $('.loader').attr('hidden', true);
                     // console.log('data : '+result);
                     var data = JSON.parse(result);
                     var d = data.data[0];
@@ -32,6 +34,7 @@ function login(){
                     set_session(d.id, d.role_id, d.name, d.nik, d.sub_district_id, d.community_unit, d.email, d.date_of_birth, d.sex, d.occupation_id, d.profile_photo, d.ktp_photo, d.whatsapp_number);
                 },
                 error: function (result, ajaxOptions, thrownError) {
+                    $('.loader').attr('hidden', true);
                     // console.log('data : '+xhr.responseText);
                     error_message('error', 'Oops! sepertinya ada kesalahan', 'kesalahan tidak diketahui');
                     var string = JSON.stringify(result.responseText);
@@ -47,6 +50,7 @@ function login(){
     }
 }
 function set_session(id, role_id, user_name, nik, sub_district_id, community_unit, email, date_of_birth, sex, occupation_id, profile_photo, ktp_photo, whatsapp_number){
+    $('.loader').attr('hidden', false);
     $.ajax({
         url: base_url+"api/set_session",
         type: "post",
@@ -68,17 +72,19 @@ function set_session(id, role_id, user_name, nik, sub_district_id, community_uni
             'user_auth':'authenticated_admin'
         },
         success: function(result){
+            $('.loader').attr('hidden', true);
             // var url = window.location.href
             // console.log('url : '+url);
             // window.location.replace(url);
             error_message('success', 'Login berhasil', '');
             location.reload();
         },
-        error: function (xhr, ajaxOptions, thrownError) {
-            // console.log('data : '+xhr.responseText);
+        error: function (error, ajaxOptions, thrownError) {
+            $('.loader').attr('hidden', true);
+            // console.log('data : '+error.responseText);
             error_message('error', 'Oops! sepertinya ada kesalahan', 'kesalahan tidak diketahui');
-            var string = JSON.stringify(xhr.responseText);
-            var msg = JSON.parse(xhr.responseText);
+            var string = JSON.stringify(error.responseText);
+            var msg = JSON.parse(error.responseText);
             if(msg.response.status != false){
                 error_message('error', 'Oops! sepertinya ada kesalahan', 'kesalahan tidak diketahui');
             }

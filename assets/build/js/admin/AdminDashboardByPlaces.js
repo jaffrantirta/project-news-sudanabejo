@@ -4,11 +4,13 @@ get_data_sum(account_scope, 'id', '>=', '0');
 get_data_dropdown_regencies('regencies', 'id', '>=', '0');
 
 function get_data(based_by, where_clause, where_condition, where_value){
+    $('.loader').attr('hidden', false);
     var string = btoa(based_by+'/'+where_clause+'/'+where_condition+'/'+where_value);
     $.ajax({
         url: base_url+"api/get_data_sum/"+string,
         type: "get",
         success: function(result){
+            $('.loader').attr('hidden', true);
             // console.log('data : '+result);
             var data = JSON.parse(result);
             var r = data['data']['regencies'];
@@ -30,6 +32,7 @@ function get_data(based_by, where_clause, where_condition, where_value){
             });
         },
         error: function (result, ajaxOptions, thrownError) {
+            $('.loader').attr('hidden', true);
             // console.log('data : '+result.responseText);
             error_message('error', 'Oops! sepertinya ada kesalahan', 'kesalahan tidak diketahui');
             if(result.response.status == false){
@@ -42,12 +45,14 @@ function get_data(based_by, where_clause, where_condition, where_value){
 } 
 
 function get_data_dropdown_regencies(table, where_clause, where_condition, where_value){
+    $('.loader').attr('hidden', false);
     $('.regencies_reload').remove();
     var param = btoa(table+"/"+where_clause+"/"+where_condition+"/"+where_value);
     $.ajax({
         url: base_url+"api/get_data_where/"+param,
         type: "get",
         success: function(result){
+            $('.loader').attr('hidden', true);
             // console.log('data : '+result);
             var data = JSON.parse(result);
             var r = data['data'];
@@ -74,6 +79,7 @@ function get_data_dropdown_regencies(table, where_clause, where_condition, where
             });
         },
         error: function (result, ajaxOptions, thrownError) {
+            $('.loader').attr('hidden', true);
             // console.log('data : '+result.responseText);
             error_message('error', 'Oops! sepertinya ada kesalahan', 'kesalahan tidak diketahui');
             if(result.response.status == false){
@@ -105,6 +111,7 @@ function reset_dropdwon(){
 }
 
 function get_data_dropdown_districts(table, where_clause, where_condition, where_value){
+    $('.loader').attr('hidden', false);
     $('.districts_reload').remove();
     $('.sub_districts_reload').remove();
     root_view2 =  '<div class="form-group sub_districts_reload">'+
@@ -119,6 +126,7 @@ function get_data_dropdown_districts(table, where_clause, where_condition, where
         url: base_url+"api/get_data_where/"+param,
         type: "get",
         success: function(result){
+            $('.loader').attr('hidden', true);
             // console.log('data : '+result);
             var data = JSON.parse(result);
             var r = data['data'];
@@ -145,6 +153,7 @@ function get_data_dropdown_districts(table, where_clause, where_condition, where
             });
         },
         error: function (result, ajaxOptions, thrownError) {
+            $('.loader').attr('hidden', true);
             // console.log('data : '+result.responseText);
             error_message('error', 'Oops! sepertinya ada kesalahan', 'kesalahan tidak diketahui');
             if(result.response.status == false){
@@ -157,12 +166,14 @@ function get_data_dropdown_districts(table, where_clause, where_condition, where
 } 
 
 function get_data_dropdown_sub_districts(table, where_clause, where_condition, where_value){
+    $('.loader').attr('hidden', false);
     $('.sub_districts_reload').remove();
     var param = btoa(table+"/"+where_clause+"/"+where_condition+"/"+where_value);
     $.ajax({
         url: base_url+"api/get_data_where/"+param,
         type: "get",
         success: function(result){
+            $('.loader').attr('hidden', true);
             // console.log('data : '+result);
             var data = JSON.parse(result);
             var r = data['data'];
@@ -180,6 +191,7 @@ function get_data_dropdown_sub_districts(table, where_clause, where_condition, w
             $('.sub_districts_dropdown').append(root_view);
         },
         error: function (result, ajaxOptions, thrownError) {
+            $('.loader').attr('hidden', true);
             // console.log('data : '+result.responseText);
             error_message('error', 'Oops! sepertinya ada kesalahan', 'kesalahan tidak diketahui');
             if(result.response.status == false){
@@ -227,12 +239,14 @@ function show(){
 }
 
 function get_data_sum(table, where_clause, where_condition, where_value){
+    $('.loader').attr('hidden', false);
     // console.log(table+"/"+where_clause+"/"+where_condition+"/"+where_value);
     var param = btoa(table+"/"+where_clause+"/"+where_condition+"/"+where_value);
     $.ajax({
         url: base_url+"api/get_data_sum/"+param,
         type: "get",
         success: function(result){
+            $('.loader').attr('hidden', true);
             // console.log('data 123 : '+result);
             var data = JSON.parse(result);
             var d = data['data'];
@@ -264,6 +278,7 @@ function get_data_sum(table, where_clause, where_condition, where_value){
             }
         },
         error: function (result, ajaxOptions, thrownError) {
+            $('.loader').attr('hidden', true);
             // console.log('data : '+result.responseText);
             error_message('error', 'Oops! sepertinya ada kesalahan', 'kesalahan tidak diketahui');
             if(result.response.status == false){
