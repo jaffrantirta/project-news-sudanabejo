@@ -27,7 +27,7 @@
 
       <!-- <form action="../../index3.html" method="post"> -->
         <div class="input-group mb-3">
-          <input id="phone" type="number" pattern="[0-9]*" inputmode="numeric" class="form-control" placeholder="Nomor telepon">
+          <input id="phone" type="tel" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" class="form-control" placeholder="Nomor telepon">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
