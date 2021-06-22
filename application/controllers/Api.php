@@ -544,7 +544,7 @@ class Api extends CI_Controller {
           $sum_occ = count($occupation);
           if($sum_occ > 0){
               for($i=0;$i<$sum_occ;$i++){
-                if(count($data = $this->api_model->custom_query('select count(users.id) as count_by_occupations, occupations.* from occupations inner join users on users.occupation_id = occupations.id where occupations.id = '.$occupation[$i]->id)->result()) > 0){
+                if(count($data = $this->api_model->custom_query('select count(users.id) as count_by_occupations, occupations.* from occupations inner join users on users.occupation_id = occupations.id where users.role_id = 3 and occupations.id = '.$occupation[$i]->id)->result()) > 0){
                   $result[$i] = $data[0];
                 }else{
                   $result[$i] = array(
@@ -694,11 +694,10 @@ class Api extends CI_Controller {
 				WHEN age BETWEEN 37 and 47 THEN '37 - 47'
 				WHEN age BETWEEN 48 and 58 THEN '48 - 58'
 				WHEN age > 58 THEN '58++'
-				WHEN age IS NULL THEN '(NULL)'
+				WHEN age IS NULL THEN '(range umur tidak diketahui)'
 			END as range_age,
 			COUNT(*) AS sum
-		
-		FROM (select TIMESTAMPDIFF(YEAR, users.date_of_birth, CURDATE()) AS age from users)  as age_table
+		FROM (select users.role_id, TIMESTAMPDIFF(YEAR, users.date_of_birth, CURDATE()) AS age from users where users.role_id = 3)  as age_table
 		GROUP BY range_age
 		ORDER BY range_age")->result();	
     echo json_encode($data);
