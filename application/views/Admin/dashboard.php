@@ -93,15 +93,12 @@
 
         <div class="row">
 
-          <div class="col-md-6 card card-danger">
+          <div class="col-md-4 card card-danger">
             <div class="card-header">
               <h3 class="card-title">Pengguna terdaftar berdasarkan gender</h3>
               <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
                   <i class="fas fa-minus"></i>
-                </button>
-                <button type="button" class="btn btn-tool" data-card-widget="remove">
-                  <i class="fas fa-times"></i>
                 </button>
               </div>
             </div>
@@ -112,15 +109,12 @@
             </div>
           </div>
 
-          <div class="col-md-6 card card-danger">
+          <div class="col-md-4 card card-primary">
             <div class="card-header">
               <h3 class="card-title">Pengguna terdaftar berdasarkan pekerjaan</h3>
               <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
                   <i class="fas fa-minus"></i>
-                </button>
-                <button type="button" class="btn btn-tool" data-card-widget="remove">
-                  <i class="fas fa-times"></i>
                 </button>
               </div>
             </div>
@@ -128,6 +122,26 @@
               <canvas id="chart_occupasion" width="100" height="100"></canvas>
             </div>
           </div>
+
+          <!-- BAR CHART -->
+          <div class="col-md-4 card card-success">
+              <div class="card-header">
+                <h3 class="card-title">Pengguna berdasarkan umur</h3>
+
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="chart">
+                <canvas id="chart_age" width="100" height="100"></canvas>
+                </div>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
 
         </div>
 

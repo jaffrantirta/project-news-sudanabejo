@@ -23,7 +23,7 @@ class Admin extends CI_Controller {
 	public function dashboard(){
 		if(!$this->session->userdata('authenticated_admin')){
 			$this->login();
-		}else{	
+		}else{
 			$male = $this->api_model->custom_query("select count(users.id) as male from users where users.sex = 'male' and users.role_id = 3")->result();
 			$female = $this->api_model->custom_query("select count(users.id) as female from users where users.sex = 'female' and users.role_id = 3")->result();
 			$data['gender']['male'] = $male[0]->male;
@@ -123,11 +123,14 @@ class Admin extends CI_Controller {
 		if(!$this->session->userdata('authenticated_admin')){
 			$this->login();
 		}else{
+			$data['data'] = $this->input->get('data');
+			$data['id_clause'] = $this->input->get('get');
 			$data['page'] = 'Pengguna';
 			$data['session'] = $this->session->all_userdata();
 			$this->load->view('Admin/Template/header', $data);
 			$this->load->view('Admin/list_users', $data);
 			$this->load->view('Admin/Template/footer', $data);
+			// echo json_encode($data);
 		}
 	}
 

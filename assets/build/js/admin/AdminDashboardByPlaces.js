@@ -294,7 +294,8 @@ function view_count_regencies(r){
     // console.log('view_regencies');
     $('.r_reload').remove();
     $.each(r, function( index, value ) {
-        root_view =  '<div class="col-lg-3 col-6 r_reload">'+
+        var path = "'regencies', '"+value.id+"'";
+        root_view =  '<div onclick="show_users('+path+')" class="col-lg-3 col-6 r_reload">'+
                         '<div class="small-box bg-primary">'+
                         '<div class="inner">'+
                             '<h3>'+value.count_by_regency+'</h3>'+
@@ -313,7 +314,8 @@ function view_count_districts(r){
     // $('#label_districts').attr('hidden', false);
     $('.d_reload').remove();
     $.each(r, function( index, value ) {
-        root_view =  '<div class="col-lg-3 col-6 d_reload">'+
+        var path = "'districts', '"+value.id+"'";
+        root_view =  '<div onclick="show_users('+path+')" class="col-lg-3 col-6 d_reload">'+
                         '<div class="small-box bg-danger">'+
                         '<div class="inner">'+
                             '<h3>'+value.count_by_districts+'</h3>'+
@@ -332,7 +334,8 @@ function view_count_sub_districts(r){
     // $('#label_sub_districts').attr('hidden', false);
     $('.s_reload').remove();
     $.each(r, function( index, value ) {
-        root_view =  '<div class="col-lg-3 col-6 s_reload">'+
+        var path = "'sub_districts', '"+value.id+"'";
+        root_view =  '<div onclick="show_users('+path+')" class="col-lg-3 col-6 s_reload">'+
                         '<div class="small-box bg-warning">'+
                         '<div class="inner">'+
                             '<h3>'+value.count_by_sub_districts+'</h3>'+
@@ -345,4 +348,8 @@ function view_count_sub_districts(r){
                     '</div>';
         $('.count_sub_districts_load').append(root_view);
     });
+}
+
+function show_users(data, get){
+    window.location = base_url+"admin/users?data="+data+"&get="+get;
 }

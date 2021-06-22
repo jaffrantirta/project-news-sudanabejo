@@ -1,13 +1,34 @@
 var table;
 var base_url = document.getElementById('base_url').innerHTML;
-var link = base_url+document.getElementById('link').innerHTML;
+var link = document.getElementById('link').innerHTML;
+var vLink;
+console.log('link 222 : '+link);
+switch(link){
+    case 'get_all_users':
+        vLink = base_url+'api/get_users_data_table?field=id>&where_clause=0';
+        break;
+    case 'regencies':
+        var id_clause = document.getElementById('id_clause').innerHTML;
+        vLink = base_url+'api/get_users_data_table?field=regency_id&where_clause='+id_clause;
+        break;
+    case 'districts':
+        var id_clause = document.getElementById('id_clause').innerHTML;
+        vLink = base_url+'api/get_users_data_table?field=districts_id&where_clause='+id_clause;
+        break;
+    case 'sub_districts':
+        var id_clause = document.getElementById('id_clause').innerHTML;
+        vLink = base_url+'api/get_users_data_table?field=sub_district_id&where_clause='+id_clause;
+        break;
+    default :
+        vLink = base_url+link;
+}
 $(document).ready(function() {
     // console.log(link);
     table = $('#table').DataTable({
         "responsive": true,
         "processing": true,
         "serverSide": true,
-        "ajax": link,
+        "ajax": vLink,
         "bSort":true,
         "bPaginate": true,
         "iDisplayLength": 10,

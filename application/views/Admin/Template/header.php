@@ -27,13 +27,18 @@
   <link rel="stylesheet" href="<?php echo base_url() ?>assets/plugins/summernote/summernote-bs4.min.css">
   <!-- loader -->
   <link rel="stylesheet" href="<?php echo base_url('assets/dist/css/loader/loader.css') ?>" />
+  <!-- swicth toggle -->
+  <link rel="stylesheet" href="<?php echo base_url('assets/dist/css/toggle.css') ?>" />
   <!-- lottie player -->
   <script src="<?php echo base_url('assets/build/js/lottie/LottiePlayer.js') ?>"></script>
 </head>
-<body class="hold-transition sidebar-mini layout-fixed layout-footer-fixed text-sm"></body>
+<body class="hold-transition sidebar-mini layout-fixed layout-footer-fixed text-sm dark-mode"></body>
 <div hidden class="loader"></div>
 <p hidden id="base_url"><?php echo base_url() ?></p>
+
 <div class="wrapper">
+
+
 
   <!-- Preloader -->
   <div class="preloader flex-column justify-content-center align-items-center">
@@ -41,8 +46,10 @@
     <h3 class="text-center">Memuat ...</h3> 
   </div>
 
+  
+
   <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+  <nav class="main-header navbar navbar-expand navbar-dark navbar-light">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
@@ -73,6 +80,8 @@
       <span class="brand-text font-weight-light">Sudana Bejo Admin</span>
     </a>
 
+    
+
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
@@ -84,6 +93,8 @@
           <a href="#" class="d-block"><?php echo $session['name'] ?></a>
         </div>
       </div>
+
+      
 
       <!-- Sidebar Menu -->
       <nav class="mt-2">
@@ -240,3 +251,5 @@
     </div>
     <!-- /.sidebar -->
   </aside>
+
+  
