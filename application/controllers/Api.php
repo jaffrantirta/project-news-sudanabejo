@@ -686,6 +686,24 @@ class Api extends CI_Controller {
       echo base64_encode($marge);
     }
 
+    public function get_data_age(){
+      $data['age'] = $this->api_model->custom_query("SELECT
+			CASE
+				WHEN age BETWEEN 15 and 25 THEN '15 - 25'
+				WHEN age BETWEEN 26 and 36 THEN '26 - 36'
+				WHEN age BETWEEN 37 and 47 THEN '37 - 47'
+				WHEN age BETWEEN 48 and 58 THEN '48 - 58'
+				WHEN age > 58 THEN '58++'
+				WHEN age IS NULL THEN '(NULL)'
+			END as range_age,
+			COUNT(*) AS sum
+		
+		FROM (select TIMESTAMPDIFF(YEAR, users.date_of_birth, CURDATE()) AS age from users)  as age_table
+		GROUP BY range_age
+		ORDER BY range_age")->result();	
+    echo json_encode($data);
+    }
+
     // --------------------------------------------------- DATA TABLE FUNCTION -------------------------------
     public function get_regencies_data_table(){
 			$columns = array(
@@ -1078,6 +1096,10 @@ class Api extends CI_Controller {
     }
 
     public function get_users_data_table(){
+      $field = $this->input->get('field');
+      $where_clause = $this->input->get('where_clause');
+      $where = $field.'='.$where_clause;
+      // print_r($where);
       $columns = array(
         array(
           'db' => 'name',  'dt' => 0,
@@ -1134,7 +1156,7 @@ class Api extends CI_Controller {
       $ssptable='users_complate_data';
       $sspprimary='id';
       $sspjoin='';
-      $sspwhere='id>=0';
+      $sspwhere='id>=0 and '.$where;
       $go=SSP::simpleCustom($_GET,$this->datatable_config(),$ssptable,$sspprimary,$columns,$sspwhere,$sspjoin);
       echo json_encode($go);
     }

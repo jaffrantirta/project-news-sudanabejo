@@ -18,12 +18,7 @@
       </div><!-- /.container-fluid -->
     </div>
     <!-- /.content-header -->
-    <?php if($id_clause == null && $data == null){ ?>
-    <p hidden id='link'>get_all_users</p>
-    <?php }else{ ?>
-    <p hidden id='link'><?php echo $data ?></p>
-    <?php } ?>
-    <p hidden id='id_clause'><?php echo $id_clause ?></p>
+    <p hidden id='link'>api/get_users_data_table</p>
     <div class="card">
               <div class="card-header">
                 <h3 class="card-title">Data List Pengguna</h3>
