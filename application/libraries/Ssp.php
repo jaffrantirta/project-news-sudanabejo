@@ -635,6 +635,58 @@ static function simpleCustomOrderAddRow ( $request, $sql_details, $table, $prima
             "data"            => self::data_output( $columns, $data )
         );
     }
+    static function simpleCustomHaving( $request, $sql_details, $table, $primaryKey, $columns, $whereCustom = '', $join, $having)
+    {
+        $bindings = array();
+        $db = self::sql_connect( $sql_details );
+
+        // Build the SQL query string from the request
+        $limit = self::limit( $request, $columns );
+        $order = self::order( $request, $columns );
+        $where = self::filter( $request, $columns, $bindings );
+
+        if ($whereCustom) {
+            if ($where) {
+                $where .= ' AND ' . $whereCustom;
+            } else {
+                $where .= 'WHERE ' . $whereCustom;
+            }
+        }
+        $data = self::sql_exec( $db, $bindings,
+            "SELECT SQL_CALC_FOUND_ROWS `".implode("`, `", self::pluck($columns, 'db'))."`
+             FROM `$table`
+             $join
+             $where
+             $order
+             $having
+             $limit"
+        );
+        
+        // Data set length after filtering
+        $resFilterLength = self::sql_exec( $db,
+            "SELECT FOUND_ROWS()"
+        );
+        $recordsFiltered = $resFilterLength[0][0];
+
+        // Total data set length
+        $resTotalLength =   self::sql_exec( $db,
+            "SELECT COUNT(`{$primaryKey}`)
+             FROM   `$table`
+             WHERE  " . $whereCustom
+        );
+        $recordsTotal = $resTotalLength[0][0];
+
+
+        /*
+         * Output
+         */
+        return array(
+            "draw"            => intval( $request['draw'] ),
+            "recordsTotal"    => intval( $recordsTotal ),
+            "recordsFiltered" => intval( $recordsFiltered ),
+            "data"            => self::data_output( $columns, $data )
+        );
+    }
       static function simpleCustomgrafik( $request, $sql_details, $table, $primaryKey, $columns, $whereCustom = '',$group )
     {
         $bindings = array();

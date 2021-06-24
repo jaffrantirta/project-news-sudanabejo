@@ -44,6 +44,12 @@ class Admin extends CI_Controller {
 		$session = $this->session->all_userdata();
     	echo json_encode($session);
 	}
+	public function users_birth_today(){
+		$day = date("d");
+		$month = date("m");
+		$data['users'] = $this->api_model->custom_query("SELECT users.*, MONTH(date_of_birth) AS month, DAY(date_of_birth) as day FROM users having day = ".$day." and month = ".$month)->result();
+		echo json_encode($data);
+	}
 
 	//-----------------------------------------------------------------------------DAERAH
 
@@ -125,12 +131,17 @@ class Admin extends CI_Controller {
 		}else{
 			$data['data'] = $this->input->get('data');
 			$data['id_clause'] = $this->input->get('get');
-			$data['page'] = 'Pengguna';
+			$data['day_value'] = $this->input->get('day');
+			$data['month_value'] = $this->input->get('month');
+			if($data['data'] == 'birthday'){
+				$data['page'] = 'Pengguna berulang tahun';
+			}else{
+				$data['page'] = 'Pengguna';
+			}
 			$data['session'] = $this->session->all_userdata();
 			$this->load->view('Admin/Template/header', $data);
 			$this->load->view('Admin/list_users', $data);
 			$this->load->view('Admin/Template/footer', $data);
-			// echo json_encode($data);
 		}
 	}
 

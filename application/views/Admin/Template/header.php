@@ -238,10 +238,16 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-info"></i>
+          <?php $day = date("d");
+          $month = date("m"); ?>
+              <?php if($page == 'Pengguna berulang tahun'){ ?>
+                <a href="<?php echo base_url('admin/users?data=birthday&day='.$day.'&month='.$month) ?>" class="nav-link active">
+              <?php }else{ ?>
+                <a href="<?php echo base_url('admin/users?data=birthday&day='.$day.'&month='.$month) ?>" class="nav-link">
+              <?php } ?>
+              <i class="nav-icon fas fa-users"></i>
               <p>
-                Informasi
+                Pengguna ulang tahun
               </p>
             </a>
           </li>

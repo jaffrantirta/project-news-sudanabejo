@@ -20,13 +20,18 @@
     <!-- /.content-header -->
     <?php if($id_clause == null && $data == null){ ?>
     <p hidden id='link'>get_all_users</p>
+    <?php }else if($data == 'birthday'){ ?>
+    <p hidden id='day_value'><?php echo $day_value ?></p>
+    <p hidden id='month_value'><?php echo $month_value ?></p>
+    <p hidden id='link'><?php echo $data ?></p>
     <?php }else{ ?>
     <p hidden id='link'><?php echo $data ?></p>
-    <?php } ?>
     <p hidden id='id_clause'><?php echo $id_clause ?></p>
+    <?php } ?>
+    
     <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Data List Pengguna</h3>
+                <h3 class="card-title">Data List <?php echo $page ?></h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body table-responsive">

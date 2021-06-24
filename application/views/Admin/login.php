@@ -23,7 +23,7 @@
       <a href="<?php echo base_url() ?>" class="h1"><b>Sudana Bejo</b> Admin</a>
     </div>
     <div class="card-body">
-      <p class="login-box-msg">masuk dengan email dan password</p>
+      <p class="login-box-msg">masuk dengan nomor ponsel dan password</p>
 
       <!-- <form action="../../index3.html" method="post"> -->
         <div class="input-group mb-3">
