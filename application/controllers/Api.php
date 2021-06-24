@@ -1095,9 +1095,16 @@ class Api extends CI_Controller {
     }
 
     public function get_users_data_table(){
-      $field = $this->input->get('field');
-      $where_clause = $this->input->get('where_clause');
-      $where = $field.'='.$where_clause;
+      $field1 = $this->input->get('field');
+      $where_clause1 = $this->input->get('where_clause');
+      $day = $this->input->get('day');
+      $month = $this->input->get('month');
+      if($day == null && $month == null){
+        $where = $field1.'='.$where_clause1;
+      }else{
+        $where = 'day = '.$day.' and month = '.$month;
+      }
+      
       // print_r($where);
       $columns = array(
         array(

@@ -19,6 +19,11 @@ switch(link){
         var id_clause = document.getElementById('id_clause').innerHTML;
         vLink = base_url+'api/get_users_data_table?field=sub_district_id&where_clause='+id_clause;
         break;
+    case 'birthday':
+        var day_value = document.getElementById('day_value').innerHTML;
+        var month_value = document.getElementById('month_value').innerHTML;
+        vLink = base_url+'api/get_users_data_table?day='+day_value+'&month='+month_value;
+        break;
     default :
         vLink = base_url+link;
 }
