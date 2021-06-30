@@ -116,7 +116,7 @@
                       </ul>
                     </div>
                   </div>
-                  <ul class="social-media">
+                  <!-- <ul class="social-media">
                     <li>
                       <a href="#">
                         <i class="mdi mdi-facebook"></i>
@@ -132,7 +132,7 @@
                         <i class="mdi mdi-twitter"></i>
                       </a>
                     </li>
-                  </ul>
+                  </ul> -->
                 </div>
               </div>
             </nav>
