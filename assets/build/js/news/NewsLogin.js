@@ -64,6 +64,43 @@ function login_process(){
         }
     })
 }
+
+function insert_comment(){
+    var email = $('#email').val();
+    var name = $('#name').val();
+    var comment = $('#comment').val();
+    if(email != '' && name != '' && comment != ''){
+        $('.loader').attr('hidden', false);
+        $.ajax({
+            url: base_url+"api/insert_comment",
+            type: 'post',
+            data: {'email':email, 'name':name, 'comment':comment},
+            success: function(result){
+                $('.loader').attr('hidden', true);
+                var data = JSON.parse(result);
+                // console.log('insert : '+data.response['message']['indonesia']);
+                if(data.response['status'] == true){
+                    document.getElementById('email').value = '';
+                    document.getElementById('name').value = '';
+                    document.getElementById('comment').value = '';
+                    message('success', data.response['message']['indonesia'], '');
+                }
+            },
+            error: function(error, x, y){
+                $('.loader').attr('hidden', true);
+                // console.log('error : '+error);
+                message('error', 'Oops! sepertinya ada kesalahan', 'kesalahan tidak diketahui');
+                var msg = JSON.parse(error.responseText);
+                if(msg.response.status == false){
+                    message('error', 'Oops! sepertinya ada kesalahan', msg.response.message.indonesia);
+                }
+            }
+        })
+    }else{
+        message('warning', 'Oops! sepertinya masih ada kolom yang kosong', 'mohon isi semua kolom');
+    }
+}
+
 function profile(){
     Swal.fire({
         html:

@@ -157,6 +157,42 @@ class Admin extends CI_Controller {
 		}
 	}
 
+	public function comments(){
+		if(!$this->session->userdata('authenticated_admin')){
+			$this->login();
+		}else{
+			$id = base64_decode($this->input->get('id'));
+			if($id != null){
+				$data['page'] = 'Komentar';
+				$data['session'] = $this->session->all_userdata();
+				$result = $this->api_model->get_data_by_where('comments', array('id'=>$id))->result();
+				$data['comment'] = $result[0];
+				$this->load->view('Admin/Template/header', $data);
+				$this->load->view('Admin/comments_detail', $data);
+				$this->load->view('Admin/Template/footer', $data);
+			}else{
+				$data['page'] = 'Komentar';
+				$data['session'] = $this->session->all_userdata();
+				$this->load->view('Admin/Template/header', $data);
+				$this->load->view('Admin/comments', $data);
+				$this->load->view('Admin/Template/footer', $data);
+			}
+			
+		}
+	}
+
+	public function email(){
+		if(!$this->session->userdata('authenticated_admin')){
+			$this->login();
+		}else{
+			$data['page'] = 'Email';
+			$data['session'] = $this->session->all_userdata();
+			$this->load->view('Admin/Template/header', $data);
+			$this->load->view('Admin/email', $data);
+			$this->load->view('Admin/Template/footer', $data);
+		}
+	}
+
 	public function details($v){
 		if(!$this->session->userdata('authenticated_admin')){
 			$this->login();
@@ -170,6 +206,10 @@ class Admin extends CI_Controller {
 					break;
 			}
 		}
+	}
+
+	public function email_template(){
+		$this->load->view('Admin/email_template');
 	}
 
 	private function user_detail($table, $id){

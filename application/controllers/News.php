@@ -198,5 +198,21 @@ class News extends CI_Controller {
 			$this->load->view('Message/index', $data);
 		}
 	}
+	public function contact(){
+		if(!$this->session->userdata('authenticated_user')){
+			$data['login']['status'] = false;
+			$data['login']['data']['name'] = '';
+			$data['login']['data']['email'] = '';
+		}else{
+			$data['login']['status'] = true;
+			$data['login']['data'] = $this->session->all_userdata();
+		}
+		$data['header'] = 'Sudana Bejo | Kontak kami';
+		$data['header_categories'] = $this->header_categories('LIMIT 5');
+		// echo json_encode($data);
+		$this->load->view('News/Template/header', $data);
+		$this->load->view('News/contact_us', $data);
+		$this->load->view('News/Template/footer', $data);
+	}
 	
 }

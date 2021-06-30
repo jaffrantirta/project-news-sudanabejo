@@ -57,7 +57,7 @@
       </li>
     </ul>
     <!-- Right navbar links -->
-    <ul class="navbar-nav ml-auto">
+    <!-- <ul class="navbar-nav ml-auto">
       <li class="nav-item">
         <a class="nav-link" data-widget="fullscreen" href="#" role="button">
           <i class="fas fa-expand-arrows-alt"></i>
@@ -68,7 +68,7 @@
           <i class="fas fa-th-large"></i>
         </a>
       </li>
-    </ul>
+    </ul> -->
   </nav>
   <!-- /.navbar -->
 
@@ -76,8 +76,8 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
-      <img src="<?php echo base_url() ?>assets/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">Sudana Bejo Admin</span>
+      <!-- <img src="<?php echo base_url() ?>assets/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8"> -->
+      <h4 class="brand-text font-weight-light">Sudana Bejo Admin</h4>
     </a>
 
     
@@ -87,7 +87,7 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="<?php echo base_url() ?>assets/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+          <img src="<?php echo base_url() ?>assets/dist/img/user2.png" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
           <a href="#" class="d-block"><?php echo $session['name'] ?></a>
@@ -248,6 +248,34 @@
               <i class="nav-icon fas fa-users"></i>
               <p>
                 Pengguna ulang tahun
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+          <?php $day = date("d");
+          $month = date("m"); ?>
+              <?php if($page == 'Komentar'){ ?>
+                <a href="<?php echo base_url('admin/comments') ?>" class="nav-link active">
+              <?php }else{ ?>
+                <a href="<?php echo base_url('admin/comments') ?>" class="nav-link">
+              <?php } ?>
+              <i class="nav-icon fas fa-comments"></i>
+              <p>
+                Komentar
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+          <?php $day = date("d");
+          $month = date("m"); ?>
+              <?php if($page == 'Email'){ ?>
+                <a href="<?php echo base_url('admin/email') ?>" class="nav-link active">
+              <?php }else{ ?>
+                <a href="<?php echo base_url('admin/email') ?>" class="nav-link">
+              <?php } ?>
+              <i class="nav-icon fas fa-envelope"></i>
+              <p>
+                Email
               </p>
             </a>
           </li>
