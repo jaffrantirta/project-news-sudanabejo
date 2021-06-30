@@ -11,6 +11,7 @@ class Api extends CI_Controller {
 		$this->load->library('mailer');
 		$this->load->library('pdf');
 		$this->load->library('pdf2');
+    $this->load->library('email_template');
 	}
 	public function index(){
     if($this->session->userdata('authenticated_admin')){
@@ -455,6 +456,57 @@ class Api extends CI_Controller {
     }
     echo json_encode($result);
   }
+
+  public function insert_comment(){
+    $name = $this->input->post('name');
+    $email = $this->input->post('email');
+    $comment = $this->input->post('comment');
+    $table = 'comments';
+    $data = array(
+      'name'=>$name,
+      'email'=>$email,
+      'comment'=>$comment
+    );
+    if($result['data'] = $this->api_model->insert_data($table, $data)){
+      $result['response'] = $this->response(array('status'=>true, 'indonesia'=>'Terikirim', 'english'=>'Sent'));
+    }else{
+      $result['response'] = $this->response(array('status'=>false, 'indonesia'=>'Gagal meingirim', 'english'=>'failed to send'));
+      $this->output->set_status_header(501);
+    }
+    echo json_encode($result);
+  }
+
+  public function send_message(){
+    $name = $this->input->post('name');
+    $email = $this->input->post('email');
+    $comment = $this->input->post('comment');
+    $subject = $this->input->post('subject');
+    $message = $this->input->post('message');
+
+    $data_template = array(
+      'name'=>$name,
+      'email'=>$email,
+      'comment'=>$comment,
+      'subject'=>$subject,
+      'message'=>$message
+    );
+    $content = $this->email_template->template($data_template);
+    $send_mail = array(
+      'email_penerima'=>$email,
+      'subjek'=>$subject,
+      'content'=>$content,
+    );
+    $send = $this->mailer->send($send_mail);
+    if($send['status']=="Sukses"){
+      $result['response'] = $this->response(array('status'=>true, 'indonesia'=>'Terkirim', 'english'=>'Sent'));
+      $this->output->set_status_header(200);
+    }else{
+      $result['response'] = $this->response(array('status'=>false, 'indonesia'=>'Gagal mengirim', 'english'=>'failed to send'));
+      $this->output->set_status_header(501);
+    }
+    echo json_encode($result);
+  }
+
   public function insert_news_2(){
     $file = $_FILES['file']['name'];
     $remove_char = preg_replace("/[^a-zA-Z]/", "", $file);
@@ -763,6 +815,53 @@ class Api extends CI_Controller {
 		      ),
 		    );
 		    $ssptable='districts_join_regencies';
+		    $sspprimary='id';
+		    $sspjoin='';
+		    $sspwhere='id>=0';
+		    $go=SSP::simpleCustom($_GET,$this->datatable_config(),$ssptable,$sspprimary,$columns,$sspwhere,$sspjoin);
+		    echo json_encode($go);
+	  }
+    public function get_comments_data_table(){
+			$columns = array(
+		      array(
+		        'db' => 'name',  'dt' => 0,
+		        'formatter' => function($d, $row){
+		          return $d;
+		        }
+		      ),
+          array(
+		        'db' => 'email',  'dt' => 1,
+		        'formatter' => function($d, $row){
+		          return $d;
+		        }
+		      ),
+          array(
+		        'db' => 'comment',  'dt' => 2,
+		        'formatter' => function($d, $row){
+		          return $d;
+		        }
+		      ),
+          array(
+		        'db' => 'created_at',  'dt' => 3,
+		        'formatter' => function($d, $row){
+		          return $d;
+		        }
+		      ),
+		      array(
+		        'db' => 'id',  'dt' => 4,
+		        'formatter' => function($d, $row){
+              $url = base_url('admin/comments?id='.base64_encode($d));
+		          return '
+		          <center>
+		              <a href="'.$url.'">
+		              	<i title="lihat" class="fa fa-eye"></i>
+		              </a>
+		            </center>
+		          ';
+		        }
+		      ),
+		    );
+		    $ssptable='comments';
 		    $sspprimary='id';
 		    $sspjoin='';
 		    $sspwhere='id>=0';

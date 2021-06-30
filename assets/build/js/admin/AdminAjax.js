@@ -47,6 +47,61 @@ $(document).ready(function() {
     });
 });
 
+function reply(){
+    var name = $('#name').val();
+    var email = $('#email').val();
+    var comment = $('#comment').val();
+    var url = "send_email('"+name+"','"+email+"','"+comment+"')";
+
+    Swal.fire({
+        title: 'Balas',
+        html:
+        '<label>Subjek</label>'+
+        '<input id="subject" type="text" class="form-control" placeholder="masukan subjek">'+
+        '<div class="form-group">'+
+                '<label>Komentar</label><br>'+
+                '<div class="input-group">'+
+                    '<div class="input-group-prepend">'+
+                        '<span class="input-group-text"><i class="fas fa-pen"></i></span>'+
+                    '</div>'+
+                        '<textarea Required name="content" id="message" class="form-control" rows="5" placeholder="masukan pesan"></textarea>'+
+                '</div>'+
+        '</div>'+
+        '<button onclick="'+url+'" class="btn btn-primary">Kirim</button>',
+        showCloseButton: false,
+        showCancelButton: false,
+        showConfirmButton: false
+    });
+}
+
+function send_email(name, email, comment){
+    var subject = $('#subject').val();
+    var message = $('#message').val();
+    $('.loader').attr('hidden', false);
+    $.ajax({
+        url: base_url+"api/send_message",
+        type: "post",
+        data: {'name':name, 'email':email, 'comment':comment, 'subject':subject, 'message':message},
+        success: function(result){
+            $('.loader').attr('hidden', true);
+            var data = JSON.parse(result);
+            if(data['response']['status']){
+                error_message('success', data['response']['message']['indonesia'], '');
+            }
+        },
+        error: function(error, x, y){
+            $('.loader').attr('hidden', true);
+            // console.log('data : '+result.responseText);
+            error_message('error', 'Oops! sepertinya ada kesalahan', 'kesalahan tidak diketahui');
+            if(error.response.status == false){
+                var string = JSON.stringify(error.responseText);
+                var msg = JSON.parse(error.responseText);
+                error_message('error', 'Oops! sepertinya ada kesalahan', msg.message['indonesia']);
+            }
+        }
+    })
+}
+
 function error_message($icon, $title, $message){
     Swal.fire({
         icon: $icon,

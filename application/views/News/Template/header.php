@@ -86,6 +86,10 @@
                         </li>
 
                         <li class="nav-item">
+                          <a href="<?php echo base_url('news/contact') ?>" class="nav-link">Kontak</a>
+                        </li>
+
+                        <li class="nav-item">
                           <h3 style="color: white"> ⠀| ⠀</h3>
                         </li>
 
