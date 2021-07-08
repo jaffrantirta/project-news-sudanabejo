@@ -125,6 +125,10 @@
               </p>
             </a>
           </li>
+
+
+<?php if($session['role_id'] == "1"){ ?>
+
           <li class="nav-item">
         <?php if($page == 'Kabupaten' || $page == 'Kecamatan' || $page == 'Kelurahan'){ ?>
           <li class="nav-item menu-is-opening menu-open">
@@ -171,13 +175,15 @@
               </li>
             </ul>
           </li>
+<?php } ?>
+
           <li class="nav-item">
-            <a href="#" class="nav-link">
             <?php if($page == 'Kategori Berita' || $page == 'Berita Populer' || $page == 'Berita' || $page == 'Berita Headline' || $page == 'Buat Berita'){ ?>
               <li class="nav-item menu-is-opening menu-open">
             <?php }else{ ?>
               <li class="nav-item">
             <?php } ?>
+            <a href="#" class="nav-link">
               <i class="nav-icon fas fa-newspaper"></i>
               <p>
                 Berita
