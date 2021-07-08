@@ -50,6 +50,10 @@ class Admin extends CI_Controller {
 		$data['users'] = $this->api_model->custom_query("SELECT users.*, MONTH(date_of_birth) AS month, DAY(date_of_birth) as day FROM users having day = ".$day." and month = ".$month)->result();
 		echo json_encode($data);
 	}
+	public function logout(){
+		$this->session->sess_destroy();
+		redirect('admin');
+    }
 
 	//-----------------------------------------------------------------------------DAERAH
 
