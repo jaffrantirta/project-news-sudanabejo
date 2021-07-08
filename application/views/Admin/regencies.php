@@ -23,7 +23,6 @@
                   <thead>
                   <tr>
                     <th>Kabupaten</th>
-                    <th>Aksi</th>
                   </tr>
                   </thead>
                   <tbody>

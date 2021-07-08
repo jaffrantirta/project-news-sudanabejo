@@ -764,18 +764,6 @@ class Api extends CI_Controller {
 		          return $d;
 		        }
 		      ),
-		      array(
-		        'db' => 'id',  'dt' => 1,
-		        'formatter' => function($d, $row){
-		          return '
-		          <center>
-		              <a href="'.base_url('admin/detail_driver/'.$d).'">
-		              	<i class="fa fa-eye"></i>
-		              </a>
-		            </center>
-		          ';
-		        }
-		      ),
 		    );
 		    $ssptable='regencies';
 		    $sspprimary='id';
