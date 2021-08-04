@@ -579,7 +579,8 @@ class Api extends CI_Controller {
           'profile_photo'=>$profile_photo,
           'ktp_photo'=>$ktp_photo,
           'whatsapp_number'=>$whatsapp_number,
-          'account_scope'=>'regencies'
+          'account_scope'=>'regencies',
+          'account_zone_id'=>'1'
         );
       $this->session->set_userdata($session);
       $result['response']['status'] = true;
