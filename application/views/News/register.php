@@ -16,6 +16,7 @@
 </head>
 <body class="hold-transition login-page">
 <p hidden id="account_scope">regencies</p>
+<p hidden id="account_zone_id">1</p>
 <p hidden id="base_url"><?php echo base_url() ?></p>
 
 

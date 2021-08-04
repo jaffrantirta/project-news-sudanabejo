@@ -19,6 +19,7 @@
     <!-- /.content-header -->
 
     <p hidden id="account_scope"><?php echo $session['account_scope'] ?></p>
+    <p hidden id="account_zone_id"><?php echo $session['account_zone_id'] ?></p>
 
     <section class="content">
       <div class="container-fluid">
@@ -34,6 +35,8 @@
           
           <div class="card-body">
             <div class="row">
+
+            <?php if($session['account_scope'] == 'regencies'){ ?>
 
               <div class="col-md-3 regencies_dropdown">
                 <div class="form-group regencies_reload">
@@ -61,6 +64,35 @@
                   </select>
                 </div>
               </div>
+
+            <?php }else if($session['account_scope'] == 'districts'){ ?>
+              <div class="col-md-3 districts_dropdown">
+                <div class="form-group districts_reload">
+                  <label>Kecamatan</label>
+                  <select id="select_districts" class="form-control select2 select_districts" style="width: 100%;">
+                    <option value="not selected yet">- Pilih Kecamatan -</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="col-md-3 sub_districts_dropdown">
+                <div class="form-group sub_districts_reload">
+                  <label>Kelurahan/Desa</label>
+                  <select id="select_sub_districts" class="form-control select2 select_sub_districts" style="width: 100%;">
+                    <option value="not selected yet">- Pilih Kelurahan/Desa -</option>
+                  </select>
+                </div>
+              </div>
+            <?php }else{ ?>
+              <div class="col-md-3 sub_districts_dropdown">
+                <div class="form-group sub_districts_reload">
+                  <label>Kelurahan/Desa</label>
+                  <select id="select_sub_districts" class="form-control select2 select_sub_districts" style="width: 100%;">
+                    <option value="not selected yet">- Pilih Kelurahan/Desa -</option>
+                  </select>
+                </div>
+              </div>
+            <?php } ?>
 
               <div class="col-md-3">
                 <div class="form-group">

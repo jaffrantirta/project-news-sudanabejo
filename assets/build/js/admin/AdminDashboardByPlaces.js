@@ -1,7 +1,8 @@
 var account_scope = document.getElementById('account_scope').innerHTML;
+var account_zone_id = document.getElementById('account_zone_id').innerHTML;
 // console.log('start');
-get_data_sum(account_scope, 'id', '>=', '0');
-get_data_dropdown_regencies('regencies', 'id', '>=', '0');
+get_data_sum(account_scope, 'id', '=', account_zone_id);
+get_data_dropdown_regencies('regencies', 'id', '=', account_zone_id);
 
 function get_data(based_by, where_clause, where_condition, where_value){
     $('.loader').attr('hidden', false);
